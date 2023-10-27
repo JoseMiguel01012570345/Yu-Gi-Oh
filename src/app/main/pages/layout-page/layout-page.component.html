@@ -1,0 +1,54 @@
+<mat-sidenav-container fullscreen>
+
+  <mat-sidenav #sidenav mode="push" [ngStyle]="{ width: '250px'}">
+    <mat-toolbar>
+      <span>Menu</span>
+      <span class="spacer"></span>
+      <button mat-icon-button (click)="sidenav.toggle()">
+          <mat-icon>menu</mat-icon>
+      </button>
+    </mat-toolbar>
+
+    <mat-nav-list>
+      <mat-nav-list>
+
+        <mat-list-item class="mat-h1" [routerLink]= profileRoute>
+          <mat-icon matListItemIcon>house</mat-icon>
+          Perfil
+        </mat-list-item>
+
+        <div class="mat-h2 ml-2"> Buscar por: </div>
+
+        <mat-list-item
+          *ngFor="let item of sidebarItems"
+          [routerLink]="item.route">
+          <div class="ml-4"> {{ item.name }} </div>
+        </mat-list-item>
+
+      </mat-nav-list>
+
+    </mat-nav-list>
+
+  </mat-sidenav>
+
+  <mat-toolbar color="primary">
+    <button mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+    </button>
+
+    <span class="spacer"></span>
+
+    <button mat-button>
+        Logout
+    </button>
+
+  </mat-toolbar>
+
+  <div class="container">
+
+    <router-outlet></router-outlet>
+
+  </div>
+</mat-sidenav-container>
+
+
