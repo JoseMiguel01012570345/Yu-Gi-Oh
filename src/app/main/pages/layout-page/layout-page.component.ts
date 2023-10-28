@@ -12,7 +12,7 @@ export class LayoutPageComponent {
   public sidebarItems =
   [
     {name: 'Jugadores', route: './search/by-player'},
-    {name: 'Atributos', route: './search/by-atribute'},
+    {name: 'Atributos', route: './search/by-attribute'},
     {name: 'Provincias', route: './search/by-region'},
     {name: 'Torneo', route: './search/by-tournament'},
   ]

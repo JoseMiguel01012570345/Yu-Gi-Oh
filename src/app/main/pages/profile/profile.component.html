@@ -1,0 +1,48 @@
+<div class="m-8" style="display: inline-block; width: 40%;">
+
+  <table mat-table [dataSource]="myDecks" class="mat-elevation-z8">
+
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Nombre </th>
+      <td mat-cell *matCellDef="let attribute"> {{attribute.name}} </td>
+    </ng-container>
+
+    <!-- Attribute Column -->
+    <ng-container matColumnDef="attribute">
+      <th mat-header-cell *matHeaderCellDef> Atributo </th>
+      <td mat-cell *matCellDef="let attribute"> {{attribute.attribute}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="myDecksColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: myDecksColumns;"></tr>
+  </table>
+</div>
+
+<div class="m-8" style="display: inline-block;  width: 40%;">
+
+  <table mat-table [dataSource]="myDecks" class="mat-elevation-z8">
+
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Nombre </th>
+      <td mat-cell *matCellDef="let attribute"> {{attribute.name}} </td>
+    </ng-container>
+
+    <!-- Attribute Column -->
+    <ng-container matColumnDef="attribute">
+      <th mat-header-cell *matHeaderCellDef> Atributo </th>
+      <td mat-cell *matCellDef="let attribute"> {{attribute.attribute}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="myDecksColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: myDecksColumns;"></tr>
+  </table>
+</div>
+
