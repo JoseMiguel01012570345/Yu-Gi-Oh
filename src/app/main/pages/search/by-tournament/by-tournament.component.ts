@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-by-tournament',
@@ -6,6 +7,9 @@ import { Component } from '@angular/core';
   styles: [
   ]
 })
+  
 export class ByTournamentComponent {
+
+  public searchInput = new FormControl('');
 
 }

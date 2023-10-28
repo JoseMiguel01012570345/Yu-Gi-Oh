@@ -10,6 +10,7 @@ import { ByPlayerComponent } from './pages/search/by-player/by-player.component'
 import { ByAtributeComponent } from './pages/search/by-attribute/by-attribute.component';
 import { ByRegionComponent } from './pages/search/by-region/by-region.component';
 import { ByTournamentComponent } from './pages/search/by-tournament/by-tournament.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -26,7 +27,8 @@ import { ByTournamentComponent } from './pages/search/by-tournament/by-tournamen
   imports: [
     CommonModule,
     ProfileRoutingModule,
-    MaterialModule
+    MaterialModule,
+    ReactiveFormsModule
   ]
 })
 export class ProfileModule { }

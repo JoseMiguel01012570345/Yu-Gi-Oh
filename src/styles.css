@@ -7,3 +7,6 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 {
   flex: 1 1 auto;
 }
+
+/* Agrega una línea en styles.css para enlazar tu archivo CSS */
+@import './app/main/pages/profile/profile.component.css';
