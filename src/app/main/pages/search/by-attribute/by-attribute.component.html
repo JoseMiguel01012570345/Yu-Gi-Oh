@@ -1,1 +1,61 @@
-<p>by-attribute works!</p>
+
+<form [formGroup]="mySearchForm" (ngSubmit)="onSave()">
+
+  <div class = "flex" style="flex-direction: row;">
+    <div class="flex flex-column m-1" style="flex-grow: 5;">
+
+
+      <mat-form-field>
+        <mat-label>Nombre</mat-label>
+        <input  type="text"
+                class="form-control"
+                formControlName="name"
+                matInput
+        />
+
+      </mat-form-field>
+
+    </div>
+
+    <div class="flex flex-column m-1" style="flex-grow: 1;">
+      <button type="submit"
+              color="primary"
+              class="flex-grow-1"
+              style="max-height: 56px; background-color: #7B1FA2;">
+        <mat-icon>search</mat-icon>
+      </button>
+    </div>
+
+  </div>
+</form>
+
+<div class="table-container m-3">
+
+  <table mat-table matSort [dataSource]="dataSource" class="mat-elevation-z8">
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Ordenar por nombre"> Nombre </th>
+      <td mat-cell *matCellDef="let item"> {{item.name}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="mostPopularRegion">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Ordenar por región mas popular"> Región donde es mas popular </th>
+      <td mat-cell *matCellDef="let item"> {{item.mostPopularRegion}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="amountsOfPlayerUsingIt">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Ordenar por cantidad de Decks de este tipo"> Cantidad de Decks de este tipo </th>
+      <td mat-cell *matCellDef="let item"> {{item.amountsOfPlayerUsingIt}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="amountOfTournamentsWhereIsUsed">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Ordenar por apariciones en torneos"> Apariciones en torneos </th>
+      <td mat-cell *matCellDef="let item"> {{item.amountOfTournamentsWhereIsUsed}} </td>
+    </ng-container>
+
+
+    <tr mat-header-row *matHeaderRowDef="searchResultsColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: searchResultsColumns;"></tr>
+  </table>
+</div>
+

@@ -5,3 +5,11 @@ export interface Tournament {
   date:   string;
   region: string;
 }
+
+export interface TournamentSearchData {
+  name:   string;
+  region: string;
+  date:   string;
+  winner: string;
+  mostUsedArchetype: string;
+}

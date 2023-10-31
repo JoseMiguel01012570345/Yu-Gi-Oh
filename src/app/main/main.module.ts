@@ -11,6 +11,13 @@ import { ByAtributeComponent } from './pages/search/by-attribute/by-attribute.co
 import { ByRegionComponent } from './pages/search/by-region/by-region.component';
 import { ByTournamentComponent } from './pages/search/by-tournament/by-tournament.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatSortModule } from '@angular/material/sort';
+import { MatTable, MatTableModule } from '@angular/material/table';
+
 
 
 
@@ -23,12 +30,19 @@ import { ReactiveFormsModule } from '@angular/forms';
     ByAtributeComponent,
     ByRegionComponent,
     ByTournamentComponent,
+
   ],
   imports: [
     CommonModule,
     ProfileRoutingModule,
     MaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatSortModule,
+    MatTableModule,
   ]
 })
 export class ProfileModule { }
