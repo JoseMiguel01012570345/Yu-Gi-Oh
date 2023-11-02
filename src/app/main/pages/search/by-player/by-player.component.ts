@@ -3,7 +3,7 @@ import { FormBuilder, FormControl } from '@angular/forms';
 import {AfterViewInit, ViewChild} from '@angular/core';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
-import { PlayerSearchData } from 'src/app/main/interfaces/player.interface';
+import { UserSearchData } from 'src/app/main/interfaces/user.interface';
 
 @Component({
   selector: 'app-by-player',
@@ -20,7 +20,7 @@ export class ByPlayerComponent implements AfterViewInit{
     end: new FormControl(""),
   })
 
-  searchResults: PlayerSearchData[] = [
+  searchResults: UserSearchData[] = [
     {
       name: "Jhon Doe",
       decksAmount: 34,
@@ -37,7 +37,7 @@ export class ByPlayerComponent implements AfterViewInit{
     },
   ]
 
-  dataSource: MatTableDataSource<PlayerSearchData> = new MatTableDataSource(this.searchResults);
+  dataSource: MatTableDataSource<UserSearchData> = new MatTableDataSource(this.searchResults);
 
   searchResultsColumns: string[] = ['name', 'decksAmount', 'region', 'amountOfTournamentsParticipated', 'amountOfTournamentsWinned'];
 

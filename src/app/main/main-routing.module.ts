@@ -14,12 +14,14 @@ const routes: Routes = [
     path: '',
     component: LayoutPageComponent,
     children: [
-      {path: 'profile', component: ProfileComponent},
-      {path: 'new-deck', component: NewDeckComponent},
       {path: 'search/by-player', component: ByPlayerComponent},
       {path: 'search/by-attribute', component: ByAtributeComponent},
       {path: 'search/by-region', component: ByRegionComponent},
       {path: 'search/by-tournament', component: ByTournamentComponent},
+
+      {path: 'profile/:id', component: ProfileComponent},
+      {path: 'profile/:id/new-deck', component: NewDeckComponent},
+
       {path: '**', redirectTo: 'profile'},
     ]
   }
