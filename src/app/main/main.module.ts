@@ -18,6 +18,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTable, MatTableModule } from '@angular/material/table';
 import { NewTournamentComponent } from './pages/new-tournament/new-tournament.component';
+import { TournamentInfoComponent } from './pages/tournament-info/tournament-info.component';
 
 
 
@@ -32,6 +33,7 @@ import { NewTournamentComponent } from './pages/new-tournament/new-tournament.co
     ByRegionComponent,
     ByTournamentComponent,
     NewTournamentComponent,
+    TournamentInfoComponent,
 
   ],
   imports: [

@@ -10,6 +10,7 @@ import { ByAtributeComponent } from './pages/search/by-attribute/by-attribute.co
 import { ByRegionComponent } from './pages/search/by-region/by-region.component';
 import { ByTournamentComponent } from './pages/search/by-tournament/by-tournament.component';
 import { NewTournamentComponent } from './pages/new-tournament/new-tournament.component';
+import { TournamentInfoComponent } from './pages/tournament-info/tournament-info.component';
 
 const routes: Routes = [
   {
@@ -25,6 +26,8 @@ const routes: Routes = [
       {path: 'profile/:id/new-deck', component: NewDeckComponent},
 
       {path: 'new-tournament', component: NewTournamentComponent},
+
+    {path:'tournament/:id', component: TournamentInfoComponent},
 
       {path: '**', redirectTo: 'profile'},
     ]
