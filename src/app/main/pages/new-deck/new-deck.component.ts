@@ -7,5 +7,8 @@ import { Component } from '@angular/core';
   ]
 })
 export class NewDeckComponent {
-
+  public attributes = [
+    { id: '1', value: "Type 1"},
+    { id: '2', value: "Mixto"},
+  ]
 }

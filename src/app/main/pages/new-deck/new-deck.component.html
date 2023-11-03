@@ -1,1 +1,35 @@
-<p>new-deck works!</p>
+<div class="grid p-3">
+  <div class="col-12 mt-5 md:col-6 md:col-offset-3 md:mt-8">
+    <div class="flex flex-column">
+
+      <span class="text-lg mb-4">Agregar Deck</span>
+
+      <mat-form-field>
+        <mat-label>Nombre de Deck</mat-label>
+        <input type="text" matInput placeholder="Nombre de Deck">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label> Atributo </mat-label>
+        <mat-select required="">
+          <mat-option *ngFor="let attribute of attributes"
+          [value]="attribute.id">
+            {{attribute.value}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <div class="flex justify-content-end mt-1">
+        <button
+          mat-flat-button
+          color="primary"
+          >
+          <mat-icon> save </mat-icon>
+          Crear
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+

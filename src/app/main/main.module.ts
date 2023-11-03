@@ -17,6 +17,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTable, MatTableModule } from '@angular/material/table';
+import { NewTournamentComponent } from './pages/new-tournament/new-tournament.component';
 
 
 
@@ -30,6 +31,7 @@ import { MatTable, MatTableModule } from '@angular/material/table';
     ByAtributeComponent,
     ByRegionComponent,
     ByTournamentComponent,
+    NewTournamentComponent,
 
   ],
   imports: [
