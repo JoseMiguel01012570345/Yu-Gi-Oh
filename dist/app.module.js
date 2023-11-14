@@ -18,6 +18,8 @@ const cards_controller_1 = require("./cards/cards.controller");
 const cards_service_1 = require("./cards/cards.service");
 const decks_controller_1 = require("./decks/decks.controller");
 const decks_service_1 = require("./decks/decks.service");
+const tournaments_controller_1 = require("./tournaments/tournaments.controller");
+const tournaments_service_1 = require("./tournaments/tournaments.service");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -32,8 +34,8 @@ exports.AppModule = AppModule = __decorate([
             test_module_1.TestModule,
             data_base_module_1.DataBaseModule
         ],
-        controllers: [app_controller_1.AppController, cards_controller_1.CardsController, decks_controller_1.DecksController],
-        providers: [app_service_1.AppService, cards_service_1.CardsService, decks_service_1.DecksService],
+        controllers: [app_controller_1.AppController, cards_controller_1.CardsController, decks_controller_1.DecksController, tournaments_controller_1.TournamentsController],
+        providers: [app_service_1.AppService, cards_service_1.CardsService, decks_service_1.DecksService, tournaments_service_1.TournamentsService],
     })
 ], AppModule);
 //# sourceMappingURL=app.module.js.map

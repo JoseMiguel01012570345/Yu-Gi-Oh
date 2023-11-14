@@ -6,15 +6,19 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AppService = void 0;
+exports.TournamentsService = void 0;
 const common_1 = require("@nestjs/common");
-let AppService = class AppService {
-    getHello() {
-        return 'Hello World! <br><a href="http://localhost:3000/cards">Cards</a><br><a href="http://localhost:3000/decks">Decks</a><br><a href="http://localhost:3000/cards">tournaments</a>';
+let TournamentsService = class TournamentsService {
+    getTournaments() {
+        return {
+            date: '2023-11-14 mar 8:42 am',
+            lige: 'Pendulum',
+            champion: 'Yuka'
+        };
     }
 };
-exports.AppService = AppService;
-exports.AppService = AppService = __decorate([
+exports.TournamentsService = TournamentsService;
+exports.TournamentsService = TournamentsService = __decorate([
     (0, common_1.Injectable)()
-], AppService);
-//# sourceMappingURL=app.service.js.map
+], TournamentsService);
+//# sourceMappingURL=tournaments.service.js.map

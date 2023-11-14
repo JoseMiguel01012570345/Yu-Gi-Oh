@@ -9,6 +9,8 @@ import { CardsController } from './cards/cards.controller';
 import { CardsService } from './cards/cards.service';
 import { DecksController } from './decks/decks.controller';
 import { DecksService } from './decks/decks.service';
+import { TournamentsController } from './tournaments/tournaments.controller';
+import { TournamentsService } from './tournaments/tournaments.service';
 
 @Module({
   imports: [
@@ -20,7 +22,7 @@ import { DecksService } from './decks/decks.service';
     TestModule,
     DataBaseModule
   ],
-  controllers: [AppController, CardsController, DecksController],
-  providers: [AppService, CardsService, DecksService],
+  controllers: [AppController, CardsController, DecksController, TournamentsController],
+  providers: [AppService, CardsService, DecksService, TournamentsService],
 })
 export class AppModule { }

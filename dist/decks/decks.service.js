@@ -9,6 +9,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.DecksService = void 0;
 const common_1 = require("@nestjs/common");
 let DecksService = class DecksService {
+    getDecks() {
+        return {
+            archetype: "Fiend",
+            name: "Infernal"
+        };
+    }
 };
 exports.DecksService = DecksService;
 exports.DecksService = DecksService = __decorate([

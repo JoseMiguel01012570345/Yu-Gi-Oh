@@ -9,30 +9,30 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.DecksController = void 0;
+exports.TournamentsController = void 0;
 const common_1 = require("@nestjs/common");
-const decks_service_1 = require("./decks.service");
-let DecksController = class DecksController {
-    constructor(decksService) {
-        this.decksService = decksService;
+const tournaments_service_1 = require("./tournaments.service");
+let TournamentsController = class TournamentsController {
+    constructor(tournamentsService) {
+        this.tournamentsService = tournamentsService;
     }
-    getDecks() {
+    getTournaments() {
         let result = [];
-        const deck = this.decksService.getDecks();
+        const tournament = this.tournamentsService.getTournaments();
         for (let i = 0; i < 10; i++)
-            result.push(deck);
+            result.push(tournament);
         return result;
     }
 };
-exports.DecksController = DecksController;
+exports.TournamentsController = TournamentsController;
 __decorate([
     (0, common_1.Get)(),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
-], DecksController.prototype, "getDecks", null);
-exports.DecksController = DecksController = __decorate([
-    (0, common_1.Controller)('decks'),
-    __metadata("design:paramtypes", [decks_service_1.DecksService])
-], DecksController);
-//# sourceMappingURL=decks.controller.js.map
+], TournamentsController.prototype, "getTournaments", null);
+exports.TournamentsController = TournamentsController = __decorate([
+    (0, common_1.Controller)('tournaments'),
+    __metadata("design:paramtypes", [tournaments_service_1.TournamentsService])
+], TournamentsController);
+//# sourceMappingURL=tournaments.controller.js.map
