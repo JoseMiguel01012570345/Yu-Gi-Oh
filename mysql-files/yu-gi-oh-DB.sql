@@ -4,14 +4,14 @@ use  yu_gi_oh;
 
 -- --------------------------------------------TABLES-----------------------------------------------
 create table player (
-	idPlayer int not null unique,    
+	idPlayer int unique,    
     NameJ varchar(50) not null,
     primary key (idPlayer)
     
 );
 create table deck(
 	
-    idDeck int not null unique,    
+    idDeck int unique,    
     nameD varchar(50) not null,
     cMD varchar(50) not null,
     cED varchar(50) not null,
@@ -22,7 +22,7 @@ create table deck(
 
 create table tournament(
 	
-    idTournament int not null unique,       
+    idTournament int unique,       
     fecha date not null,
     hora int not null,    
     dir varchar(120) not null,
@@ -32,20 +32,20 @@ create table tournament(
 );
 
 create table game(
-	
-    idTournament int not null,
-    idGame int not null unique,
+		
+    idTournament int,
+    idGame int unique,
     R1 int not null,
 	R2 int not null,
     Round int not null,
         
 	foreign key idTournament (idTournament) references  tournament (idTournament) ,
-    primary key (idTournament,idGame)
+    primary key (idGame)
 );
 
 create table arquetype(
 	
-    idArquetype int not null unique,
+    idArquetype int unique,
     nameA varchar(50),
 	
     primary key (idArquetype)
@@ -54,43 +54,38 @@ create table arquetype(
 -- -----------------------------------------RELATIONSHIPS-------------------------------------------------
 create table belong(
 	
-    idDeck int not null unique,    
-	idArquetype int unique default null,
+    idDeck int not null,    
+	idArquetype int unique not null,
     
     foreign key idDeck  (idDeck ) references  deck (idDeck ),
-    foreign key idArquetype   (idArquetype  ) references  arquetype (idArquetype ),
-    
-    primary key ( idDeck )
+    foreign key idArquetype   (idArquetype  ) references  arquetype (idArquetype )
 );
 
 create table have(
 
-	idPlayer int not null,    
+	idPlayer int not null ,    
 	idDeck int not null,    
 
 	foreign key idDeck (idDeck ) references  deck (idDeck ),
-    foreign key idPlayer (idPlayer ) references  player  (idPlayer ),
-   
-    primary key ( idDeck ,idPlayer  )
+    foreign key idPlayer (idPlayer ) references  player  (idPlayer )
 );
 
 create table suscribe(
 
 	idPlayer int not null,
-	idDeck int not null,
+	idDeck int not null ,
 	idTournament int not null,       
      
 	foreign key idTournament  (idTournament ) references  tournament  (idTournament ),
 	foreign key idDeck (idDeck ) references  deck (idDeck ),
-    foreign key idPlayer  (idPlayer ) references  player  (idPlayer ),
-   
-    primary key ( idDeck ,idPlayer,idTournament )    
+    foreign key idPlayer  (idPlayer ) references  player  (idPlayer )
 );
+
 
 create table have_weak(
 	
     idTournament int not null,       
-	idGame int not null unique,
+	idGame int not null ,
     
     foreign key idTournament (idTournament ) references  tournament  (idTournament),
 	foreign key idGame (idGame) references  game (idGame)
@@ -98,13 +93,32 @@ create table have_weak(
 
 create table participate(
 	
-    idPlayer1 int not null,       
-    idPlayer2 int not null,       
-	idGame int not null unique,
+    idPlayer1 int not null ,       
+    idPlayer2 int not null ,       
+	idGame int not null ,
     
     foreign key  idPlayer1 (idPlayer1) references  player  (idPlayer ),
     foreign key  idPlayer2 (idPlayer2) references  player  (idPlayer ),
-	foreign key (idGame) references  game (idGame),
-    
-    primary key (idGame,idPlayer1,idPlayer2 )
+	foreign key (idGame) references  game (idGame)
 );
+
+delimiter //
+
+create trigger suscriberInsert before insert on suscribe for each row begin 
+	
+    DECLARE tournament int;
+	
+    set tournament = (select idPlayer from suscribe where idPlayer= new.idPlayer and idTournament=new.idTournament );
+   
+	if tournament is  not null then
+
+		SIGNAL SQLSTATE '42927' SET MESSAGE_TEXT = 'Player exists';
+            
+	-- else
+--     
+-- 		insert into suscribe (idPlayer,idDeck,idTournament)  value (new.idPlayer,new.idDeck,new.idTournament);	
+            
+	end if;
+	
+end;
+// delimiter ;

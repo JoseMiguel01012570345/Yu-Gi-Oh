@@ -1,4 +1,5 @@
 -- ENTITIES--------------------------------------------
+use  yu_gi_oh;
 
 -- player----------------------------------------------
 insert into player (idPlayer ,NameJ) value (1,"jose");
@@ -29,13 +30,15 @@ insert into game (idTournament ,idGame ,R1 ,R2,Round ) value (13,31, 2,0,8);
 
 -- belong----------------------------------------------
 insert into belong(idDeck , idArquetype) value (10,20);
-insert into belong(idDeck , idArquetype) value (11,null);
 
 -- suscribe--------------------------------------------
+
 insert into suscribe (idPlayer ,idDeck ,idTournament ) value (1,34,13 );
-insert into suscribe (idPlayer ,idDeck ,idTournament ) value (1,35,13 );
+insert into suscribe (idPlayer ,idDeck ,idTournament ) value (2,35,13 );
 
 -- have_weak--------------------------------------------
 insert into have_weak (idTournament ,idGame ) value (12,30);
-insert into have_weak (idTournament ,idGame ) value (12,29);
+-- insert into have_weak (idTournament ,idGame ) value (12,29);
 insert into have_weak (idTournament ,idGame ) value (14,31);
+
+
