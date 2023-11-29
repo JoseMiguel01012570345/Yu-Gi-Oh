@@ -7,18 +7,19 @@ import mysql from 'promise-mysql';
 
 @Module({
     imports: [
-        // TypeOrmModule.forRootAsync({
-        //     useFactory: () => ({
-        //       type: 'mariadb',
-        //       host: '127.0.0.1',
-        //       port: 3306,
-        //       username: 'root',
-        //       password: 'family',
-        //       database: 'MyDB',
-        //       entities: [],
-        //       synchronize: true,
-        //     }),
-        // })
+        TypeOrmModule.forRootAsync({
+            useFactory: () => ({
+              type: 'mariadb',
+              host: '127.0.0.1',
+              port: 3306,
+              username: 'root',
+              password: 'family',
+              database: 'MyDB',
+              entities: [],
+              synchronize: true,
+              autologentities:true
+            }),
+        })
     ],
 })
 export class DataBaseModule {

@@ -11,6 +11,7 @@ import { DecksController } from './decks/decks.controller';
 import { DecksService } from './decks/decks.service';
 import { TournamentsController } from './tournaments/tournaments.controller';
 import { TournamentsService } from './tournaments/tournaments.service';
+import { DecksDbModule } from './decks_db/decks_db.module';
 
 @Module({
   imports: [
@@ -20,7 +21,8 @@ import { TournamentsService } from './tournaments/tournaments.service';
       autoSchemaFile: 'schema.gql',
     }),
     TestModule,
-    DataBaseModule
+    DataBaseModule,
+    DecksDbModule
   ],
   controllers: [AppController, CardsController, DecksController, TournamentsController],
   providers: [AppService, CardsService, DecksService, TournamentsService],

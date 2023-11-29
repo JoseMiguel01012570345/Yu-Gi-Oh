@@ -1133,7 +1133,7 @@
     uuid "9.0.0"
     ws "8.13.0"
 
-"@nestjs/mapped-types@2.0.2":
+"@nestjs/mapped-types@*", "@nestjs/mapped-types@2.0.2":
   version "2.0.2"
   resolved "https://registry.npmjs.org/@nestjs/mapped-types/-/mapped-types-2.0.2.tgz"
   integrity sha512-V0izw6tWs6fTp9+KiiPUbGHWALy563Frn8X6Bm87ANLRuE46iuBMD5acKBDP5lKL/75QFvrzSJT7HkCbB0jTpg==

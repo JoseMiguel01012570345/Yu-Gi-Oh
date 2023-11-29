@@ -6,29 +6,22 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.DataBaseModule = void 0;
+exports.DecksDbModule = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
-let DataBaseModule = class DataBaseModule {
+const decks_db_service_1 = require("./decks_db.service");
+const decks_db_controller_1 = require("./decks_db.controller");
+const decks_db_entity_1 = require("./entities/decks_db.entity");
+let DecksDbModule = class DecksDbModule {
 };
-exports.DataBaseModule = DataBaseModule;
-exports.DataBaseModule = DataBaseModule = __decorate([
+exports.DecksDbModule = DecksDbModule;
+exports.DecksDbModule = DecksDbModule = __decorate([
     (0, common_1.Module)({
+        controllers: [decks_db_controller_1.DecksDbController],
+        providers: [decks_db_service_1.DecksDbService],
         imports: [
-            typeorm_1.TypeOrmModule.forRootAsync({
-                useFactory: () => ({
-                    type: 'mariadb',
-                    host: '127.0.0.1',
-                    port: 3306,
-                    username: 'root',
-                    password: 'family',
-                    database: 'MyDB',
-                    entities: [],
-                    synchronize: true,
-                    autologentities: true
-                }),
-            })
-        ],
+            typeorm_1.TypeOrmModule.forFeature([decks_db_entity_1.DecksDb])
+        ]
     })
-], DataBaseModule);
-//# sourceMappingURL=data-base.module.js.map
+], DecksDbModule);
+//# sourceMappingURL=decks_db.module.js.map

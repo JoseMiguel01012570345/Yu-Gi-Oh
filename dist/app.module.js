@@ -20,6 +20,7 @@ const decks_controller_1 = require("./decks/decks.controller");
 const decks_service_1 = require("./decks/decks.service");
 const tournaments_controller_1 = require("./tournaments/tournaments.controller");
 const tournaments_service_1 = require("./tournaments/tournaments.service");
+const decks_db_module_1 = require("./decks_db/decks_db.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -32,7 +33,8 @@ exports.AppModule = AppModule = __decorate([
                 autoSchemaFile: 'schema.gql',
             }),
             test_module_1.TestModule,
-            data_base_module_1.DataBaseModule
+            data_base_module_1.DataBaseModule,
+            decks_db_module_1.DecksDbModule
         ],
         controllers: [app_controller_1.AppController, cards_controller_1.CardsController, decks_controller_1.DecksController, tournaments_controller_1.TournamentsController],
         providers: [app_service_1.AppService, cards_service_1.CardsService, decks_service_1.DecksService, tournaments_service_1.TournamentsService],
