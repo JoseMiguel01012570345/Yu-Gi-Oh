@@ -1,12 +1,10 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+//import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
-@Entity()
-export class DecksDb {
+// @Entity()
+// export class DecksDb {
+//   @PrimaryGeneratedColumn("increment")
+//   id: number;
 
-    @PrimaryGeneratedColumn('increment')
-    id: number;
-
-    @Column('text')
-    DeckName: string;
-
-}
+//   @Column("text")
+//   DeckName: string;
+// }
