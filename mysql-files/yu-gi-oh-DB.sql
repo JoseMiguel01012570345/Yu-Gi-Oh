@@ -4,9 +4,9 @@ use  yu_gi_oh;
 
 -- --------------------------------------------TABLES-----------------------------------------------
 create table player (
-	idPlayer int unique,    
-    NameJ varchar(50) not null,
-    primary key (idPlayer)
+    NameJ varchar(50) not null unique,
+    password varchar (50) not null,
+    primary key (idPlayer)s
     
 );
 create table deck(
