@@ -13,14 +13,15 @@ const apollo_1 = require("@nestjs/apollo");
 const test_module_1 = require("./test/test.module");
 const app_controller_1 = require("./app.controller");
 const app_service_1 = require("./app.service");
-const data_base_module_1 = require("./data-base/data-base.module");
-const cards_controller_1 = require("./cards/cards.controller");
-const cards_service_1 = require("./cards/cards.service");
-const decks_controller_1 = require("./decks/decks.controller");
-const decks_service_1 = require("./decks/decks.service");
-const tournaments_controller_1 = require("./tournaments/tournaments.controller");
-const tournaments_service_1 = require("./tournaments/tournaments.service");
-const decks_db_module_1 = require("./decks_db/decks_db.module");
+const typeorm_1 = require("@nestjs/typeorm");
+const player_module_1 = require("./player/player.module");
+const deck_module_1 = require("./deck/deck.module");
+const tournament_module_1 = require("./tournament/tournament.module");
+const archetype_module_1 = require("./archetype/archetype.module");
+const match_module_1 = require("./match/match.module");
+const belong_module_1 = require("./belong/belong.module");
+const have_module_1 = require("./have/have.module");
+const suscribe_module_1 = require("./suscribe/suscribe.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -32,12 +33,31 @@ exports.AppModule = AppModule = __decorate([
                 playground: true,
                 autoSchemaFile: 'schema.gql',
             }),
+            typeorm_1.TypeOrmModule.forRootAsync({
+                useFactory: () => ({
+                    type: 'mariadb',
+                    host: '127.0.0.1',
+                    port: 3306,
+                    username: 'root',
+                    password: 'family',
+                    database: 'YuGiOhDB',
+                    entities: [],
+                    synchronize: true,
+                    autoLoadEntities: true
+                }),
+            }),
             test_module_1.TestModule,
-            data_base_module_1.DataBaseModule,
-            decks_db_module_1.DecksDbModule
+            player_module_1.PlayerModule,
+            deck_module_1.DeckModule,
+            tournament_module_1.TournamentModule,
+            archetype_module_1.ArchetypeModule,
+            match_module_1.MatchModule,
+            belong_module_1.BelongModule,
+            have_module_1.HaveModule,
+            suscribe_module_1.SuscribeModule,
         ],
-        controllers: [app_controller_1.AppController, cards_controller_1.CardsController, decks_controller_1.DecksController, tournaments_controller_1.TournamentsController],
-        providers: [app_service_1.AppService, cards_service_1.CardsService, decks_service_1.DecksService, tournaments_service_1.TournamentsService],
+        controllers: [app_controller_1.AppController],
+        providers: [app_service_1.AppService],
     })
 ], AppModule);
 //# sourceMappingURL=app.module.js.map

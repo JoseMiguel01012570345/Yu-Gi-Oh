@@ -32,7 +32,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], DecksController.prototype, "getDecks", null);
 exports.DecksController = DecksController = __decorate([
-    (0, common_1.Controller)('decks'),
+    (0, common_1.Controller)("decks"),
     __metadata("design:paramtypes", [decks_service_1.DecksService])
 ], DecksController);
 //# sourceMappingURL=decks.controller.js.map

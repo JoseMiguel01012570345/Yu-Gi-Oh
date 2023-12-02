@@ -8,27 +8,12 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.DataBaseModule = void 0;
 const common_1 = require("@nestjs/common");
-const typeorm_1 = require("@nestjs/typeorm");
 let DataBaseModule = class DataBaseModule {
 };
 exports.DataBaseModule = DataBaseModule;
 exports.DataBaseModule = DataBaseModule = __decorate([
     (0, common_1.Module)({
-        imports: [
-            typeorm_1.TypeOrmModule.forRootAsync({
-                useFactory: () => ({
-                    type: 'mariadb',
-                    host: '127.0.0.1',
-                    port: 3306,
-                    username: 'root',
-                    password: 'family',
-                    database: 'MyDB',
-                    entities: [],
-                    synchronize: true,
-                    autologentities: true
-                }),
-            })
-        ],
+        imports: [],
     })
 ], DataBaseModule);
 //# sourceMappingURL=data-base.module.js.map
