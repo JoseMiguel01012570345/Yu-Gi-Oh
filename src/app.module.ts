@@ -1,35 +1,50 @@
-import { Module } from "@nestjs/common";
-import { GraphQLModule } from "@nestjs/graphql";
-import { ApolloDriver, ApolloDriverConfig } from "@nestjs/apollo";
-import { TestModule } from "./test/test.module";
-import { AppController } from "./app.controller";
-import { AppService } from "./app.service";
-import { DataBaseModule } from "./data-base/data-base.module";
-import { CardsController } from "./cards/cards.controller";
-import { CardsService } from "./cards/cards.service";
-import { DecksController } from "./decks/decks.controller";
-import { DecksService } from "./decks/decks.service";
-import { TournamentsController } from "./tournaments/tournaments.controller";
-import { TournamentsService } from "./tournaments/tournaments.service";
-import { DecksDbModule } from "./decks_db/decks_db.module";
+import { Module } from '@nestjs/common';
+import { GraphQLModule } from '@nestjs/graphql';
+import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
+import { TestModule } from './test/test.module';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { PlayerModule } from './player/player.module';
+import { DeckModule } from './deck/deck.module';
+import { TournamentModule } from './tournament/tournament.module';
+import { ArchetypeModule } from './archetype/archetype.module';
+import { MatchModule } from './match/match.module';
+import { BelongModule } from './belong/belong.module';
+import { HaveModule } from './have/have.module';
+import { SuscribeModule } from './suscribe/suscribe.module';
 
 @Module({
   imports: [
-    // GraphQLModule.forRoot<ApolloDriverConfig>({
-    //   driver: ApolloDriver,
-    //   playground: true,
-    //   autoSchemaFile: 'schema.gql',
-    // }),
+    GraphQLModule.forRoot<ApolloDriverConfig>({
+      driver: ApolloDriver,
+      playground: true,
+      autoSchemaFile: 'schema.gql',
+    }),
+    TypeOrmModule.forRootAsync({
+      useFactory: () => ({
+        type: 'mariadb',
+        host: '127.0.0.1',
+        port: 3306,
+        username: 'root',
+        password: 'family',
+        database: 'YuGiOhDB',
+        entities: [],
+        synchronize: true,
+        autoLoadEntities:true
+      }),
+  }),
     TestModule,
-    DataBaseModule,
-    DecksDbModule,
+    PlayerModule,
+    DeckModule,
+    TournamentModule,
+    ArchetypeModule,
+    MatchModule,
+    BelongModule,
+    HaveModule,
+    SuscribeModule,
   ],
-  controllers: [
-    AppController,
-    CardsController,
-    DecksController,
-    TournamentsController,
-  ],
-  providers: [AppService, CardsService, DecksService, TournamentsService],
+  controllers: [AppController],
+  providers: [AppService],
 })
-export class AppModule {}
+export class AppModule { }

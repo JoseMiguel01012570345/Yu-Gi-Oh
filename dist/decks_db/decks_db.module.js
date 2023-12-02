@@ -8,10 +8,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.DecksDbModule = void 0;
 const common_1 = require("@nestjs/common");
-const typeorm_1 = require("@nestjs/typeorm");
 const decks_db_service_1 = require("./decks_db.service");
 const decks_db_controller_1 = require("./decks_db.controller");
-const decks_db_entity_1 = require("./entities/decks_db.entity");
 let DecksDbModule = class DecksDbModule {
 };
 exports.DecksDbModule = DecksDbModule;
@@ -19,9 +17,7 @@ exports.DecksDbModule = DecksDbModule = __decorate([
     (0, common_1.Module)({
         controllers: [decks_db_controller_1.DecksDbController],
         providers: [decks_db_service_1.DecksDbService],
-        imports: [
-            typeorm_1.TypeOrmModule.forFeature([decks_db_entity_1.DecksDb])
-        ]
+        imports: [],
     })
 ], DecksDbModule);
 //# sourceMappingURL=decks_db.module.js.map
