@@ -17,4 +17,6 @@ export class RoundComponent {
     [{ nombre: 'Jugador4', deck: 'Deck4', puntuacion: 0 }, { nombre: 'Jugador8', deck: 'Deck8', puntuacion: 0 }],
   ];
 
+  //Esto es para enviar los resultados de la ronda al backend
+  submitRoundResults(): void{}
 }
