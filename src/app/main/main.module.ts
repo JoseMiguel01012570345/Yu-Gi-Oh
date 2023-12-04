@@ -19,6 +19,9 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTable, MatTableModule } from '@angular/material/table';
 import { NewTournamentComponent } from './pages/new-tournament/new-tournament.component';
 import { TournamentInfoComponent } from './pages/tournament-info/tournament-info.component';
+import { SubmissionRequestButtonComponent } from './pages/tournament-info/submission-request-button/submission-request-button.component';
+import { RoundComponent } from './pages/round/round.component';
+import { MatchComponent } from './pages/round/match/match.component';
 
 
 
@@ -34,6 +37,9 @@ import { TournamentInfoComponent } from './pages/tournament-info/tournament-info
     ByTournamentComponent,
     NewTournamentComponent,
     TournamentInfoComponent,
+    SubmissionRequestButtonComponent,
+    RoundComponent,
+    MatchComponent,
 
   ],
   imports: [

@@ -45,9 +45,7 @@ export class ProfileComponent implements OnInit {
     .subscribe(
       user => {
 
-        console.log(user);
-
-        if( !user ) return this.router.navigate(['/404']);
+        if( !user ) return this.router.navigate(['/auth/login']);
 
         this.myDecks = user.mydecks;
         this.myTournaments = user.myTournaments;

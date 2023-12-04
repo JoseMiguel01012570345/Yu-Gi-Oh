@@ -11,6 +11,7 @@ import { ByRegionComponent } from './pages/search/by-region/by-region.component'
 import { ByTournamentComponent } from './pages/search/by-tournament/by-tournament.component';
 import { NewTournamentComponent } from './pages/new-tournament/new-tournament.component';
 import { TournamentInfoComponent } from './pages/tournament-info/tournament-info.component';
+import { RoundComponent } from './pages/round/round.component';
 
 const routes: Routes = [
   {
@@ -27,9 +28,11 @@ const routes: Routes = [
 
       {path: 'new-tournament', component: NewTournamentComponent},
 
-    {path:'tournament/:id', component: TournamentInfoComponent},
+      {path:'tournament/:id', component: TournamentInfoComponent},
+      {path:'tournament/:id/:roundID', component: RoundComponent},
 
-      {path: '**', redirectTo: 'profile'},
+
+      {path: '**', redirectTo: '/auth/login'},
     ]
   }
 ];

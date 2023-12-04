@@ -1,31 +1,58 @@
 <div class="container">
-  <mat-card class="card m-3" style="background-color: #7B1FA2;">
+  <mat-card class="col-12" style="background-color: #7B1FA2; margin-top: 10px;">
     <mat-card-header>
       <div mat-card-avatar class="header-icon">1</div>
       <mat-card-title>Información</mat-card-title>
+      <mat-card-subtitle> NOMBRE DEL TORNEO </mat-card-subtitle>
+
     </mat-card-header>
+
     <mat-card-content>
-      <!-- Contenido del primer cuadro -->
+      <mat-list>
+        <mat-list-item>Localización:</mat-list-item>
+        <mat-list-item>Cantidad de Participantes:</mat-list-item>
+        <mat-list-item>Fecha de Inicio:</mat-list-item>
+        <mat-list-item>Estado (finalizando, on-going, sin iniciar):</mat-list-item>
+      </mat-list>
     </mat-card-content>
   </mat-card>
 
-  <mat-card class="card m-3">
+  <mat-card class="col-12" style="margin-top: 10px;">
+
     <mat-card-header>
       <div mat-card-avatar class="header-icon">2</div>
       <mat-card-title>Rondas</mat-card-title>
     </mat-card-header>
+
     <mat-card-content>
-      <!-- Contenido del segundo cuadro -->
+
+      <div class="grid bm-8">
+        <button mat-flat-button style="background-color: #7B1FA2; margin: 10px;" *ngFor="let ronda of rondas" [routerLink]="ronda.enlace">
+          Ronda {{ ronda.numero }}
+        </button>
+      </div>
+
     </mat-card-content>
+
   </mat-card>
 
-  <mat-card class="card m-3">
+  <mat-card class="col-12" style="margin-top: 10px;">
+
     <mat-card-header>
       <div mat-card-avatar class="header-icon">3</div>
-      <mat-card-title>Participantes</mat-card-title>
+      <mat-card-title>Participantes/PeticionesDeEntrada</mat-card-title>
     </mat-card-header>
-    <mat-card-content>
-      <!-- Contenido del tercer cuadro -->
-    </mat-card-content>
+
+    <div class="grid bm-8">
+
+      <app-submission-request-button *ngFor="let submission of submissions"
+      [userName]="submission[0]" [deck]="submission[1]"
+      (acceptClick) = "onAcceptClick($event)"
+      (denyClick)="onDenyClick($event)"
+      >
+      </app-submission-request-button>
+
+    </div>
+
   </mat-card>
 </div>

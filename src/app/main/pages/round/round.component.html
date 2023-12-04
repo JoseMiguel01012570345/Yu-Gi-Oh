@@ -1,0 +1,13 @@
+<div class="grid bm-8">
+  <app-match *ngFor="let match of matchs" [jugador1]="match[0]" [jugador2]="match[1]"></app-match>
+</div>
+
+<button mat-flat-button color="primary" class="floating-button"
+style="
+  position: fixed;
+  bottom: 40px;
+  right: 16px;
+  z-index: 1000;
+">
+  <mat-icon>done</mat-icon> Terminar Ronda
+</button>
