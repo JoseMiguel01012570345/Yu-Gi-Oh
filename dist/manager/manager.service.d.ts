@@ -1,0 +1,30 @@
+import { Response, PlayerInput, TournamentInput, DeckInput, ArchetypeInput } from './dto/create-manager.input';
+import { ParticipateService } from '../participate/participate.service';
+import { HaveweakService } from '../haveweak/haveweak.service';
+import { ArchetypeService } from '../archetype/archetype.service';
+import { PlayerService } from '../player/player.service';
+import { DeckService } from '../deck/deck.service';
+import { HaveService } from '../have/have.service';
+import { BelongService } from '../belong/belong.service';
+import { SuscribeService } from '../suscribe/suscribe.service';
+import { TournamentService } from '../tournament/tournament.service';
+import { MatchService } from '../match/match.service';
+export declare class ManagerService {
+    private readonly participateService;
+    private readonly haveweakService;
+    private readonly archetypeService;
+    private readonly playerService;
+    private readonly deckService;
+    private readonly haveService;
+    private readonly belongService;
+    private readonly suscribeServcice;
+    private readonly tournamentService;
+    private readonly matchService;
+    private participates;
+    constructor(participateService: ParticipateService, haveweakService: HaveweakService, archetypeService: ArchetypeService, playerService: PlayerService, deckService: DeckService, haveService: HaveService, belongService: BelongService, suscribeServcice: SuscribeService, tournamentService: TournamentService, matchService: MatchService);
+    private checkPlayersExists;
+    createPlayersMatches(playersInput: PlayerInput[], tournamentInput: TournamentInput): Promise<Response>;
+    checkArcheTypeExists(archetypes: ArchetypeInput[], archetype: ArchetypeInput): boolean;
+    registOnePlayer(playerInput: PlayerInput, deckInput: DeckInput, archetypeInput: ArchetypeInput, tournamentInput: TournamentInput): Promise<Response>;
+    getPlayersSuscribeToTournament(tournamentDate: number, tournamentName: string): Promise<import("../suscribe/entities/suscribe.entity").Suscribe[]>;
+}

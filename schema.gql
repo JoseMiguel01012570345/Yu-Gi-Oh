@@ -1,0 +1,481 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Test {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+type Player {
+  """Player's name"""
+  PlayerName: String!
+
+  """Password's user"""
+  PlayerPassword: String!
+}
+
+type Deck {
+  """Deck ID"""
+  DeckID: Int!
+
+  """Deck's name"""
+  DeckName: String!
+
+  """Main deck cards count"""
+  MainDeckCount: Int!
+
+  """Side deck cards count"""
+  SideDeckCount: Int!
+
+  """Extra deck cards count"""
+  ExtraDeckCount: Int!
+}
+
+type Tournament {
+  """Date of tournament"""
+  Date: Int!
+
+  """Tournament's name"""
+  TournamentName: String!
+
+  """Location of tournament"""
+  TournamentDir: String!
+}
+
+type Archetype {
+  """ArcheType's name"""
+  ArcheTypeName: String!
+}
+
+type Match {
+  """Tournament's Date ID who this instance depends"""
+  TournamentDate: Int!
+
+  """Tournamen's name ID"""
+  TournamentName: String!
+
+  """Match's id"""
+  MatchID: Int!
+
+  """Round"""
+  Rounds: Int!
+
+  """Player1's result in this match"""
+  PlayerOneResult: Int!
+
+  """Player2's result in this round"""
+  PlayerTwoResult: Int!
+}
+
+type Belong {
+  """Archetype id"""
+  ArcheTypeID: String!
+
+  """Deck id"""
+  DeckID: Int!
+}
+
+type Has {
+  """Player id"""
+  PlayerID: String!
+
+  """Deck id"""
+  DeckID: Int!
+}
+
+type Suscribe {
+  """Player id"""
+  PlayerID: String!
+
+  """Deck id"""
+  DeckID: Int!
+
+  """Tournament date"""
+  TournamentDate: Int!
+
+  """Tournament name"""
+  TournamentName: String!
+}
+
+type Haveweak {
+  """Tournament's date"""
+  TournamentDate: Int!
+
+  """ Tournament's name"""
+  TournamentName: String!
+
+  """ Match's id"""
+  MatchID: Int!
+}
+
+type Participate {
+  """Player1's id"""
+  PlayerOneID: String!
+
+  """Player2's id"""
+  PlayerTwoID: String!
+
+  """Match's id"""
+  MatchID: Int!
+}
+
+type Response {
+  """status"""
+  Status: String!
+
+  """message"""
+  Message: String!
+}
+
+type Query {
+  test(id: Int!): Test!
+  players: [Player!]!
+  player(id: String!): Player!
+  decks: [Deck!]!
+  deck(id: Int!): Deck!
+  decksByName(name: String!): [Deck!]!
+  decksByMainDeckCount(count: Int!): [Deck!]!
+  decksBySideDeckCount(count: Int!): [Deck!]!
+  decksByExtraDeckCount(count: Int!): [Deck!]!
+  tournaments: [Tournament!]!
+  tournament(tournamentDate: Int!, tournamentName: String!): Tournament!
+  tournamentsByName(name: String!): [Tournament!]!
+  tournamentsByDate(date: Int!): [Tournament!]!
+  tournamentsByLocation(Location: String!): [Tournament!]!
+  archetypes: [Archetype!]!
+  archetype(id: Int!): Archetype!
+  matchs: [Match!]!
+  match(tournamentDate: Int!, tournamentName: String!, matchid: Int!): Match!
+  matchsByDate(date: Int!): [Match!]!
+  matchsByTournamentName(tournamentName: String!): [Match!]!
+  matchsByRoundsCount(rounds: Int!): [Match!]!
+  belongs: [Belong!]!
+  belong(deckid: Int!, archetypeid: String!): Belong!
+  have: [Has!]!
+  has(deckid: Int!, playerid: Int!): Has!
+  suscribes: [Suscribe!]!
+  suscribe(playerid: String!, deckid: Int!, tournamentDate: Int!, tournamentName: String!): Suscribe!
+  haveweaks: [Haveweak!]!
+  haveweak(tournamentDate: Int!, tournamentName: String!, matchid: Int!): Haveweak!
+  participates: [Participate!]!
+  participate(PlayerOneID: String!, PlayerTwoID: String!, MatchID: Int!): Participate!
+  playersInTournament(tournamentDate: Int!, tournamentName: String!): [Suscribe!]!
+}
+
+type Mutation {
+  createTest(createTestInput: CreateTestInput!): Test!
+  updateTest(updateTestInput: UpdateTestInput!): Test!
+  removeTest(id: Int!): Test!
+  createPlayer(createPlayerInput: CreatePlayerInput!): Player!
+  updatePlayer(updatePlayerInput: UpdatePlayerInput!): Player!
+  removePlayer(id: String!): Player!
+  createDeck(createDeckInput: CreateDeckInput!): Deck!
+  updateDeck(updateDeckInput: UpdateDeckInput!): Deck!
+  removeDeck(id: Int!): Deck!
+  createTournament(createTournamentInput: CreateTournamentInput!): Tournament!
+  updateTournament(updateTournamentInput: UpdateTournamentInput!): Tournament!
+  removeTournament(tournamentDate: Int!, tournamentName: String!): Tournament!
+  createArchetype(createArchetypeInput: CreateArchetypeInput!): Archetype!
+  updateArchetype(updateArchetypeInput: UpdateArchetypeInput!): Archetype!
+  removeArchetype(id: Int!): Archetype!
+  createMatch(createMatchInput: CreateMatchInput!): Match!
+  updateMatch(updateMatchInput: UpdateMatchInput!): Match!
+  removeMatch(tournamentDate: Int!, tournamentName: String!, matchid: Int!): Match!
+  createBelong(createBelongInput: CreateBelongInput!): Belong!
+  updateBelong(updateBelongInput: UpdateBelongInput!): Belong!
+  removeBelong(deckid: Int!, archetypeid: String!): Belong!
+  createHas(createHasInput: CreateHasInput!): Has!
+  updateHas(updateHasInput: UpdateHasInput!): Has!
+  removeHas(deckid: Int!, playerid: Int!): Has!
+  createSuscribe(createSuscribeInput: CreateSuscribeInput!): Suscribe!
+  updateSuscribe(updateSuscribeInput: UpdateSuscribeInput!): Suscribe!
+  removeSuscribe(playerid: String!, deckid: Int!, tournamentDate: Int!, tournamentName: String!): Suscribe!
+  createHaveweak(createHaveweakInput: CreateHaveweakInput!): Haveweak!
+  updateHaveweak(updateHaveweakInput: UpdateHaveweakInput!): Haveweak!
+  removeHaveweak(tournamentDate: Int!, tournamentName: String!, matchid: Int!): Haveweak!
+  createParticipate(createParticipateInput: CreateParticipateInput!): Participate!
+  updateParticipate(updateParticipateInput: UpdateParticipateInput!): Participate!
+  removeParticipate(PlayerOneID: String!, PlayerTwoID: String!, MatchID: Int!): Participate!
+  createParticipates(players: [PlayerInput!]!, tournament: TournamentInput!): Response!
+  registPlayer(player: PlayerInput!, deck: DeckInput!, archetype: ArchetypeInput!, tournament: TournamentInput!): Response!
+}
+
+input CreateTestInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input UpdateTestInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
+}
+
+input CreatePlayerInput {
+  """Player's name"""
+  PlayerName: String!
+
+  """Password of player"""
+  PlayerPassword: String!
+}
+
+input UpdatePlayerInput {
+  """Player's new name"""
+  PlayerName: String!
+
+  """Players's password"""
+  PlayerPassword: String!
+}
+
+input CreateDeckInput {
+  """Deck ID"""
+  DeckID: Int!
+
+  """Deck's name"""
+  DeckName: String!
+
+  """Main deck cards count"""
+  MainDeckCount: Int!
+
+  """Side deck cards count"""
+  SideDeckCount: Int!
+
+  """Extra deck cards count"""
+  ExtraDeckCount: Int!
+}
+
+input UpdateDeckInput {
+  DeckID: Int!
+
+  """Deck name"""
+  DeckName: String!
+
+  """Main deck cards count"""
+  MainDeckCount: Int!
+
+  """Side deck cards count"""
+  SideDeckCount: Int!
+
+  """Extra deck cards count"""
+  ExtraDeckCount: Int!
+}
+
+input CreateTournamentInput {
+  """Date of tournament"""
+  Date: Int!
+
+  """Tournament's name"""
+  TournamentName: String!
+
+  """Location of the tournament"""
+  TournamentDir: String!
+}
+
+input UpdateTournamentInput {
+  """Date of tournament"""
+  Date: Int
+
+  """Tournament's name"""
+  TournamentName: String!
+
+  """Location of tournament"""
+  TournamentDir: String!
+
+  """
+  Tournament Date. Most be a string with format 
+  (year)(mounth)(day)
+  """
+  TournamentDate: Int!
+}
+
+input CreateArchetypeInput {
+  """ArcheType's name"""
+  ArcheTypeName: String!
+}
+
+input UpdateArchetypeInput {
+  ArcheTypeName: String!
+}
+
+input CreateMatchInput {
+  """Tournament's ID who this instance depends"""
+  TournamentDate: Int!
+
+  """Tournament's name"""
+  TournamentName: String!
+
+  """Match's id"""
+  MatchID: Int!
+
+  """Round"""
+  Rounds: Int!
+
+  """Player1's result in this match"""
+  PlayerOneResult: Int!
+
+  """Player2's result in this round"""
+  PlayerTwoResult: Int!
+}
+
+input UpdateMatchInput {
+  """Tournament's ID who this instance depends"""
+  TournamentDate: Int!
+
+  """Tournament's name"""
+  TournamentName: String!
+
+  """Match's id"""
+  MatchID: Int!
+
+  """Round"""
+  Rounds: Int!
+
+  """Player1's result in this match"""
+  PlayerOneResult: Int!
+
+  """Player2's result in this round"""
+  PlayerTwoResult: Int!
+}
+
+input CreateBelongInput {
+  """Archetype id"""
+  ArcheTypeID: String!
+
+  """Deck id"""
+  DeckID: Int!
+}
+
+input UpdateBelongInput {
+  """Archetype id"""
+  ArcheTypeID: String!
+
+  """Deck id"""
+  DeckID: Int!
+}
+
+input CreateHasInput {
+  """Player id"""
+  PlayerID: String!
+
+  """Deck id"""
+  DeckID: Int!
+}
+
+input UpdateHasInput {
+  """Player id"""
+  PlayerID: String!
+
+  """Deck id"""
+  DeckID: Int!
+}
+
+input CreateSuscribeInput {
+  """Player id"""
+  PlayerID: String!
+
+  """Deck id"""
+  DeckID: Int!
+
+  """Tournament date"""
+  TournamentDate: Int!
+
+  """Tournament name"""
+  TournamentName: String!
+}
+
+input UpdateSuscribeInput {
+  """Player id"""
+  PlayerID: String!
+
+  """Deck id"""
+  DeckID: Int!
+
+  """Tournament date"""
+  TournamentDate: Int!
+
+  """Tournament name"""
+  TournamentName: String!
+}
+
+input CreateHaveweakInput {
+  """Tournament's date"""
+  TournamentDate: Int!
+
+  """ Tournament's name"""
+  TournamentName: String!
+
+  """ Match's id"""
+  MatchID: Int!
+}
+
+input UpdateHaveweakInput {
+  """Tournament's date"""
+  TournamentDate: Int!
+
+  """ Tournament's name"""
+  TournamentName: String!
+
+  """ Match's id"""
+  MatchID: Int!
+}
+
+input CreateParticipateInput {
+  """Player1's id"""
+  PlayerOneID: String!
+
+  """Player2's id"""
+  PlayerTwoID: String!
+
+  """Match's id"""
+  MatchID: Int!
+}
+
+input UpdateParticipateInput {
+  """Player1's id"""
+  PlayerOneID: String!
+
+  """Player2's id"""
+  PlayerTwoID: String!
+
+  """Match's id"""
+  MatchID: Int!
+}
+
+input PlayerInput {
+  """Players id"""
+  PlayerName: String!
+
+  """Player password"""
+  PlayerPassword: String!
+}
+
+input TournamentInput {
+  """Tournament date"""
+  TournamentDate: Int!
+
+  """Tournament name"""
+  TournamentName: String!
+}
+
+input DeckInput {
+  """Deck ID"""
+  DeckID: Int!
+
+  """Deck's name"""
+  DeckName: String!
+
+  """Main deck cards count"""
+  MainDeckCount: Int!
+
+  """Side deck cards count"""
+  SideDeckCount: Int!
+
+  """Extra deck cards count"""
+  ExtraDeckCount: Int!
+}
+
+input ArchetypeInput {
+  """ArcheType's name"""
+  ArcheTypeName: String!
+}
