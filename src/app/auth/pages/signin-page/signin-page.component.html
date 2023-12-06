@@ -1,0 +1,28 @@
+<div class="flex flex-column">
+
+  <span class="text-lg mb-4">Registro</span>
+
+  <mat-form-field>
+    <mat-label>Usuario</mat-label>
+    <input type="text" matInput placeholder="Nombre de Usuario" name="Nombre">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Nombre</mat-label>
+    <input type="text" matInput placeholder="Nombre de Usuario" name="Usuario" [(ngModel)]="NombreDeUsuario">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Contraseña</mat-label>
+    <input type="text" matInput placeholder="Contraseña" name="Password"  [(ngModel)]="PasswordUsuario">
+  </mat-form-field>
+
+  <button mat-button mat-flat-button color="primary" (click)="crearUsuario()">
+    <mat-icon>save</mat-icon>
+    Crear cuenta
+  </button>
+
+  <div class="flex justify-content-end mt-5">
+    <a routerLink="/auth/login">"No tienes cuenta?"</a>
+  </div>
+</div>

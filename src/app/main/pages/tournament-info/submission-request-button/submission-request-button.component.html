@@ -1,0 +1,18 @@
+<mat-card class="example-card" style="background-color: #7B1FA2; margin: 5px;">
+  <mat-card-header>
+    <mat-card-title>{{userName}}</mat-card-title>
+    <mat-card-subtitle>Deck: {{deck}}</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+    <mat-divider></mat-divider>
+  </mat-card-content>
+
+  <mat-card-actions>
+    <button mat-button style="background-color: #1fa22c" (click)="executeAccept()">ACEPTAR</button>
+    <button mat-button style="background-color: #a21f1f" (click)="executeDeny()">DENEGAR</button>
+  </mat-card-actions>
+
+  <mat-card-footer>
+  </mat-card-footer>
+</mat-card>

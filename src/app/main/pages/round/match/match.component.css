@@ -1,0 +1,27 @@
+/* detalles-ronda.component.css */
+.card {
+  display: flex;
+  background-color: #7B1FA2;;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 20px;
+  overflow: hidden; /* Para prevenir que el divider se salga */
+}
+
+.half {
+  flex: 1;
+  padding: 10px;
+}
+
+.divider {
+  width: 2px;
+  background-color: #dddddd;
+  height: 100%;
+}
+
+.large-score {
+  font-size: 24px; /* Ajusta el tamaño según tus preferencias */
+  font-weight: bold; /* Opcional, si deseas negrita */
+  text-align: center; /* Centra horizontalmente */
+  line-height: 1.5; /* Ajusta el espacio entre líneas para centrar verticalmente */
+}

@@ -1,0 +1,12 @@
+.table-container-left {
+  display: inline-block;
+  width: 40%; /* Esto divide el espacio en dos para cada tabla */
+  margin-right: 10px; /* Espacio entre las tablas */
+}
+
+.table-container-right {
+  display: inline-block;
+  width: 40%; /* Esto divide el espacio en dos para cada tabla */
+  margin-left: 10px; /* Espacio entre las tablas */
+}
+

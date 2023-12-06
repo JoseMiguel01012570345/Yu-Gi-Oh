@@ -1,0 +1,29 @@
+<div class="card">
+  <div class="half">
+    <div class="player-info">
+      <h3 style="text-align: center;">{{ jugador1.nombre }}</h3>
+      <p style="text-align: center;">Deck: {{ jugador1.deck }}</p>
+      <div class="score-container">
+        <p class="large-score">{{ jugador1.puntuacion }}</p>
+        <div style="text-align: center;">
+          <button mat-flat-button style="margin: 2px" (click)="incrementScore(jugador1)">+</button>
+          <button mat-flat-button style="margin: 2px" (click)="decrementScore(jugador1)">-</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="divider"></div>
+  <div class="half">
+    <div class="player-info">
+      <h3 style="text-align: center;">{{ jugador2.nombre }}</h3>
+      <p style="text-align: center;">Deck: {{ jugador2.deck }}</p>
+      <div class="score-container">
+        <p class="large-score">{{ jugador2.puntuacion }}</p>
+        <div style="text-align: center;">
+          <button mat-flat-button style="margin: 2px" (click)="incrementScore(jugador2)">+</button>
+          <button mat-flat-button style="margin: 2px" (click)="decrementScore(jugador2)">-</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
