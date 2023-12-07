@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MaterialModule } from '../material/material.module';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatButtonModule} from '@angular/material/button';
 
 import { ProfileRoutingModule } from './main-routing.module';
 import { NewDeckComponent } from './pages/new-deck/new-deck.component';
@@ -53,6 +55,8 @@ import { MatchComponent } from './pages/round/match/match.component';
     MatNativeDateModule,
     MatSortModule,
     MatTableModule,
+    MatButtonModule,
+    MatMenuModule,
   ]
 })
 export class ProfileModule { }

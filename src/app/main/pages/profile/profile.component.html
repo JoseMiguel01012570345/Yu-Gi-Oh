@@ -70,3 +70,41 @@
   </div>
 </div>
 
+<button mat-flat-button color="primary" [matMenuTriggerFor]="menu"
+style="
+  position: fixed;
+  bottom: 40px;
+  right: 16px;
+  z-index: 1000;
+">Administrar</button>
+<mat-menu #menu="matMenu" xPosition="after" yPosition="above">
+  <!-- Aqui estan los botones para ejecutar cada una de las respectivas acciones -->
+  <button mat-menu-item (click)="UpgradeUserToAdmin()">Hacer Admin</button>
+  <button mat-menu-item (click)="DeleteUser()">Eliminar Usuario</button>
+  <button mat-menu-item (click)="TogglePasswordMenu()">Modificar Contraseña</button>
+
+</mat-menu>
+
+<!-- Esto es simplemente maqueteria para el menu de cambiar contraseña -->
+<div
+  style="
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  background-color: rgba(40, 31, 96, 0.8);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);"
+  *ngIf="showPasswordMenu">
+  <h2>Introduzca la nueva contraseña</h2>
+
+  <form>
+    <mat-form-field
+    style="padding: 10px;">
+      <input matInput type="password" placeholder="Nueva contraseña" />
+    </mat-form-field>
+    <button mat-raised-button color="primary" type="submit">Guardar</button>
+  </form>
+</div>
+
+

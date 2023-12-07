@@ -11,11 +11,11 @@ import { switchMap } from 'rxjs';
 import { JsonPipe } from '@angular/common';
 
 
+
+
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
-  styles: [
-  ]
 })
 
 export class ProfileComponent implements OnInit {
@@ -54,6 +54,23 @@ export class ProfileComponent implements OnInit {
 
       }
     );
+  }
 
+  showPasswordMenu: boolean = false;
+
+  DeleteUser(): void
+  {}
+
+  UpgradeUserToAdmin(): void
+  {}
+
+  TogglePasswordMenu(): void
+  {
+    this.showPasswordMenu = !this.showPasswordMenu
+  }
+
+  ChangeUserPassword(newPassword: string): void
+  {
+    this.showPasswordMenu = !this.showPasswordMenu
   }
 }
