@@ -22,14 +22,14 @@ export class ByPlayerComponent implements AfterViewInit{
 
   searchResults: UserSearchData[] = [
     {
-      name: "Jhon Doe",
+      name: "John",
       decksAmount: 34,
       region: "asdasd",
       amountOfTournamentsParticipated: 40,
       amountOfTournamentsWinned :2,
     },
     {
-      name: "Francis V.",
+      name: "Paul",
       region: "aasdknask",
       decksAmount: 20,
       amountOfTournamentsParticipated:30,
