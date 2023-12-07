@@ -13,6 +13,7 @@ import { JsonPipe } from '@angular/common';
 
 
 
+
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -57,7 +58,8 @@ export class ProfileComponent implements OnInit {
   }
 
   showPasswordMenu: boolean = false;
-
+  newPassword: string = '';
+  // En estas funciones usas el id para hablar con el backend
   DeleteUser(): void
   {}
 
@@ -71,6 +73,8 @@ export class ProfileComponent implements OnInit {
 
   ChangeUserPassword(newPassword: string): void
   {
-    this.showPasswordMenu = !this.showPasswordMenu
+    this.showPasswordMenu = !this.showPasswordMenu;
+    console.log("New Pass: " + newPassword + " for user: " + this.id);
+    this.newPassword = '';
   }
 }

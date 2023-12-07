@@ -98,13 +98,13 @@ style="
   *ngIf="showPasswordMenu">
   <h2>Introduzca la nueva contraseña</h2>
 
-  <form>
-    <mat-form-field
-    style="padding: 10px;">
-      <input matInput type="password" placeholder="Nueva contraseña" />
-    </mat-form-field>
-    <button mat-raised-button color="primary" type="submit">Guardar</button>
-  </form>
+
+  <mat-form-field
+  style="padding: 10px;">
+    <input matInput type="password" placeholder="Nueva contraseña" [(ngModel)]="newPassword"/>
+  </mat-form-field>
+  <button mat-raised-button color="primary" type="submit" (click)="ChangeUserPassword(newPassword)">Guardar</button>
+
 </div>
 
 

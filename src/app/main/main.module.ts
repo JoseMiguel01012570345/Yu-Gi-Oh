@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MaterialModule } from '../material/material.module';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatButtonModule} from '@angular/material/button';
+import { FormsModule } from '@angular/forms';
 
 import { ProfileRoutingModule } from './main-routing.module';
 import { NewDeckComponent } from './pages/new-deck/new-deck.component';
@@ -24,6 +25,7 @@ import { TournamentInfoComponent } from './pages/tournament-info/tournament-info
 import { SubmissionRequestButtonComponent } from './pages/tournament-info/submission-request-button/submission-request-button.component';
 import { RoundComponent } from './pages/round/round.component';
 import { MatchComponent } from './pages/round/match/match.component';
+
 
 
 
@@ -57,6 +59,7 @@ import { MatchComponent } from './pages/round/match/match.component';
     MatTableModule,
     MatButtonModule,
     MatMenuModule,
+    FormsModule,
   ]
 })
 export class ProfileModule { }
