@@ -71,7 +71,12 @@
     </ng-container>
 
     <ng-container matColumnDef="region">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Ordenar por región"> Región </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Ordenar por Provincia"> Región </th>
+      <td mat-cell *matCellDef="let item"> {{item.region}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="town">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Ordenar por Municipio"> Región </th>
       <td mat-cell *matCellDef="let item"> {{item.region}} </td>
     </ng-container>
 
