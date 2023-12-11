@@ -33,7 +33,7 @@ export const GET_USERS = gql`
 `;
 
 export const CREATE_USER = gql`
-  mutation Create_User($input: CreatePlayerInput){
+  mutation Create_User($input: CreatePlayerInput!){
     createPlayer(createPlayerInput: $input){
       PlayerName
       PlayerPassword

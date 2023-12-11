@@ -46,6 +46,7 @@ export class SigninPageComponent {
     }).pipe(catchError(error => {
       this.Error = true;
       this.ErrorMessage = 'Internale Error Server'
+      console.log(error);
       return throwError(error);
     })).subscribe(({data}) => {
       console.log(data);
