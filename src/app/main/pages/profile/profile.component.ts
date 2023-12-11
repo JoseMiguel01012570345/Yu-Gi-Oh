@@ -1,14 +1,16 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Deck } from '../../interfaces/deck.interface';
+// import { Deck } from '../../interfaces/deck.interface';
 import { UserData } from '../../interfaces/user.interface';
 
 import { DecksService } from '../../services/decks.service';
 import { TournamentsService } from '../../services/tournaments.service';
-import { Tournament } from '../../interfaces/tournament.interface';
+// import { Tournament } from '../../interfaces/tournament.interface';
 import { UsersService } from '../../services/users.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { switchMap } from 'rxjs';
+import { catchError, switchMap, throwError } from 'rxjs';
 import { JsonPipe } from '@angular/common';
+import { GET_DECKS_DATA, GET_TOURNAMENTS_DATA, MyDeck, MyTournament } from './querys';
+import { Apollo } from 'apollo-angular';
 
 
 
@@ -22,39 +24,46 @@ import { JsonPipe } from '@angular/common';
 export class ProfileComponent implements OnInit {
 
   public myDecksColumns: string[] = ['name', 'attribute'];
-  public myDecks: Deck[] = [];
+  public myDecks: MyDeck[] = [];
 
   public id:string = "";
 
   public myTournamentsColumns: string[] = ["name", "date", "region"]
-  public myTournaments: Tournament[] = [];
+  public myTournaments: MyTournament[] = [];
+
+  Error: boolean = false;
+
+  ErrorMessage: string = '';
 
   constructor( private userService: UsersService,
               private activatedRoute: ActivatedRoute,
-              private router: Router){}
+              private router: Router,
+              private readonly apollo: Apollo
+              ){}
 
   ngOnInit(): void {
-
-    this.activatedRoute.params.subscribe(params => {
-      this.id = params['id'];
+    this.Error = false;
+    this.apollo.watchQuery({
+      query: GET_DECKS_DATA
+    }).valueChanges.pipe(catchError(error => {
+      this.Error = true;
+      this.ErrorMessage = 'Internale Error Server';
+      return throwError(error);
+    })).subscribe(({data}) => {
+      this.myDecks = (data as any).decksData;
+      //codigo a realizar
     });
 
-    this.activatedRoute.params
-    .pipe(
-      switchMap ( ({id}) => this.userService.getUserById(id))
-    )
-    .subscribe(
-      user => {
-
-        if( !user ) return this.router.navigate(['/auth/login']);
-
-        this.myDecks = user.mydecks;
-        this.myTournaments = user.myTournaments;
-
-        return;
-
-      }
-    );
+    this.apollo.watchQuery({
+      query:GET_TOURNAMENTS_DATA
+    }).valueChanges.pipe(catchError(error => {
+      this.Error = true;
+      this.ErrorMessage = 'Internale Error Server'
+      return throwError(error);
+    })).subscribe(({data}) => {
+      this.myTournaments = (data as any).tournamentsData;
+      //codigo a realizar
+    })
   }
 
   showPasswordMenu: boolean = false;

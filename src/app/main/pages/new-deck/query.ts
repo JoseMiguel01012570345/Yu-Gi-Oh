@@ -5,13 +5,19 @@ export interface ArcheType {
   ArcheTypeName: string
 }
 
-export const GetDeck=gql`
-  query Get_Decks
-  decks{
-    id
-    name
-    attribute
-    user_id
+export interface Tournament {
+  Date: number;
+  TournamentName: string;
+  TournamentDir: string;
+}
+
+export const CREATE_TOURNAMENT = gql`
+  mutation Create_Tournament($input: CreateTournamentInput!){
+    createTournament(createTournamentInput: $input){
+      Date
+      TournamentName
+      TournamentDir
+    }
   }
 `
 

@@ -26,7 +26,7 @@ export class LoginPageComponent {
 
   constructor(
     private readonly apollo: Apollo,
-    private readonly router: Router
+    private readonly router: Router,
     ) { }
 
   async logUser() {
