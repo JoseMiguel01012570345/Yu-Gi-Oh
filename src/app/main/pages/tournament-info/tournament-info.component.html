@@ -17,7 +17,7 @@
     </mat-card-content>
   </mat-card>
 
-  <mat-card class="col-12" style="margin-top: 10px;">
+  <!-- <mat-card class="col-12" style="margin-top: 10px;">
 
     <mat-card-header>
       <div mat-card-avatar class="header-icon">2</div>
@@ -34,7 +34,7 @@
 
     </mat-card-content>
 
-  </mat-card>
+  </mat-card> -->
 
   <mat-card class="col-12" style="margin-top: 10px;">
 
@@ -45,8 +45,8 @@
 
     <div class="grid bm-8">
 
-      <app-submission-request-button *ngFor="let submission of submissions"
-      [userName]="submission[0]" [deck]="submission[1]"
+      <app-submission-request-button *ngFor="let suscribe of Suscribes"
+      [userName]="suscribe.PlayerID" [deck]="suscribe.DeckID"
       (acceptClick) = "onAcceptClick($event)"
       (denyClick)="onDenyClick($event)"
       >

@@ -12,7 +12,7 @@ export class SubmissionRequestButtonComponent {
   public userName!: string;
 
   @Input()
-  public deck!: string;
+  public deck!: number;
 
   @Output()
   public acceptClick: EventEmitter<string> = new EventEmitter<string>();

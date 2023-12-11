@@ -1,20 +1,49 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { GET_SUSCRIBES, suscribes } from './querys';
+import { Apollo } from 'apollo-angular';
+import { catchError, throwError } from 'rxjs';
 
 @Component({
   templateUrl: './tournament-info.component.html',
 
 })
 
-export class TournamentInfoComponent {
+export class TournamentInfoComponent implements OnInit {
 
-  //Esto es para probar, debes dar una lista de Usuario/Deck en correspondencia a los participantes o las peticiones del torneo
-  submissions: [string, string][] = [['Usuario1', 'Deck1'], ['Usuario2', 'Deck2'], ['Usuario3', 'Deck3']];
+  Suscribes!: suscribes[];
 
-  rondas: { numero: number; enlace: string }[] = [
-    { numero: 1, enlace: './1' },
-    { numero: 2, enlace: './2' },
-    { numero: 3, enlace: './3' },
-  ]
+  @Input()
+  TournamentName!: string;
+
+  @Input()
+  TournamentDate!: number;
+
+  Error: boolean = false;
+
+  ErrorMessage: string = '';
+
+  DeckID!: number;
+
+
+  constructor(
+    private readonly apollo: Apollo
+  ) { }
+
+  ngOnInit(): void {
+    this.Error = false;
+    this.apollo.watchQuery({
+      query: GET_SUSCRIBES
+    }).valueChanges.pipe(catchError(error => {
+      this.Error = true;
+      this.ErrorMessage = 'Internale Error Serve';
+      return throwError(error);
+    })).subscribe(({data}) => {
+      this.Suscribes = (data as any).suscribes;
+      this.Suscribes = this.Suscribes.filter(element => element.TournamentDate === this.TournamentDate && element.TournamentName === this.TournamentName);
+      //codigo a ejecutar
+    })
+  }
+
   onAcceptClick(userName: string): void
   {
     console.log('Aceptar clicado para el usuario:' + userName);
@@ -24,5 +53,4 @@ export class TournamentInfoComponent {
   {
     console.log("Usuario denegado: " + userName)
   }
-
 }
