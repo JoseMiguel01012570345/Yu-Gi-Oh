@@ -25,9 +25,19 @@ import { TournamentInfoComponent } from './pages/tournament-info/tournament-info
 import { SubmissionRequestButtonComponent } from './pages/tournament-info/submission-request-button/submission-request-button.component';
 import { RoundComponent } from './pages/round/round.component';
 import { MatchComponent } from './pages/round/match/match.component';
+import { AppModule } from '../app.module';
+import { APOLLO_OPTIONS, ApolloModule } from 'apollo-angular';
+import { ApolloClientOptions, InMemoryCache } from '@apollo/client/core';
+import { HttpLink } from 'apollo-angular/http';
 
+const uri = 'http://localhost:3000/graphql';
 
-
+function createApollo(httpLink: HttpLink) : ApolloClientOptions<any> {
+  return {
+    link: httpLink.create({uri}),
+    cache: new InMemoryCache()
+  };
+}
 
 
 @NgModule({

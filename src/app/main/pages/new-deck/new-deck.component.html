@@ -12,9 +12,9 @@
       <mat-form-field>
         <mat-label> Atributo </mat-label>
         <mat-select required="">
-          <mat-option *ngFor="let attribute of attributes"
-          [value]="attribute.id">
-            {{attribute.value}}
+          <mat-option *ngFor="let archetype of ArcheTypes"
+          [value]="archetype.ArcheTypeName">
+            {{archetype.ArcheTypeName}}
           </mat-option>
         </mat-select>
       </mat-form-field>
