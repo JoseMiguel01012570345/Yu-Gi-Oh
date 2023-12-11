@@ -1,6 +1,7 @@
-import { Component,Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Apollo } from 'apollo-angular';
-import { GET_USER, GET_USERS, Usuario } from '../../querys';
+import { GET_PLAYER } from '../../querys';
+import { catchError, throwError } from 'rxjs';
 import { Router } from '@angular/router';
 
 @Component({
@@ -12,38 +13,57 @@ import { Router } from '@angular/router';
 export class LoginPageComponent {
 
   @Input()
-  NomberDeUsuario!: string;
+  UserName!: string;
 
   @Input()
-  PasswordUsuario!: string;
+  UserPassword!: string;
+
+  @Input()
+  UserRoll!: string;
+
+  Error: boolean = false;
+  ErrorMessage: string = '';
 
   constructor(
     private readonly apollo: Apollo,
-    private readonly router: Router) { }
+    private readonly router: Router
+    ) { }
 
-  autenticarUsuario() {
-    //falta la navegacion
-    this.apollo.watchQuery({
-      query: GET_USERS
-    }).valueChanges.subscribe(({ data }) => {
-      const usuarios = (data as any).players as Usuario[];
-      const usuario = {
-        PlayerName: this.NomberDeUsuario,
-        PlayerPassword: this.PasswordUsuario
-      };
-      let existe = false;
-      for(let i = 0; i < usuarios.length; i++)
-        if(usuario.PlayerName === usuarios[i].PlayerName && usuario.PlayerPassword === usuarios[i].PlayerPassword)
-        {
-          existe = true;
-          break;
-        }
-      if (!existe)
-        this.router.navigate(['/auth/login']);
+  async logUser() {
+    this.Error = false;
+    const player = {
+      PlayerName: this.UserName,
+      PlayerPassword: this.UserPassword,
+      Roll: this.UserRoll
+    };
+
+    await this.apollo.watchQuery({
+      query: GET_PLAYER,
+      variables:{
+        input: player.PlayerName
+      }
+    }).valueChanges.pipe(catchError(error => {
+
+      this.Error = true;
+      this.ErrorMessage = 'Server Internal Error';
+      return throwError(error);
+
+    })).subscribe(({data}) => {
+
+      const password = (data as any).player.PlayerPassword;
+
+      if (this.UserPassword === password)
+      {
+        // aqui va el codigo para navegar entre paginas
+        // this.router.navigate(['main/profile']);
+      }
       else{
-        this.router.navigate([`/main/profile/${this.NomberDeUsuario}`])
+        this.Error = true;
+        this.ErrorMessage = 'Incorrect password or username';
       }
     });
+    if(this.Error)
+      console.log(this.ErrorMessage);
   }
 
 }

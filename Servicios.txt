@@ -1,0 +1,39 @@
+UserService se usa en:
+profile.component.ts
+
+Todos los demas servicios no se usan en ningun otro lugar pq necesitan del backend y
+yo hardcodee las cosas, te explico donde deberias usar cada uno
+
+Toda la carpeta search usa SearchByService, tiene que devolver diferentes interfaces
+en dependencia de lo que busques, para saber que informacion tiene la interfaz te guias
+por el searchResultColums, por ejemplo en by-attribute.component.ts tienes:
+searchResultsColumns: string[] =
+
+['name',
+'mostPopularRegion',
+'amountsOfPlayerUsingIt',
+'amountOfTournamentsWhereIsUsed'];
+
+Y asi con el resto de busquedas
+
+decks y tournament service se deberian usar en profile.component.css, pero tambien lo que
+puedes hacer es devolver esa info en user.service.ts, solo asegurate de mandarme tambien el id
+del torneo para poder enlazarlo a su pagina.
+
+Esto son los links que puedes pegar para que veas las cosas visuales
+
+Para la pagina de usuario: http://localhost:4200/main/profile/John
+
+Ahi puedes acceder a las busquedas con la barra lateral y a los formularios para crear
+nuevo deck y nuevo torneo
+
+Interfaz del torneo: http://localhost:4200/main/tournament/0
+
+Ahi puedes acceder a la interfaz de las rondas
+
+Acuerdate que tienes que montar el servidor json con npm run backend
+
+Todos los formularios estan hechos lo unico que hay que hacer es enlazar el boton a una funcion poniendo
+<button (click) = "TuFuncion()"></button>
+
+

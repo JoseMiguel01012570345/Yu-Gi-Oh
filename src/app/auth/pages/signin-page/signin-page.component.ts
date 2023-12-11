@@ -1,7 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { Apollo } from 'apollo-angular';
-import { CREATE_PLAYER, Usuario } from '../../querys';
+import { CREATE_USER } from '../../querys';
+import { catchError, throwError } from 'rxjs';
 
 @Component({
   selector: 'app-signin-page',
@@ -12,31 +13,43 @@ import { CREATE_PLAYER, Usuario } from '../../querys';
 export class SigninPageComponent {
 
   @Input()
-  NombreDeUsuario!: string;
+  UserName!: string;
 
   @Input()
-  PasswordUsuario!: string;
+  UserPassword!: string;
+
+  @Input()
+  UserRoll!: string;
+
+  Error: boolean = false;
+
+  ErrorMessage: string = '';
 
   constructor(
     private readonly apollo: Apollo,
     private readonly router: Router
   ) { }
 
-  crearUsuario() {
-    const inputUser: Usuario = {
-      PlayerName: this.NombreDeUsuario,
-      PlayerPassword: this.PasswordUsuario
+  async createAccount() {
+    this.Error = false;
+    const player = {
+      PlayerName: this.UserName,
+      PlayerPassword: this.UserPassword,
+      Roll: this.UserRoll
     };
-    this.apollo.mutate({
-      mutation: CREATE_PLAYER,
-      variables: {
-        input: inputUser
+
+    await this.apollo.mutate({
+      mutation: CREATE_USER,
+      variables:{
+        input: player
       }
-    }).subscribe(({data}) => {
-      if (data)
-        this.router.navigate(['/auth/login']);
-      else
-        console.log('hubo un error en el servidor');
+    }).pipe(catchError(error => {
+      this.Error = true;
+      this.ErrorMessage = 'Internale Error Server'
+      return throwError(error);
+    })).subscribe(({data}) => {
+      console.log(data);
+      //aqui va el codigo para navegar
     })
   }
 

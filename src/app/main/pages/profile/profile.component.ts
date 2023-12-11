@@ -9,14 +9,14 @@ import { UsersService } from '../../services/users.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { switchMap } from 'rxjs';
 import { JsonPipe } from '@angular/common';
-import { Apollo } from 'apollo-angular';
+
+
+
 
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
-  styles: [
-  ]
 })
 
 export class ProfileComponent implements OnInit {
@@ -31,7 +31,7 @@ export class ProfileComponent implements OnInit {
 
   constructor( private userService: UsersService,
               private activatedRoute: ActivatedRoute,
-              private router: Router,private readonly apolo:Apollo){}
+              private router: Router){}
 
   ngOnInit(): void {
 
@@ -55,6 +55,26 @@ export class ProfileComponent implements OnInit {
 
       }
     );
+  }
 
+  showPasswordMenu: boolean = false;
+  newPassword: string = '';
+  // En estas funciones usas el id para hablar con el backend
+  DeleteUser(): void
+  {}
+
+  UpgradeUserToAdmin(): void
+  {}
+
+  TogglePasswordMenu(): void
+  {
+    this.showPasswordMenu = !this.showPasswordMenu
+  }
+
+  ChangeUserPassword(newPassword: string): void
+  {
+    this.showPasswordMenu = !this.showPasswordMenu;
+    console.log("New Pass: " + newPassword + " for user: " + this.id);
+    this.newPassword = '';
   }
 }

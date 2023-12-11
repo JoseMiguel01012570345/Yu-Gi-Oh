@@ -37,6 +37,18 @@ export const CREATE_USER = gql`
     createPlayer(createPlayerInput: $input){
       PlayerName
       PlayerPassword
+      Roll
     }
   }
 `;
+
+
+export const GET_PLAYER = gql`
+  query Get_Player($input: String!){
+    player(id: $input){
+      PlayerName
+      PlayerPassword
+      Roll
+    }
+  }
+`

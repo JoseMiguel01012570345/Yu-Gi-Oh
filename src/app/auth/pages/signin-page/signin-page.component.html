@@ -2,27 +2,44 @@
 
   <span class="text-lg mb-4">Registro</span>
 
+  <h3 *ngIf="Error"> {{ ErrorMessage }} </h3>
+
   <mat-form-field>
     <mat-label>Usuario</mat-label>
-    <input type="text" matInput placeholder="Nombre de Usuario" name="Nombre">
+    <input type="text" matInput placeholder="Nick de Usuario">
   </mat-form-field>
 
   <mat-form-field>
-    <mat-label>Nombre</mat-label>
-    <input type="text" matInput placeholder="Nombre de Usuario" name="Usuario" [(ngModel)]="NombreDeUsuario">
+    <mat-label>Roll</mat-label>
+    <input type="text" matInput placeholder="Roll" [(ngModel)]="UserName">
   </mat-form-field>
+
+  <!-- <mat-form-field>
+    <mat-label>Provincia</mat-label>
+    <input type="text" matInput placeholder="Provincia">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Municipio</mat-label>
+    <input type="text" matInput placeholder="Municipio">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Teléfono (Opcional)</mat-label>
+    <input type="text" matInput placeholder="Teléfono (Opcional)">
+  </mat-form-field> -->
 
   <mat-form-field>
     <mat-label>Contraseña</mat-label>
-    <input type="text" matInput placeholder="Contraseña" name="Password"  [(ngModel)]="PasswordUsuario">
+    <input type="password" matInput placeholder="Contraseña" [(ngModel)]="UserPassword">
   </mat-form-field>
 
-  <button mat-button mat-flat-button color="primary" (click)="crearUsuario()">
+  <button mat-button mat-flat-button color="primary" [(ngModel)]="UserRoll">
     <mat-icon>save</mat-icon>
     Crear cuenta
   </button>
 
   <div class="flex justify-content-end mt-5">
-    <a routerLink="/auth/login">"No tienes cuenta?"</a>
+    <a routerLink="/auth/login">"Ya tienes cuenta?"</a>
   </div>
 </div>

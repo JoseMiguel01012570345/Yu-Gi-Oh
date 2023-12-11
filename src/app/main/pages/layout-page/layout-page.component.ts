@@ -13,7 +13,7 @@ export class LayoutPageComponent {
   [
     {name: 'Jugadores', route: './search/by-player'},
     {name: 'Atributos', route: './search/by-attribute'},
-    {name: 'Provincias', route: './search/by-region'},
+    {name: 'Región', route: './search/by-region'},
     {name: 'Torneo', route: './search/by-tournament'},
   ]
 }

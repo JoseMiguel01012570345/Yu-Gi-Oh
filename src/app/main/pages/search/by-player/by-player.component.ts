@@ -22,15 +22,17 @@ export class ByPlayerComponent implements AfterViewInit{
 
   searchResults: UserSearchData[] = [
     {
-      name: "Jhon Doe",
+      name: "John",
       decksAmount: 34,
       region: "asdasd",
+      town: "sadasd",
       amountOfTournamentsParticipated: 40,
       amountOfTournamentsWinned :2,
     },
     {
-      name: "Francis V.",
+      name: "Paul",
       region: "aasdknask",
+      town: "sadasd",
       decksAmount: 20,
       amountOfTournamentsParticipated:30,
       amountOfTournamentsWinned:1,
@@ -39,7 +41,7 @@ export class ByPlayerComponent implements AfterViewInit{
 
   dataSource: MatTableDataSource<UserSearchData> = new MatTableDataSource(this.searchResults);
 
-  searchResultsColumns: string[] = ['name', 'decksAmount', 'region', 'amountOfTournamentsParticipated', 'amountOfTournamentsWinned'];
+  searchResultsColumns: string[] = ['name', 'decksAmount', 'region', 'town' , 'amountOfTournamentsParticipated', 'amountOfTournamentsWinned'];
 
   constructor(private fb: FormBuilder){}
 

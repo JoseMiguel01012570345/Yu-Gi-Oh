@@ -2,22 +2,29 @@
 
   <span class="text-lg mb-4">Login</span>
 
+  <h3 *ngIf="Error"> {{ ErrorMessage }} </h3>
+
   <mat-form-field>
     <mat-label>Usuario</mat-label>
-    <input type="text" matInput placeholder="Nombre de Usuario" name="NomberDeUsuario" [(ngModel)]="NomberDeUsuario">
+    <input type="text" matInput placeholder="Nombre de Usuario" [(ngModel)]="UserName">
   </mat-form-field>
 
   <mat-form-field>
     <mat-label>Contraseña</mat-label>
-    <input type="text" matInput placeholder="Contraseña" name="PasswordUsuario" [(ngModel)]="PasswordUsuario">
+    <input type="password" matInput placeholder="Contraseña" [(ngModel)]="UserPassword">
   </mat-form-field>
 
-  <button mat-button mat-flat-button color="primary" (click)="autenticarUsuario()">
+  <mat-form-field>
+    <mat-label>Roll</mat-label>
+    <input type="text" matInput placeholder="Roll" [(ngModel)]="UserRoll">
+  </mat-form-field>
+
+  <button mat-button mat-flat-button color="primary" (click)="logUser()">
     <mat-icon>save</mat-icon>
     Ingresar
   </button>
 
   <div class="flex justify-content-end mt-5">
-    <a routerLink="/auth/signin">"Ya tienes cuenta?"</a>
+    <a routerLink="/auth/signin">"No tienes cuenta?"</a>
   </div>
 </div>

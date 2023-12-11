@@ -5,15 +5,19 @@
     <div class="flex flex-column m-1" style="flex-grow: 5;">
 
 
-      <mat-form-field>
-        <mat-label>Nombre</mat-label>
-        <input  type="text"
-                class="form-control"
-                formControlName="name"
-                matInput
-        />
+      <a [routerLink]="['/ruta-del-enlace']">
+        <mat-form-field>
+          <mat-label>
+            <a [routerLink]="['/ruta-del-enlace']"></a>
+              Nombre</mat-label>
+          <input  type="text"
+                  class="form-control"
+                  formControlName="name"
+                  matInput
+          />
 
-      </mat-form-field>
+        </mat-form-field>
+      </a>
 
     </div>
 
@@ -59,11 +63,20 @@
 
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Ordenar por nombre"> Nombre </th>
-      <td mat-cell *matCellDef="let item"> {{item.name}} </td>
+      <td mat-cell *matCellDef="let item">
+        <a [routerLink]="['/main/profile/' + item.name]" style="color: #e1e1e1;">
+          {{item.name}}
+        </a>
+      </td>
     </ng-container>
 
     <ng-container matColumnDef="region">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Ordenar por región"> Región </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Ordenar por Provincia"> Región </th>
+      <td mat-cell *matCellDef="let item"> {{item.region}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="town">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Ordenar por Municipio"> Región </th>
       <td mat-cell *matCellDef="let item"> {{item.region}} </td>
     </ng-container>
 

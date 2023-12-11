@@ -1,6 +1,7 @@
 export interface UserSearchData {
   name:   string;
   region: string;
+  town: string;
   decksAmount: number;
   amountOfTournamentsParticipated: number;
   amountOfTournamentsWinned: number;

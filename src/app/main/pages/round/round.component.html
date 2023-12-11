@@ -1,13 +1,30 @@
-<div class="grid bm-8">
-  <app-match *ngFor="let match of matchs" [jugador1]="match[0]" [jugador2]="match[1]"></app-match>
-</div>
+<div class="container">
+  <mat-card class="col-12" style="background-color: #7B1FA2; margin-top: 10px;">
+    <mat-card-header>
+      <div mat-card-avatar class="header-icon">1</div>
+      <mat-card-title>Información</mat-card-title>
+    </mat-card-header>
 
-<button mat-flat-button color="primary" class="floating-button" (click)="submitRoundResults()"
-style="
-  position: fixed;
-  bottom: 40px;
-  right: 16px;
-  z-index: 1000;
-">
-  <mat-icon>done</mat-icon> Terminar Ronda
-</button>
+    <mat-card-content>
+      <mat-list>
+        <mat-list-item>Atributo(s) mas usados:</mat-list-item>
+        <mat-list-item>Cantidad de Participantes:</mat-list-item>
+        <mat-list-item>Estado (finalizando, on-going, sin iniciar):</mat-list-item>
+      </mat-list>
+    </mat-card-content>
+  </mat-card>
+
+  <div class="grid bm-8">
+      <app-match *ngFor="let match of matchs" [jugador1]="match[0]" [jugador2]="match[1]"></app-match>
+    </div>
+
+    <button mat-flat-button color="primary" class="floating-button" (click)="submitRoundResults()"
+    style="
+      position: fixed;
+      bottom: 40px;
+      right: 16px;
+      z-index: 1000;
+    ">
+      <mat-icon>done</mat-icon> Terminar Ronda
+    </button>
+</div>
