@@ -5,7 +5,9 @@ import { UpdateDeckInput } from './dto/update-deck.input';
 export declare class DeckResolver {
     private readonly deckService;
     constructor(deckService: DeckService);
-    createDeck(createDeckInput: CreateDeckInput): Promise<CreateDeckInput>;
+    createDeck(createDeckInput: CreateDeckInput): Promise<{
+        Message: string;
+    }>;
     findAll(): Promise<Deck[]>;
     findOne(id: number): Promise<Deck>;
     findDecksByName(deckName: string): Promise<Deck[]>;

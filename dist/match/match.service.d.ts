@@ -11,6 +11,9 @@ export declare class MatchService {
     getMatchsByDate(date: number): Promise<Match[]>;
     getMatchsByTournamentName(name: string): Promise<Match[]>;
     getMatchsByRoundsCount(rounds: number): Promise<Match[]>;
+    getMaxRoundsByTournament(tournamentName: string, tournamentDate: number): Promise<any>;
+    getMatchsBettwenDates(date1: number, date2: number): Promise<any>;
+    getMatchByTournamentAndRound(tournamentDate: number, tournamentName: string, round: number): Promise<Match[]>;
     update(tournamentDate: number, tournamentName: string, matchid: number, updateMatchInput: UpdateMatchInput): Promise<UpdateMatchInput>;
     remove(tournamentDate: number, tournamentName: string, matchid: number): Promise<Match>;
 }

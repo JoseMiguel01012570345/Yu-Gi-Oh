@@ -31,6 +31,15 @@ let HaveService = class HaveService {
     async findOne(deckid, playerid) {
         return await this.hasRepository.findOneBy({ DeckID: deckid, PlayerID: playerid });
     }
+    async getDecksByPlayer(player) {
+        return await this.hasRepository.findBy({ PlayerID: player });
+    }
+    async getPlayersByDeck(deckid) {
+        return await this.hasRepository.findBy({ DeckID: deckid });
+    }
+    async getPlayersOrderedByDeckCount() {
+        return await this.hasRepository.query('SELECT PlayerID FROM has GROUP BY PlayerID ORDER BY COUNT(PlayerID) DESC');
+    }
     async update(deckid, playerid, updateHasInput) {
         await this.hasRepository.update({ DeckID: deckid, PlayerID: playerid }, updateHasInput);
         return updateHasInput;

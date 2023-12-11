@@ -31,8 +31,17 @@ let SuscribeService = class SuscribeService {
     async findOne(playerid, deckid, tournamentDate, tournamentName) {
         return await this.suscribeRepository.findOneBy({ PlayerID: playerid, DeckID: deckid, TournamentDate: tournamentDate, TournamentName: tournamentName });
     }
+    async getTournamentByPlayerWithDeck(playerid, deckid) {
+        return await this.suscribeRepository.findBy({ PlayerID: playerid, DeckID: deckid });
+    }
+    async getSuscribeByPlayerID(playerid) {
+        return await this.suscribeRepository.findBy({ PlayerID: playerid });
+    }
     async getSuscribesByTournament(tournamentDate, tournamentName) {
-        return this.suscribeRepository.findBy({ TournamentDate: tournamentDate, TournamentName: tournamentName });
+        return await this.suscribeRepository.findBy({ TournamentDate: tournamentDate, TournamentName: tournamentName });
+    }
+    async getSuscribesByTournamentsAndPlayer(tournamentName, tournamentDate, playerID) {
+        return await this.suscribeRepository.findBy({ TournamentDate: tournamentDate, TournamentName: tournamentName, PlayerID: playerID });
     }
     async update(playerid, deckid, tournamentDate, tournamentName, updateSuscribeInput) {
         await this.suscribeRepository.update({ PlayerID: playerid, DeckID: deckid, TournamentDate: tournamentDate, TournamentName: tournamentName }, updateSuscribeInput);

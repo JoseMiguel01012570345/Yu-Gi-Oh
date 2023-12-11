@@ -8,4 +8,7 @@ export class UpdatePlayerInput extends PartialType(CreatePlayerInput) {
 
   @Field(() => String!, { description: "Players's password"})
   PlayerPassword: string;
+
+  @Field(() => String!, { description:"User's roll"})
+  Roll: string;
 }

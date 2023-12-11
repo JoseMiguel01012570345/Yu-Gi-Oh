@@ -7,4 +7,7 @@ export class CreatePlayerInput {
 
   @Field(() => String!, {description:"Password of player"})
   PlayerPassword: string;
+
+  @Field(() => String!, { description: "User's roll"})
+  Roll: string;
 }

@@ -16,6 +16,14 @@ let UpdateParticipateInput = class UpdateParticipateInput extends (0, graphql_1.
 };
 exports.UpdateParticipateInput = UpdateParticipateInput;
 __decorate([
+    (0, graphql_1.Field)(() => graphql_1.Int, { description: 'Date of tournament' }),
+    __metadata("design:type", Number)
+], UpdateParticipateInput.prototype, "TournamentDate", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => String, { description: 'Name of tournament' }),
+    __metadata("design:type", String)
+], UpdateParticipateInput.prototype, "TournamentName", void 0);
+__decorate([
     (0, graphql_1.Field)(() => String, { description: "Player1's id" }),
     __metadata("design:type", String)
 ], UpdateParticipateInput.prototype, "PlayerOneID", void 0);

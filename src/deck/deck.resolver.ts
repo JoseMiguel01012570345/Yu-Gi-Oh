@@ -1,14 +1,14 @@
 import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
 import { DeckService } from './deck.service';
 import { Deck } from './entities/deck.entity';
-import { CreateDeckInput } from './dto/create-deck.input';
+import { CreateDeckInput, CreateDeckResponse } from './dto/create-deck.input';
 import { UpdateDeckInput } from './dto/update-deck.input';
 
 @Resolver(() => Deck)
 export class DeckResolver {
   constructor(private readonly deckService: DeckService) { }
 
-  @Mutation(() => Deck)
+  @Mutation(() => CreateDeckResponse)
   createDeck(@Args('createDeckInput') createDeckInput: CreateDeckInput) {
     return this.deckService.create(createDeckInput);
   }

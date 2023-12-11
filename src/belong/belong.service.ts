@@ -26,8 +26,20 @@ export class BelongService {
     return await this.belongRepository.findOneBy({ DeckID: deckid, ArcheTypeID: archetypeid });
   }
 
+  async getArchetypeOrderedByDecksCount() {
+    return await this.belongRepository.query('SELECT ArcheTypeID FROM belong GROUP BY ArcheTypeID ORDER BY COUNT(ArcheTypeID) DESC');
+  }
+
   async getDecksIDByArcheType(acrhetype: string) {
     return await this.belongRepository.findBy({ ArcheTypeID: acrhetype });
+  }
+
+  async getDecksCountByArcheType(archeType: string) {
+    return await this.belongRepository.countBy({ ArcheTypeID: archeType });
+  }
+
+  async getArcheTypesByDeckID(deckid: number) {
+    return await this.belongRepository.findBy({ DeckID: deckid });
   }
 
   async update(deckid: number, archetypeid: string, updateBelongInput: UpdateBelongInput) {

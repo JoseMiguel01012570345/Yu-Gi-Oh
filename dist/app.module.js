@@ -38,11 +38,11 @@ exports.AppModule = AppModule = __decorate([
             }),
             typeorm_1.TypeOrmModule.forRootAsync({
                 useFactory: () => ({
-                    type: 'mysql',
+                    type: 'mariadb',
                     host: '127.0.0.1',
                     port: 3306,
                     username: 'root',
-                    password: 'science',
+                    password: 'family',
                     database: 'YuGiOhDB',
                     entities: [],
                     synchronize: true,

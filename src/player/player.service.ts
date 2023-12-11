@@ -23,7 +23,8 @@ export class PlayerService {
   }
 
   async findOne(id: string) {
-    return await this.playerRepository.findOneBy({ PlayerName: id })
+    let result = await this.playerRepository.findOneBy({ PlayerName: id })
+    return result;  
   }
 
   async update(id: string, updatePlayerInput: UpdatePlayerInput) {

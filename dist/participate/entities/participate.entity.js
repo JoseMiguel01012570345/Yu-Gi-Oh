@@ -17,19 +17,29 @@ let Participate = class Participate {
 exports.Participate = Participate;
 __decorate([
     (0, typeorm_1.PrimaryColumn)(),
-    (0, graphql_1.Field)(() => String, { description: "Player1's id" }),
-    __metadata("design:type", String)
-], Participate.prototype, "PlayerOneID", void 0);
-__decorate([
-    (0, typeorm_1.PrimaryColumn)(),
-    (0, graphql_1.Field)(() => String, { description: "Player2's id" }),
-    __metadata("design:type", String)
-], Participate.prototype, "PlayerTwoID", void 0);
+    (0, graphql_1.Field)(() => graphql_1.Int, { description: "Date of tournament" }),
+    __metadata("design:type", Number)
+], Participate.prototype, "TournamentDate", void 0);
 __decorate([
     (0, typeorm_1.PrimaryColumn)(),
     (0, graphql_1.Field)(() => graphql_1.Int, { description: "Match's id" }),
     __metadata("design:type", Number)
 ], Participate.prototype, "MatchID", void 0);
+__decorate([
+    (0, typeorm_1.PrimaryColumn)(),
+    (0, graphql_1.Field)(() => String, { description: 'Name of tournament' }),
+    __metadata("design:type", String)
+], Participate.prototype, "TournamentName", void 0);
+__decorate([
+    (0, typeorm_1.Column)('text'),
+    (0, graphql_1.Field)(() => String, { description: "Player1's id" }),
+    __metadata("design:type", String)
+], Participate.prototype, "PlayerOneID", void 0);
+__decorate([
+    (0, typeorm_1.Column)('text'),
+    (0, graphql_1.Field)(() => String, { description: "Player2's id" }),
+    __metadata("design:type", String)
+], Participate.prototype, "PlayerTwoID", void 0);
 exports.Participate = Participate = __decorate([
     (0, typeorm_1.Entity)(),
     (0, graphql_1.ObjectType)()

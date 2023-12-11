@@ -40,6 +40,15 @@ let MatchService = class MatchService {
     async getMatchsByRoundsCount(rounds) {
         return await this.matchRepository.findBy({ Rounds: rounds });
     }
+    async getMaxRoundsByTournament(tournamentName, tournamentDate) {
+        return await this.matchRepository.query(`select * from YuGiOhDB.match where TournamentDate = ${tournamentDate} and TournamentName = '${tournamentName}' and Rounds in ( select max(Rounds) from YuGiOhDB.match where TournamentDate = ${tournamentDate} and TournamentName = '${tournamentName}')`);
+    }
+    async getMatchsBettwenDates(date1, date2) {
+        return await this.matchRepository.query(`SELECT * FROM YuGiOhDB.match WHERE TournamentDate <= ${date2} AND TournamentDate >= ${date1}`);
+    }
+    async getMatchByTournamentAndRound(tournamentDate, tournamentName, round) {
+        return await this.matchRepository.findBy({ TournamentDate: tournamentDate, TournamentName: tournamentName, Rounds: round });
+    }
     async update(tournamentDate, tournamentName, matchid, updateMatchInput) {
         await this.matchRepository.update({ MatchID: matchid, TournamentDate: tournamentDate, TournamentName: tournamentName }, updateMatchInput);
         return updateMatchInput;

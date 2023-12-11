@@ -13,6 +13,9 @@ type Player {
 
   """Password's user"""
   PlayerPassword: String!
+
+  """User's roll"""
+  Roll: String!
 }
 
 type Deck {
@@ -30,6 +33,11 @@ type Deck {
 
   """Extra deck cards count"""
   ExtraDeckCount: Int!
+}
+
+type CreateDeckResponse {
+  """Status of the result of the operation"""
+  Message: String!
 }
 
 type Tournament {
@@ -110,14 +118,20 @@ type Haveweak {
 }
 
 type Participate {
+  """Date of tournament"""
+  TournamentDate: Int!
+
+  """Match's id"""
+  MatchID: Int!
+
+  """Name of tournament"""
+  TournamentName: String!
+
   """Player1's id"""
   PlayerOneID: String!
 
   """Player2's id"""
   PlayerTwoID: String!
-
-  """Match's id"""
-  MatchID: Int!
 }
 
 type Response {
@@ -126,6 +140,158 @@ type Response {
 
   """message"""
   Message: String!
+}
+
+type DeckDataResponse {
+  """Deck id"""
+  ID: Int!
+
+  """Deck name"""
+  Name: String!
+
+  """Deck archetype"""
+  Attribute: String!
+
+  """User id"""
+  UsersId: [String!]!
+}
+
+type TournamentSearchDataResponse {
+  """Tournament's name"""
+  TournamentName: String!
+
+  """Location"""
+  Location: String!
+
+  """Tournament's date"""
+  TournamentDate: Int!
+
+  """ArcheType most used during the tournament"""
+  ArcheTypeMostUsed: String!
+
+  """Tournament's winner"""
+  Winner: String!
+}
+
+type UserSearchData {
+  """Player's name"""
+  Name: String!
+
+  """Decks count"""
+  DecksCount: Int!
+
+  """Tournaments count where he partipated"""
+  Participations: Int!
+
+  """Tournaments wher he has winned"""
+  WinnsCount: Int!
+}
+
+type UserDataResponse {
+  """playername"""
+  ID: String!
+
+  """Tournaments where player has participated"""
+  Tournaments: [TournamentResponse!]!
+
+  """player decks"""
+  Decks: [DeckDataResponse!]!
+}
+
+type LocationSearchDataResponse {
+  """Location"""
+  Location: String!
+
+  """ArcheType most popular"""
+  ArcheTypeMostMopular: String!
+
+  """players count in this location"""
+  PlayersCount: Int!
+
+  """Players winners count"""
+  WinnersCount: Int!
+}
+
+type ArcheTypeSearchDataResponse {
+  """archetype name"""
+  ArcheTypeName: String!
+
+  """most popular location"""
+  MostPopularRegion: String!
+
+  """players using it"""
+  PlayersCount: Int!
+
+  """tournaments where it was used"""
+  TournamentsCount: Int!
+}
+
+type ArcheTypeResponse {
+  """ArcheType name id"""
+  ArcheTypeName: String!
+}
+
+type TournamentResponse {
+  """Date of tournament"""
+  Date: Int!
+
+  """Name of tournament"""
+  TournamentName: String!
+
+  """Location of tournament"""
+  TournamentDir: String!
+}
+
+type ArcheTypeCountResponse {
+  """Acrhetype id"""
+  ArcheTypeName: String!
+
+  """Count of the archetype winner"""
+  Count: Int!
+}
+
+type PlaceResponse {
+  """The place result of the search"""
+  Place: String!
+}
+
+type PlayerResponse {
+  """Player id"""
+  PlayerName: String!
+
+  """Player password"""
+  PlayerPassword: String!
+}
+
+type SuscribeResponse {
+  """Player id"""
+  PlayerID: String!
+
+  """Deck id"""
+  DeckID: Int!
+
+  """Tournament date"""
+  TournamentDate: Int!
+
+  """Tournament name"""
+  TournamentName: String!
+}
+
+type DeckResponse {
+  """Deck ID"""
+  DeckID: Int!
+
+  """Deck's name"""
+  DeckName: String!
+
+  """Main deck cards count"""
+  MainDeckCount: Int!
+
+  """Side deck cards count"""
+  SideDeckCount: Int!
+
+  """Extra deck cards count"""
+  ExtraDeckCount: Int!
 }
 
 type Query {
@@ -159,8 +325,31 @@ type Query {
   haveweaks: [Haveweak!]!
   haveweak(tournamentDate: Int!, tournamentName: String!, matchid: Int!): Haveweak!
   participates: [Participate!]!
-  participate(PlayerOneID: String!, PlayerTwoID: String!, MatchID: Int!): Participate!
-  playersInTournament(tournamentDate: Int!, tournamentName: String!): [Suscribe!]!
+  participate(TournamentDate: Int!, TournamentName: String!, MatchID: Int!): Participate!
+  playersInTournament(tournamentDate: Int!, tournamentName: String!): [SuscribeResponse!]!
+  playersByDeckCount: [PlayerResponse!]!
+  archetypesByDecksCount: [ArcheTypeResponse!]!
+  decksByArhcetype(archetype: String!): [DeckResponse!]!
+  tournamentByArcheTypeMostUsed(archetype: String!): TournamentResponse!
+  tournamentChampiom(tournamentName: String!, tournamentDate: Int!): PlayerResponse!
+  playersOrderByResultsBettwenDates(date1: Int!, date2: Int!): [PlayerResponse!]!
+  archeTypeMostUsedInTournament(tournamentDate: Int!, tournamentName: String!): ArcheTypeResponse!
+  countByArcheTypeWinner(date1: Int!, date2: Int!): [ArcheTypeCountResponse!]!
+  placeMostWinner(date1: Int!, date2: Int!): PlaceResponse!
+  archetypeMostUsedInTournamentAndRound(tournamentDate: Int!, tournamentName: String!, round: Int!): [ArcheTypeCountResponse!]!
+  archeTypeMostUsedAtLeastByOnePlayer: [ArcheTypeCountResponse!]!
+  ArcheTypeSearchData(archetype: String!): ArcheTypeSearchDataResponse!
+  ArcheTypesSearchData: [ArcheTypeSearchDataResponse!]!
+  deckData(deckid: Int!): DeckDataResponse!
+  decksData: [DeckDataResponse!]!
+  locationData(location: String!): LocationSearchDataResponse!
+  locationsData: [LocationSearchDataResponse!]!
+  tournamentData(date: Int!, name: String!): TournamentSearchDataResponse!
+  tournamentsData: [TournamentSearchDataResponse!]!
+  userSearchData(name: String!): UserSearchData!
+  usersSearchData: [UserSearchData!]!
+  userData(name: String!): UserDataResponse!
+  usersData: [UserDataResponse!]!
 }
 
 type Mutation {
@@ -170,7 +359,7 @@ type Mutation {
   createPlayer(createPlayerInput: CreatePlayerInput!): Player!
   updatePlayer(updatePlayerInput: UpdatePlayerInput!): Player!
   removePlayer(id: String!): Player!
-  createDeck(createDeckInput: CreateDeckInput!): Deck!
+  createDeck(createDeckInput: CreateDeckInput!): CreateDeckResponse!
   updateDeck(updateDeckInput: UpdateDeckInput!): Deck!
   removeDeck(id: Int!): Deck!
   createTournament(createTournamentInput: CreateTournamentInput!): Tournament!
@@ -196,8 +385,8 @@ type Mutation {
   removeHaveweak(tournamentDate: Int!, tournamentName: String!, matchid: Int!): Haveweak!
   createParticipate(createParticipateInput: CreateParticipateInput!): Participate!
   updateParticipate(updateParticipateInput: UpdateParticipateInput!): Participate!
-  removeParticipate(PlayerOneID: String!, PlayerTwoID: String!, MatchID: Int!): Participate!
-  createParticipates(players: [PlayerInput!]!, tournament: TournamentInput!): Response!
+  removeParticipate(TournamentDate: Int!, TournamentName: String!, MatchID: Int!): Participate!
+  createParticipates(players: [PlayerInput!]!, tournament: TournamentInput!, round: Int!): Response!
   registPlayer(player: PlayerInput!, deck: DeckInput!, archetype: ArchetypeInput!, tournament: TournamentInput!): Response!
 }
 
@@ -218,6 +407,9 @@ input CreatePlayerInput {
 
   """Password of player"""
   PlayerPassword: String!
+
+  """User's roll"""
+  Roll: String!
 }
 
 input UpdatePlayerInput {
@@ -226,6 +418,9 @@ input UpdatePlayerInput {
 
   """Players's password"""
   PlayerPassword: String!
+
+  """User's roll"""
+  Roll: String!
 }
 
 input CreateDeckInput {
@@ -421,6 +616,12 @@ input UpdateHaveweakInput {
 }
 
 input CreateParticipateInput {
+  """Date of tournament"""
+  TournamentDate: Int!
+
+  """Name of tournament"""
+  TournamentName: String!
+
   """Player1's id"""
   PlayerOneID: String!
 
@@ -432,6 +633,12 @@ input CreateParticipateInput {
 }
 
 input UpdateParticipateInput {
+  """Date of tournament"""
+  TournamentDate: Int!
+
+  """Name of tournament"""
+  TournamentName: String!
+
   """Player1's id"""
   PlayerOneID: String!
 
@@ -448,6 +655,9 @@ input PlayerInput {
 
   """Player password"""
   PlayerPassword: String!
+
+  """Usre's roll"""
+  Roll: String!
 }
 
 input TournamentInput {

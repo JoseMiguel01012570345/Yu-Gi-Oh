@@ -52,7 +52,7 @@ let DeckResolver = class DeckResolver {
 };
 exports.DeckResolver = DeckResolver;
 __decorate([
-    (0, graphql_1.Mutation)(() => deck_entity_1.Deck),
+    (0, graphql_1.Mutation)(() => create_deck_input_1.CreateDeckResponse),
     __param(0, (0, graphql_1.Args)('createDeckInput')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [create_deck_input_1.CreateDeckInput]),

@@ -14,8 +14,12 @@ export class DeckService {
   ) { }
 
   async create(createDeckInput: CreateDeckInput) {
-    await this.deckRepository.insert(createDeckInput)
-    return createDeckInput;
+    try {
+      await this.deckRepository.insert(createDeckInput)
+      return { Message: 'Deck created succesfully' };
+    } catch (error) {
+      return { Message: `Error during the operation: ${error}` };
+    }
   }
 
   async findAll() {

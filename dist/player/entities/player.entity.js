@@ -25,6 +25,11 @@ __decorate([
     (0, graphql_1.Field)(() => String, { description: "Password's user" }),
     __metadata("design:type", String)
 ], Player.prototype, "PlayerPassword", void 0);
+__decorate([
+    (0, typeorm_1.Column)('text'),
+    (0, graphql_1.Field)(() => String, { description: "User's roll" }),
+    __metadata("design:type", String)
+], Player.prototype, "Roll", void 0);
 exports.Player = Player = __decorate([
     (0, typeorm_1.Entity)(),
     (0, graphql_1.ObjectType)()

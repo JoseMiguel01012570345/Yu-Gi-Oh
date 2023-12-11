@@ -38,6 +38,18 @@ export class MatchService {
     return await this.matchRepository.findBy({ Rounds: rounds });
   }
 
+  async getMaxRoundsByTournament(tournamentName: string, tournamentDate: number) {
+    return await this.matchRepository.query(`select * from YuGiOhDB.match where TournamentDate = ${tournamentDate} and TournamentName = '${tournamentName}' and Rounds in ( select max(Rounds) from YuGiOhDB.match where TournamentDate = ${tournamentDate} and TournamentName = '${tournamentName}')`);
+  }
+
+  async getMatchsBettwenDates(date1: number, date2: number) {
+    return await this.matchRepository.query(`SELECT * FROM YuGiOhDB.match WHERE TournamentDate <= ${date2} AND TournamentDate >= ${date1}`);
+  }
+
+  async getMatchByTournamentAndRound(tournamentDate: number, tournamentName: string, round: number) {
+    return await this.matchRepository.findBy({ TournamentDate: tournamentDate, TournamentName: tournamentName, Rounds: round });
+  }
+
   async update(tournamentDate: number, tournamentName: string, matchid: number, updateMatchInput: UpdateMatchInput) {
     await this.matchRepository.update({ MatchID: matchid, TournamentDate: tournamentDate, TournamentName: tournamentName }, updateMatchInput);
     return updateMatchInput;

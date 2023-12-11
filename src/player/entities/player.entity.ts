@@ -13,4 +13,7 @@ export class Player {
   @Field(() => String!, { description: "Password's user"})
   PlayerPassword: string;
 
+  @Column('text')
+  @Field(() => String!, { description: "User's roll"})
+  Roll: string;
 }

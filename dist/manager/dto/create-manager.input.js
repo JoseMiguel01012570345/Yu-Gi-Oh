@@ -9,7 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ArchetypeInput = exports.DeckInput = exports.TournamentInput = exports.MatchInput = exports.PlayerInput = exports.BelongResponse = exports.SuscribeResponse = exports.Response = void 0;
+exports.ArchetypeInput = exports.DeckInput = exports.TournamentInput = exports.MatchInput = exports.PlayerInput = exports.DeckResponse = exports.BelongResponse = exports.SuscribeResponse = exports.PlayerResponse = exports.HasResponse = exports.PlaceResponse = exports.ArcheTypeCountResponse = exports.TournamentResponse = exports.ArcheTypeResponse = exports.ArcheTypeSearchDataResponse = exports.LocationSearchDataResponse = exports.UserDataResponse = exports.UserSearchData = exports.TournamentSearchDataResponse = exports.DeckDataResponse = exports.Response = void 0;
 const graphql_1 = require("@nestjs/graphql");
 let Response = class Response {
 };
@@ -25,6 +25,218 @@ __decorate([
 exports.Response = Response = __decorate([
     (0, graphql_1.ObjectType)()
 ], Response);
+let DeckDataResponse = class DeckDataResponse {
+};
+exports.DeckDataResponse = DeckDataResponse;
+__decorate([
+    (0, graphql_1.Field)(() => graphql_1.Int, { description: 'Deck id' }),
+    __metadata("design:type", Number)
+], DeckDataResponse.prototype, "ID", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => String, { description: 'Deck name' }),
+    __metadata("design:type", String)
+], DeckDataResponse.prototype, "Name", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => String, { description: 'Deck archetype' }),
+    __metadata("design:type", String)
+], DeckDataResponse.prototype, "Attribute", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => [String], { description: 'User id' }),
+    __metadata("design:type", Array)
+], DeckDataResponse.prototype, "UsersId", void 0);
+exports.DeckDataResponse = DeckDataResponse = __decorate([
+    (0, graphql_1.ObjectType)()
+], DeckDataResponse);
+let TournamentSearchDataResponse = class TournamentSearchDataResponse {
+};
+exports.TournamentSearchDataResponse = TournamentSearchDataResponse;
+__decorate([
+    (0, graphql_1.Field)(() => String, { description: "Tournament's name" }),
+    __metadata("design:type", String)
+], TournamentSearchDataResponse.prototype, "TournamentName", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => String, { description: "Location" }),
+    __metadata("design:type", String)
+], TournamentSearchDataResponse.prototype, "Location", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => graphql_1.Int, { description: "Tournament's date" }),
+    __metadata("design:type", Number)
+], TournamentSearchDataResponse.prototype, "TournamentDate", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => String, { description: "ArcheType most used during the tournament" }),
+    __metadata("design:type", String)
+], TournamentSearchDataResponse.prototype, "ArcheTypeMostUsed", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => String, { description: "Tournament's winner" }),
+    __metadata("design:type", String)
+], TournamentSearchDataResponse.prototype, "Winner", void 0);
+exports.TournamentSearchDataResponse = TournamentSearchDataResponse = __decorate([
+    (0, graphql_1.ObjectType)()
+], TournamentSearchDataResponse);
+let UserSearchData = class UserSearchData {
+};
+exports.UserSearchData = UserSearchData;
+__decorate([
+    (0, graphql_1.Field)(() => String, { description: "Player's name" }),
+    __metadata("design:type", String)
+], UserSearchData.prototype, "Name", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => graphql_1.Int, { description: 'Decks count' }),
+    __metadata("design:type", Number)
+], UserSearchData.prototype, "DecksCount", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => graphql_1.Int, { description: 'Tournaments count where he partipated' }),
+    __metadata("design:type", Number)
+], UserSearchData.prototype, "Participations", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => graphql_1.Int, { description: 'Tournaments wher he has winned' }),
+    __metadata("design:type", Number)
+], UserSearchData.prototype, "WinnsCount", void 0);
+exports.UserSearchData = UserSearchData = __decorate([
+    (0, graphql_1.ObjectType)()
+], UserSearchData);
+let UserDataResponse = class UserDataResponse {
+};
+exports.UserDataResponse = UserDataResponse;
+__decorate([
+    (0, graphql_1.Field)(() => String, { description: 'playername' }),
+    __metadata("design:type", String)
+], UserDataResponse.prototype, "ID", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => [TournamentResponse], { description: 'Tournaments where player has participated' }),
+    __metadata("design:type", Array)
+], UserDataResponse.prototype, "Tournaments", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => [DeckDataResponse], { description: 'player decks' }),
+    __metadata("design:type", Array)
+], UserDataResponse.prototype, "Decks", void 0);
+exports.UserDataResponse = UserDataResponse = __decorate([
+    (0, graphql_1.ObjectType)()
+], UserDataResponse);
+let LocationSearchDataResponse = class LocationSearchDataResponse {
+};
+exports.LocationSearchDataResponse = LocationSearchDataResponse;
+__decorate([
+    (0, graphql_1.Field)(() => String, { description: 'Location' }),
+    __metadata("design:type", String)
+], LocationSearchDataResponse.prototype, "Location", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => String, { description: 'ArcheType most popular' }),
+    __metadata("design:type", String)
+], LocationSearchDataResponse.prototype, "ArcheTypeMostMopular", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => graphql_1.Int, { description: 'players count in this location' }),
+    __metadata("design:type", Number)
+], LocationSearchDataResponse.prototype, "PlayersCount", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => graphql_1.Int, { description: 'Players winners count' }),
+    __metadata("design:type", Number)
+], LocationSearchDataResponse.prototype, "WinnersCount", void 0);
+exports.LocationSearchDataResponse = LocationSearchDataResponse = __decorate([
+    (0, graphql_1.ObjectType)()
+], LocationSearchDataResponse);
+let ArcheTypeSearchDataResponse = class ArcheTypeSearchDataResponse {
+};
+exports.ArcheTypeSearchDataResponse = ArcheTypeSearchDataResponse;
+__decorate([
+    (0, graphql_1.Field)(() => String, { description: 'archetype name' }),
+    __metadata("design:type", String)
+], ArcheTypeSearchDataResponse.prototype, "ArcheTypeName", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => String, { description: 'most popular location' }),
+    __metadata("design:type", String)
+], ArcheTypeSearchDataResponse.prototype, "MostPopularRegion", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => graphql_1.Int, { description: 'players using it' }),
+    __metadata("design:type", Number)
+], ArcheTypeSearchDataResponse.prototype, "PlayersCount", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => graphql_1.Int, { description: 'tournaments where it was used' }),
+    __metadata("design:type", Number)
+], ArcheTypeSearchDataResponse.prototype, "TournamentsCount", void 0);
+exports.ArcheTypeSearchDataResponse = ArcheTypeSearchDataResponse = __decorate([
+    (0, graphql_1.ObjectType)()
+], ArcheTypeSearchDataResponse);
+let ArcheTypeResponse = class ArcheTypeResponse {
+};
+exports.ArcheTypeResponse = ArcheTypeResponse;
+__decorate([
+    (0, graphql_1.Field)(() => String, { description: 'ArcheType name id' }),
+    __metadata("design:type", String)
+], ArcheTypeResponse.prototype, "ArcheTypeName", void 0);
+exports.ArcheTypeResponse = ArcheTypeResponse = __decorate([
+    (0, graphql_1.ObjectType)()
+], ArcheTypeResponse);
+let TournamentResponse = class TournamentResponse {
+};
+exports.TournamentResponse = TournamentResponse;
+__decorate([
+    (0, graphql_1.Field)(() => graphql_1.Int, { description: 'Date of tournament' }),
+    __metadata("design:type", Number)
+], TournamentResponse.prototype, "Date", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => String, { description: 'Name of tournament' }),
+    __metadata("design:type", String)
+], TournamentResponse.prototype, "TournamentName", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => String, { description: 'Location of tournament' }),
+    __metadata("design:type", String)
+], TournamentResponse.prototype, "TournamentDir", void 0);
+exports.TournamentResponse = TournamentResponse = __decorate([
+    (0, graphql_1.ObjectType)()
+], TournamentResponse);
+let ArcheTypeCountResponse = class ArcheTypeCountResponse {
+};
+exports.ArcheTypeCountResponse = ArcheTypeCountResponse;
+__decorate([
+    (0, graphql_1.Field)(() => String, { description: 'Acrhetype id' }),
+    __metadata("design:type", String)
+], ArcheTypeCountResponse.prototype, "ArcheTypeName", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => graphql_1.Int, { description: 'Count of the archetype winner' }),
+    __metadata("design:type", Number)
+], ArcheTypeCountResponse.prototype, "Count", void 0);
+exports.ArcheTypeCountResponse = ArcheTypeCountResponse = __decorate([
+    (0, graphql_1.ObjectType)()
+], ArcheTypeCountResponse);
+let PlaceResponse = class PlaceResponse {
+};
+exports.PlaceResponse = PlaceResponse;
+__decorate([
+    (0, graphql_1.Field)(() => String, { description: 'The place result of the search' }),
+    __metadata("design:type", String)
+], PlaceResponse.prototype, "Place", void 0);
+exports.PlaceResponse = PlaceResponse = __decorate([
+    (0, graphql_1.ObjectType)()
+], PlaceResponse);
+let HasResponse = class HasResponse {
+};
+exports.HasResponse = HasResponse;
+__decorate([
+    (0, graphql_1.Field)(() => String, { description: 'Player id' }),
+    __metadata("design:type", String)
+], HasResponse.prototype, "PlayerID", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => graphql_1.Int, { description: 'Deck id' }),
+    __metadata("design:type", Number)
+], HasResponse.prototype, "DeckID", void 0);
+exports.HasResponse = HasResponse = __decorate([
+    (0, graphql_1.ObjectType)()
+], HasResponse);
+let PlayerResponse = class PlayerResponse {
+};
+exports.PlayerResponse = PlayerResponse;
+__decorate([
+    (0, graphql_1.Field)(() => String, { description: 'Player id' }),
+    __metadata("design:type", String)
+], PlayerResponse.prototype, "PlayerName", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => String, { description: 'Player password' }),
+    __metadata("design:type", String)
+], PlayerResponse.prototype, "PlayerPassword", void 0);
+exports.PlayerResponse = PlayerResponse = __decorate([
+    (0, graphql_1.ObjectType)()
+], PlayerResponse);
 let SuscribeResponse = class SuscribeResponse {
 };
 exports.SuscribeResponse = SuscribeResponse;
@@ -61,6 +273,32 @@ __decorate([
 exports.BelongResponse = BelongResponse = __decorate([
     (0, graphql_1.ObjectType)()
 ], BelongResponse);
+let DeckResponse = class DeckResponse {
+};
+exports.DeckResponse = DeckResponse;
+__decorate([
+    (0, graphql_1.Field)(() => graphql_1.Int, { description: 'Deck ID' }),
+    __metadata("design:type", Number)
+], DeckResponse.prototype, "DeckID", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => String, { description: "Deck's name" }),
+    __metadata("design:type", String)
+], DeckResponse.prototype, "DeckName", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => graphql_1.Int, { description: "Main deck cards count" }),
+    __metadata("design:type", Number)
+], DeckResponse.prototype, "MainDeckCount", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => graphql_1.Int, { description: "Side deck cards count" }),
+    __metadata("design:type", Number)
+], DeckResponse.prototype, "SideDeckCount", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => graphql_1.Int, { description: "Extra deck cards count" }),
+    __metadata("design:type", Number)
+], DeckResponse.prototype, "ExtraDeckCount", void 0);
+exports.DeckResponse = DeckResponse = __decorate([
+    (0, graphql_1.ObjectType)()
+], DeckResponse);
 let PlayerInput = class PlayerInput {
 };
 exports.PlayerInput = PlayerInput;
@@ -72,6 +310,10 @@ __decorate([
     (0, graphql_1.Field)(() => String, { description: "Player password" }),
     __metadata("design:type", String)
 ], PlayerInput.prototype, "PlayerPassword", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => String, { description: "Usre's roll" }),
+    __metadata("design:type", String)
+], PlayerInput.prototype, "Roll", void 0);
 exports.PlayerInput = PlayerInput = __decorate([
     (0, graphql_1.InputType)()
 ], PlayerInput);
@@ -123,8 +365,7 @@ __decorate([
     __metadata("design:type", Number)
 ], DeckInput.prototype, "ExtraDeckCount", void 0);
 exports.DeckInput = DeckInput = __decorate([
-    (0, graphql_1.InputType)(),
-    (0, graphql_1.ObjectType)()
+    (0, graphql_1.InputType)()
 ], DeckInput);
 let ArchetypeInput = class ArchetypeInput {
 };

@@ -15,6 +15,14 @@ let CreateParticipateInput = class CreateParticipateInput {
 };
 exports.CreateParticipateInput = CreateParticipateInput;
 __decorate([
+    (0, graphql_1.Field)(() => graphql_1.Int, { description: 'Date of tournament' }),
+    __metadata("design:type", Number)
+], CreateParticipateInput.prototype, "TournamentDate", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => String, { description: 'Name of tournament' }),
+    __metadata("design:type", String)
+], CreateParticipateInput.prototype, "TournamentName", void 0);
+__decorate([
     (0, graphql_1.Field)(() => String, { description: "Player1's id" }),
     __metadata("design:type", String)
 ], CreateParticipateInput.prototype, "PlayerOneID", void 0);

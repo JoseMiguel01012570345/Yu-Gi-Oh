@@ -8,7 +8,10 @@ export declare class BelongService {
     create(createBelongInput: CreateBelongInput): Promise<CreateBelongInput>;
     findAll(): Promise<Belong[]>;
     findOne(deckid: number, archetypeid: string): Promise<Belong>;
+    getArchetypeOrderedByDecksCount(): Promise<any>;
     getDecksIDByArcheType(acrhetype: string): Promise<Belong[]>;
+    getDecksCountByArcheType(archeType: string): Promise<number>;
+    getArcheTypesByDeckID(deckid: number): Promise<Belong[]>;
     update(deckid: number, archetypeid: string, updateBelongInput: UpdateBelongInput): Promise<UpdateBelongInput>;
     remove(deckid: number, archetypeid: string): Promise<Belong>;
 }

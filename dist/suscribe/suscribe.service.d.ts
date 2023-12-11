@@ -8,7 +8,10 @@ export declare class SuscribeService {
     create(createSuscribeInput: CreateSuscribeInput): Promise<CreateSuscribeInput>;
     findAll(): Promise<Suscribe[]>;
     findOne(playerid: string, deckid: number, tournamentDate: number, tournamentName: string): Promise<Suscribe>;
+    getTournamentByPlayerWithDeck(playerid: string, deckid: number): Promise<Suscribe[]>;
+    getSuscribeByPlayerID(playerid: string): Promise<Suscribe[]>;
     getSuscribesByTournament(tournamentDate: number, tournamentName: any): Promise<Suscribe[]>;
+    getSuscribesByTournamentsAndPlayer(tournamentName: string, tournamentDate: number, playerID: string): Promise<Suscribe[]>;
     update(playerid: string, deckid: number, tournamentDate: number, tournamentName: string, updateSuscribeInput: UpdateSuscribeInput): Promise<UpdateSuscribeInput>;
     remove(playerid: string, deckid: number, tournamentDate: number, tournamentName: string): Promise<Suscribe>;
 }

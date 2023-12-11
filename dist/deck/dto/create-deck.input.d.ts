@@ -5,3 +5,6 @@ export declare class CreateDeckInput {
     SideDeckCount: number;
     ExtraDeckCount: number;
 }
+export declare class CreateDeckResponse {
+    Message: string;
+}

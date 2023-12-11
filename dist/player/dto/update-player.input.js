@@ -23,6 +23,10 @@ __decorate([
     (0, graphql_1.Field)(() => String, { description: "Players's password" }),
     __metadata("design:type", String)
 ], UpdatePlayerInput.prototype, "PlayerPassword", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => String, { description: "User's roll" }),
+    __metadata("design:type", String)
+], UpdatePlayerInput.prototype, "Roll", void 0);
 exports.UpdatePlayerInput = UpdatePlayerInput = __decorate([
     (0, graphql_1.InputType)()
 ], UpdatePlayerInput);

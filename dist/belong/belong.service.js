@@ -31,8 +31,17 @@ let BelongService = class BelongService {
     async findOne(deckid, archetypeid) {
         return await this.belongRepository.findOneBy({ DeckID: deckid, ArcheTypeID: archetypeid });
     }
+    async getArchetypeOrderedByDecksCount() {
+        return await this.belongRepository.query('SELECT ArcheTypeID FROM belong GROUP BY ArcheTypeID ORDER BY COUNT(ArcheTypeID) DESC');
+    }
     async getDecksIDByArcheType(acrhetype) {
         return await this.belongRepository.findBy({ ArcheTypeID: acrhetype });
+    }
+    async getDecksCountByArcheType(archeType) {
+        return await this.belongRepository.countBy({ ArcheTypeID: archeType });
+    }
+    async getArcheTypesByDeckID(deckid) {
+        return await this.belongRepository.findBy({ DeckID: deckid });
     }
     async update(deckid, archetypeid, updateBelongInput) {
         await this.belongRepository.update({ DeckID: deckid, ArcheTypeID: archetypeid }, updateBelongInput);

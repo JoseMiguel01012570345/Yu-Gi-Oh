@@ -7,7 +7,10 @@ export declare class ParticipateService {
     constructor(participateRepository: Repository<Participate>);
     create(createParticipateInput: CreateParticipateInput): Promise<CreateParticipateInput>;
     findAll(): Promise<Participate[]>;
-    findOne(player1id: string, player2id: string, matchid: number): Promise<Participate>;
-    update(player1id: string, player2id: string, matchid: number, updateParticipateInput: UpdateParticipateInput): Promise<UpdateParticipateInput>;
-    remove(player1id: string, player2id: string, matchid: number): Promise<Participate>;
+    findOne(tournamentDate: number, tournamentName: string, matchid: number): Promise<Participate>;
+    getParticipatesByMatch(id: number): Promise<Participate[]>;
+    getAllParticipatesByID(tournamentDate: number, tournamentName: string, matchid: number): Promise<Participate[]>;
+    getParticipatesByTournament(tournamentDate: number, tournamentName: string): Promise<Participate[]>;
+    update(tournamentDate: number, tournamentName: string, matchid: number, updateParticipateInput: UpdateParticipateInput): Promise<UpdateParticipateInput>;
+    remove(tournamentDate: number, tournamentName: string, matchid: number): Promise<Participate>;
 }

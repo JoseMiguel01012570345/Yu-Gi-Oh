@@ -9,7 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateDeckInput = void 0;
+exports.CreateDeckResponse = exports.CreateDeckInput = void 0;
 const graphql_1 = require("@nestjs/graphql");
 let CreateDeckInput = class CreateDeckInput {
 };
@@ -37,4 +37,14 @@ __decorate([
 exports.CreateDeckInput = CreateDeckInput = __decorate([
     (0, graphql_1.InputType)()
 ], CreateDeckInput);
+let CreateDeckResponse = class CreateDeckResponse {
+};
+exports.CreateDeckResponse = CreateDeckResponse;
+__decorate([
+    (0, graphql_1.Field)(() => String, { description: 'Status of the result of the operation' }),
+    __metadata("design:type", String)
+], CreateDeckResponse.prototype, "Message", void 0);
+exports.CreateDeckResponse = CreateDeckResponse = __decorate([
+    (0, graphql_1.ObjectType)()
+], CreateDeckResponse);
 //# sourceMappingURL=create-deck.input.js.map

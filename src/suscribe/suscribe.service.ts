@@ -26,8 +26,20 @@ export class SuscribeService {
     return await this.suscribeRepository.findOneBy({ PlayerID: playerid, DeckID: deckid, TournamentDate: tournamentDate, TournamentName: tournamentName });
   }
 
+  async getTournamentByPlayerWithDeck(playerid: string, deckid: number) {
+    return await this.suscribeRepository.findBy({ PlayerID: playerid, DeckID: deckid });
+  }
+
+  async getSuscribeByPlayerID(playerid: string) {
+    return await this.suscribeRepository.findBy({ PlayerID: playerid });
+  }
+
   async getSuscribesByTournament(tournamentDate: number, tournamentName) {
-    return this.suscribeRepository.findBy({ TournamentDate: tournamentDate, TournamentName: tournamentName });
+    return await this.suscribeRepository.findBy({ TournamentDate: tournamentDate, TournamentName: tournamentName });
+  }
+
+  async getSuscribesByTournamentsAndPlayer(tournamentName: string, tournamentDate: number, playerID: string) {
+    return await this.suscribeRepository.findBy({ TournamentDate: tournamentDate, TournamentName: tournamentName, PlayerID: playerID });
   }
 
   async update(playerid: string, deckid: number, tournamentDate: number, tournamentName: string, updateSuscribeInput: UpdateSuscribeInput) {

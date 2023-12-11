@@ -22,18 +22,34 @@ export class ParticipateService {
     return await this.participateRepository.find({});
   }
 
-  async findOne(player1id: string, player2id: string, matchid: number) {
-    return await this.participateRepository.findOneBy({ PlayerOneID: player1id, PlayerTwoID: player2id, MatchID: matchid });
+  async findOne(tournamentDate: number, tournamentName: string, matchid: number) {
+    return await this.participateRepository.findOneBy({ TournamentDate: tournamentDate, TournamentName: tournamentName, MatchID: matchid });
   }
 
-  async update(player1id: string, player2id: string, matchid: number, updateParticipateInput: UpdateParticipateInput) {
-    await this.participateRepository.update({ PlayerOneID: player1id, PlayerTwoID: player2id, MatchID: matchid }, updateParticipateInput);
+  async getParticipatesByMatch(id: number) {
+    return await this.participateRepository.findBy({ MatchID: id });
+  }
+
+  async getAllParticipatesByID(tournamentDate: number, tournamentName: string, matchid: number) {
+    return await this.participateRepository.findBy({
+      TournamentDate: tournamentDate,
+      TournamentName: tournamentName,
+      MatchID: matchid
+    });
+  }
+
+  async getParticipatesByTournament(tournamentDate: number, tournamentName: string) {
+    return await this.participateRepository.findBy({ TournamentDate: tournamentDate, TournamentName: tournamentName });
+  }
+
+  async update(tournamentDate: number, tournamentName: string, matchid: number, updateParticipateInput: UpdateParticipateInput) {
+    await this.participateRepository.update({ TournamentDate: tournamentDate, TournamentName: tournamentName, MatchID: matchid }, updateParticipateInput);
     return updateParticipateInput;
   }
 
-  async remove(player1id: string, player2id: string, matchid: number) {
-    const result = await this.findOne(player1id, player2id, matchid);
-    await this.participateRepository.delete({PlayerOneID: player1id, PlayerTwoID: player2id, MatchID: matchid});
+  async remove(tournamentDate: number, tournamentName: string, matchid: number) {
+    const result = await this.findOne(tournamentDate, tournamentName, matchid);
+    await this.participateRepository.delete({ TournamentDate: tournamentDate, TournamentName: tournamentName, MatchID: matchid });
     return result;
   }
 }

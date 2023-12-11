@@ -29,7 +29,8 @@ let PlayerService = class PlayerService {
         return await this.playerRepository.find({});
     }
     async findOne(id) {
-        return await this.playerRepository.findOneBy({ PlayerName: id });
+        let result = await this.playerRepository.findOneBy({ PlayerName: id });
+        return result;
     }
     async update(id, updatePlayerInput) {
         await this.playerRepository.update({ PlayerName: id }, updatePlayerInput);

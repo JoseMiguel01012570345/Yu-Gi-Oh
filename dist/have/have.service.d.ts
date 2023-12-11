@@ -8,6 +8,9 @@ export declare class HaveService {
     create(createHasInput: CreateHasInput): Promise<CreateHasInput>;
     findAll(): Promise<Has[]>;
     findOne(deckid: number, playerid: string): Promise<Has>;
+    getDecksByPlayer(player: string): Promise<Has[]>;
+    getPlayersByDeck(deckid: number): Promise<Has[]>;
+    getPlayersOrderedByDeckCount(): Promise<any>;
     update(deckid: number, playerid: string, updateHasInput: UpdateHasInput): Promise<UpdateHasInput>;
     remove(deckid: number, playerid: string): Promise<Has>;
 }

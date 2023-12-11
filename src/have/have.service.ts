@@ -26,6 +26,18 @@ export class HaveService {
     return await this.hasRepository.findOneBy({ DeckID: deckid, PlayerID: playerid });
   }
 
+  async getDecksByPlayer(player: string) {
+    return await this.hasRepository.findBy({ PlayerID: player });
+  }
+
+  async getPlayersByDeck(deckid: number) {
+    return await this.hasRepository.findBy({ DeckID: deckid });
+  }
+
+  async getPlayersOrderedByDeckCount() {
+    return await this.hasRepository.query('SELECT PlayerID FROM has GROUP BY PlayerID ORDER BY COUNT(PlayerID) DESC');
+  }
+
   async update(deckid: number, playerid: string, updateHasInput: UpdateHasInput) {
     await this.hasRepository.update({ DeckID: deckid, PlayerID: playerid }, updateHasInput);
     return updateHasInput;

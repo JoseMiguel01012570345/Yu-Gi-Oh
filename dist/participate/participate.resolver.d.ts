@@ -7,7 +7,7 @@ export declare class ParticipateResolver {
     constructor(participateService: ParticipateService);
     createParticipate(createParticipateInput: CreateParticipateInput): Promise<CreateParticipateInput>;
     findAll(): Promise<Participate[]>;
-    findOne(player1id: string, player2id: string, matchid: number): Promise<Participate>;
+    findOne(tournamentDate: number, tournamentName: string, matchid: number): Promise<Participate>;
     updateParticipate(updateParticipateInput: UpdateParticipateInput): Promise<UpdateParticipateInput>;
-    removeParticipate(player1id: string, player2id: string, matchid: number): Promise<Participate>;
+    removeParticipate(tournamentDate: number, tournamentName: string, matchid: number): Promise<Participate>;
 }

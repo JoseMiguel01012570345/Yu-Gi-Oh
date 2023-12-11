@@ -5,7 +5,9 @@ import { Deck } from './entities/deck.entity';
 export declare class DeckService {
     private deckRepository;
     constructor(deckRepository: Repository<Deck>);
-    create(createDeckInput: CreateDeckInput): Promise<CreateDeckInput>;
+    create(createDeckInput: CreateDeckInput): Promise<{
+        Message: string;
+    }>;
     findAll(): Promise<Deck[]>;
     findOne(id: number): Promise<Deck>;
     getDecksByName(name: string): Promise<Deck[]>;

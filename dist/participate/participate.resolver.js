@@ -28,14 +28,14 @@ let ParticipateResolver = class ParticipateResolver {
     findAll() {
         return this.participateService.findAll();
     }
-    findOne(player1id, player2id, matchid) {
-        return this.participateService.findOne(player1id, player2id, matchid);
+    findOne(tournamentDate, tournamentName, matchid) {
+        return this.participateService.findOne(tournamentDate, tournamentName, matchid);
     }
     updateParticipate(updateParticipateInput) {
-        return this.participateService.update(updateParticipateInput.PlayerOneID, updateParticipateInput.PlayerTwoID, updateParticipateInput.MatchID, updateParticipateInput);
+        return this.participateService.update(updateParticipateInput.TournamentDate, updateParticipateInput.TournamentName, updateParticipateInput.MatchID, updateParticipateInput);
     }
-    removeParticipate(player1id, player2id, matchid) {
-        return this.participateService.remove(player1id, player2id, matchid);
+    removeParticipate(tournamentDate, tournamentName, matchid) {
+        return this.participateService.remove(tournamentDate, tournamentName, matchid);
     }
 };
 exports.ParticipateResolver = ParticipateResolver;
@@ -54,11 +54,11 @@ __decorate([
 ], ParticipateResolver.prototype, "findAll", null);
 __decorate([
     (0, graphql_1.Query)(() => participate_entity_1.Participate, { name: 'participate' }),
-    __param(0, (0, graphql_1.Args)('PlayerOneID', { type: () => String })),
-    __param(1, (0, graphql_1.Args)('PlayerTwoID', { type: () => String })),
+    __param(0, (0, graphql_1.Args)('TournamentDate', { type: () => graphql_1.Int })),
+    __param(1, (0, graphql_1.Args)('TournamentName', { type: () => String })),
     __param(2, (0, graphql_1.Args)('MatchID', { type: () => graphql_1.Int })),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, String, Number]),
+    __metadata("design:paramtypes", [Number, String, Number]),
     __metadata("design:returntype", void 0)
 ], ParticipateResolver.prototype, "findOne", null);
 __decorate([
@@ -70,11 +70,11 @@ __decorate([
 ], ParticipateResolver.prototype, "updateParticipate", null);
 __decorate([
     (0, graphql_1.Mutation)(() => participate_entity_1.Participate),
-    __param(0, (0, graphql_1.Args)('PlayerOneID', { type: () => String })),
-    __param(1, (0, graphql_1.Args)('PlayerTwoID', { type: () => String })),
+    __param(0, (0, graphql_1.Args)('TournamentDate', { type: () => graphql_1.Int })),
+    __param(1, (0, graphql_1.Args)('TournamentName', { type: () => String })),
     __param(2, (0, graphql_1.Args)('MatchID', { type: () => graphql_1.Int })),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, String, Number]),
+    __metadata("design:paramtypes", [Number, String, Number]),
     __metadata("design:returntype", void 0)
 ], ParticipateResolver.prototype, "removeParticipate", null);
 exports.ParticipateResolver = ParticipateResolver = __decorate([

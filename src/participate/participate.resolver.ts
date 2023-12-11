@@ -20,24 +20,24 @@ export class ParticipateResolver {
 
   @Query(() => Participate, { name: 'participate' })
   findOne(
-    @Args('PlayerOneID', { type: () => String }) player1id: string,
-    @Args('PlayerTwoID', { type: () => String }) player2id: string,
+    @Args('TournamentDate', { type: () => Int }) tournamentDate: number,
+    @Args('TournamentName', { type: () => String }) tournamentName: string,
     @Args('MatchID', { type: () => Int }) matchid: number
   ) {
-    return this.participateService.findOne(player1id, player2id, matchid);
+    return this.participateService.findOne(tournamentDate, tournamentName, matchid);
   }
 
   @Mutation(() => Participate)
   updateParticipate(@Args('updateParticipateInput') updateParticipateInput: UpdateParticipateInput) {
-    return this.participateService.update(updateParticipateInput.PlayerOneID, updateParticipateInput.PlayerTwoID, updateParticipateInput.MatchID, updateParticipateInput);
+    return this.participateService.update(updateParticipateInput.TournamentDate, updateParticipateInput.TournamentName, updateParticipateInput.MatchID, updateParticipateInput);
   }
 
   @Mutation(() => Participate)
   removeParticipate(
-    @Args('PlayerOneID', { type: () => String }) player1id: string,
-    @Args('PlayerTwoID', { type: () => String }) player2id: string,
+    @Args('TournamentDate', { type: () => Int }) tournamentDate: number,
+    @Args('TournamentName', { type: () => String }) tournamentName: string,
     @Args('MatchID', { type: () => Int }) matchid: number
   ) {
-    return this.participateService.remove(player1id, player2id, matchid);
+    return this.participateService.remove(tournamentDate, tournamentName, matchid);
   }
 }

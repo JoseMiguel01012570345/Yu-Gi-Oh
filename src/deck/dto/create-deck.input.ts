@@ -1,4 +1,4 @@
-import { InputType, Int, Field } from '@nestjs/graphql';
+import { InputType, Int, Field, ObjectType } from '@nestjs/graphql';
 
 @InputType()
 export class CreateDeckInput {
@@ -16,4 +16,10 @@ export class CreateDeckInput {
 
   @Field(() => Int, { description: "Extra deck cards count" })
   ExtraDeckCount: number;
+}
+
+@ObjectType()
+export class CreateDeckResponse {
+  @Field(() => String, { description: 'Status of the result of the operation'})
+  Message: string;
 }
