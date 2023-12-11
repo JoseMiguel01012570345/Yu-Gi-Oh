@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { GET_SUSCRIBES, suscribes } from './querys';
+import { GET_SUSCRIBES, suscribes, GET_TOURNAMENT } from './querys';
 import { Apollo } from 'apollo-angular';
 import { catchError, throwError } from 'rxjs';
 
@@ -11,6 +11,8 @@ import { catchError, throwError } from 'rxjs';
 export class TournamentInfoComponent implements OnInit {
 
   Suscribes!: suscribes[];
+
+  Location!: string;
 
   @Input()
   TournamentName!: string;
@@ -41,6 +43,16 @@ export class TournamentInfoComponent implements OnInit {
       this.Suscribes = (data as any).suscribes;
       this.Suscribes = this.Suscribes.filter(element => element.TournamentDate === this.TournamentDate && element.TournamentName === this.TournamentName);
       //codigo a ejecutar
+    });
+
+    this.apollo.watchQuery({
+      query:GET_TOURNAMENT
+    }).valueChanges.pipe(catchError(error => {
+      this.Error = true;
+      this.ErrorMessage = 'Internal Error Server';
+      return throwError(error);
+    })).subscribe(({data}) => {
+      this.Location = (data as any).tournament.TournamentDir;
     })
   }
 
