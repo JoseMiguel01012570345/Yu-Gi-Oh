@@ -1,24 +1,68 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Apollo } from 'apollo-angular';
+import { GET_PARTICIPATE } from '../querys';
+import { catchError, throwError } from 'rxjs';
 
 @Component({
   selector: 'app-match',
   templateUrl: './match.component.html',
   styleUrls: ['./match.component.css']
 })
-export class MatchComponent {
+export class MatchComponent implements OnInit{
 
   @Input()
-  jugador1 = { nombre: 'Jugador1', deck: 'Deck1', puntuacion: 3 };
-  @Input()
-  jugador2 = { nombre: 'Jugador2', deck: 'Deck2', puntuacion: 2 };
+  TournamentName!: string;
 
-  incrementScore(player: any): void {
-    player.puntuacion += 1;
+  @Input()
+  TournamentDate!: number
+
+  @Input()
+  MatchID!: number;
+
+  PlayerOne!: string;
+  PlayerTwo!: string;
+
+  @Input()
+  PLayerOneScore!: number
+
+  @Input()
+  PLayerTwoScore!: number
+
+  Error: boolean = false;
+
+  ErrorMessage: string = '';
+
+  constructor (
+    private readonly apollo: Apollo
+  ) { }
+
+  ngOnInit(): void {
+    this.apollo.watchQuery({
+      query: GET_PARTICIPATE,
+      variables:{
+        TournamentName: this.TournamentName,
+        TournamentDate: this.TournamentDate,
+        MatchID: this.MatchID
+      }
+    }).valueChanges.pipe(catchError(error => {
+      this.Error = true;
+      this.ErrorMessage = 'Internale Error Server';
+      return throwError(error);
+    })).subscribe(({data}) => {
+      this.PlayerOne = (data as any).participate.PayerOneID;
+      this.PlayerTwo = (data as any).PlayerTwoID;
+      //codigo a realizar
+    });
   }
 
-  decrementScore(player: any): void {
-    if (player.puntuacion > 0) {
-      player.puntuacion -= 1;
+  incrementScore(score: number): void {
+    score += 1;
+  }
+
+  decrementScore(score: number): void {
+    if (score > 0) {
+      score -= 1;
     }
   }
+
 }

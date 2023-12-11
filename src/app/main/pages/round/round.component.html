@@ -15,7 +15,7 @@
   </mat-card>
 
   <div class="grid bm-8">
-      <app-match *ngFor="let match of matchs" [jugador1]="match[0]" [jugador2]="match[1]"></app-match>
+      <app-match *ngFor="let match of Matchs" [TournamentDate]="match.TournamentDate" [TournamentName]="match.TournamentName" [MatchID]="match.MatchID" [PLayerOneScore]="match.PlayerOneResult" [PLayerTwoScore]="match.PlayerTwoResult"></app-match>
     </div>
 
     <button mat-flat-button color="primary" class="floating-button" (click)="submitRoundResults()"

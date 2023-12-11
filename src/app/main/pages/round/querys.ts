@@ -19,3 +19,12 @@ export const GET_MATCHS = gql`
     Rounds
   }
 `
+
+export const GET_PARTICIPATE = gql`
+  query ($TournamentName: String!, $TournamentDate: Int!, $MatchID: Int!){
+    participate(TournamentName: $TournamentName,TournamentDate: $TournamentDate, MatchID: $MatchID){
+      PlayerOneID
+      PlayerTwoID
+    }
+  }
+`

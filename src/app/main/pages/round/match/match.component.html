@@ -1,13 +1,13 @@
 <div class="card">
   <div class="half">
     <div class="player-info">
-      <h3 style="text-align: center;">{{ jugador1.nombre }}</h3>
-      <p style="text-align: center;">Deck: {{ jugador1.deck }}</p>
+      <h3 style="text-align: center;">{{ PlayerOne }}</h3>
+      <!-- <p style="text-align: center;">Deck: {{ jugador1.deck }}</p> -->
       <div class="score-container">
-        <p class="large-score">{{ jugador1.puntuacion }}</p>
+        <p class="large-score">{{ PLayerOneScore }}</p>
         <div style="text-align: center;">
-          <button mat-flat-button style="margin: 2px" (click)="incrementScore(jugador1)">+</button>
-          <button mat-flat-button style="margin: 2px" (click)="decrementScore(jugador1)">-</button>
+          <button mat-flat-button style="margin: 2px" (click)="incrementScore(PLayerOneScore)">+</button>
+          <button mat-flat-button style="margin: 2px" (click)="decrementScore(PLayerOneScore)">-</button>
         </div>
       </div>
     </div>
@@ -15,13 +15,13 @@
   <div class="divider"></div>
   <div class="half">
     <div class="player-info">
-      <h3 style="text-align: center;">{{ jugador2.nombre }}</h3>
-      <p style="text-align: center;">Deck: {{ jugador2.deck }}</p>
+      <h3 style="text-align: center;">{{ PlayerTwo }}</h3>
+      <!-- <p style="text-align: center;">Deck: {{ jugador2.deck }}</p> -->
       <div class="score-container">
-        <p class="large-score">{{ jugador2.puntuacion }}</p>
+        <p class="large-score">{{ PLayerTwoScore }}</p>
         <div style="text-align: center;">
-          <button mat-flat-button style="margin: 2px" (click)="incrementScore(jugador2)">+</button>
-          <button mat-flat-button style="margin: 2px" (click)="decrementScore(jugador2)">-</button>
+          <button mat-flat-button style="margin: 2px" (click)="incrementScore(PLayerTwoScore)">+</button>
+          <button mat-flat-button style="margin: 2px" (click)="decrementScore(PLayerTwoScore)">-</button>
         </div>
       </div>
     </div>
