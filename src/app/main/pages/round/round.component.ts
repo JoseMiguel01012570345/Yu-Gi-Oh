@@ -1,22 +1,37 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { GET_MATCHS, Match } from './querys';
+import { Apollo } from 'apollo-angular';
+import { catchError, throwError } from 'rxjs';
 
 @Component({
   templateUrl: './round.component.html',
 })
-export class RoundComponent {
+export class RoundComponent implements OnInit{
 
   //Otro objeto que es para probar, tiene que pedirse de la base de datos
-  public matchs = [
-    [{ nombre: 'Jugador1', deck: 'Deck1', puntuacion: 0 }, { nombre: 'Jugador5', deck: 'Deck5', puntuacion: 0 }],
-    [{ nombre: 'Jugador2', deck: 'Deck2', puntuacion: 0 }, { nombre: 'Jugador6', deck: 'Deck6', puntuacion: 0 }],
-    [{ nombre: 'Jugador3', deck: 'Deck3', puntuacion: 0 }, { nombre: 'Jugador7', deck: 'Deck7', puntuacion: 0 }],
-    [{ nombre: 'Jugador4', deck: 'Deck4', puntuacion: 0 }, { nombre: 'Jugador8', deck: 'Deck8', puntuacion: 0 }],
-    [{ nombre: 'Jugador1', deck: 'Deck1', puntuacion: 0 }, { nombre: 'Jugador5', deck: 'Deck5', puntuacion: 0 }],
-    [{ nombre: 'Jugador2', deck: 'Deck2', puntuacion: 0 }, { nombre: 'Jugador6', deck: 'Deck6', puntuacion: 0 }],
-    [{ nombre: 'Jugador3', deck: 'Deck3', puntuacion: 0 }, { nombre: 'Jugador7', deck: 'Deck7', puntuacion: 0 }],
-    [{ nombre: 'Jugador4', deck: 'Deck4', puntuacion: 0 }, { nombre: 'Jugador8', deck: 'Deck8', puntuacion: 0 }],
-  ];
+  Matchs: Match[] = [];
+
+  Error: boolean = false;
+
+  ErrorMessage: string = '';
+
+  constructor(
+    private readonly apollo: Apollo
+  ) { }
 
   //Esto es para enviar los resultados de la ronda al backend
   submitRoundResults(): void{}
+
+  ngOnInit(): void {
+    this.apollo.watchQuery({
+      query: GET_MATCHS
+    }).valueChanges.pipe(catchError(error => {
+      this.Error = true;
+      this.ErrorMessage = 'Internale Error Server';
+      return throwError(error);
+    })).subscribe(({data}) => {
+      this.Matchs = (data as any).matchs;
+      //codigo a realizar
+    });
+  }
 }
