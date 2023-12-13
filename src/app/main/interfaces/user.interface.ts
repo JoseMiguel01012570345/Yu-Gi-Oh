@@ -30,9 +30,7 @@ export interface MyDeck {
 
 //TEMPORAL
 export interface PlayersResponse {
-  data: {
-    players: Player[];
-  };
+  players: Player[];
 }
 
 export interface Player {

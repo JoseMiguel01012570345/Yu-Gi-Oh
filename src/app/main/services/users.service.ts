@@ -34,12 +34,22 @@ export class UsersService {
       })
       .pipe(
         map((result) => {
-          if (result.data) {
-            console.log(result.data.data.players);
-            return result.data.data.players;
+          console.log('Resultado de la consulta GraphQL:', result);
+          console.log('Resultado de la consulta GraphQL data:', result.data);
+
+
+
+          if (result.data  && result.data.players) {
+            console.log('Jugadores encontrados:', result.data.players);
+            return result.data.players;
           } else {
-            throw new Error('No se recibió un resultado válido desde el servidor GraphQL.');
+            console.error('La propiedad "players" es undefined en el resultado del servidor GraphQL.');
+            return [];
           }
+        }),
+        catchError((error) => {
+          console.error('Error al obtener jugadores:', error);
+          throw error;
         })
       );
   }
