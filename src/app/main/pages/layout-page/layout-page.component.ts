@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-layout-page',
@@ -8,7 +9,7 @@ import { Component } from '@angular/core';
 })
 export class LayoutPageComponent {
 
-  public profileRoute = './profile';
+  public profileRoute = './profile/John';
   public sidebarItems =
   [
     {name: 'Jugadores', route: './search/by-player'},
@@ -16,4 +17,13 @@ export class LayoutPageComponent {
     {name: 'Región', route: './search/by-region'},
     {name: 'Torneo', route: './search/by-tournament'},
   ]
+
+  constructor(private readonly router:Router)
+  {
+
+  }
+  logout():void
+  {
+    this.router.navigate(['/auth/login'])
+  }
 }
