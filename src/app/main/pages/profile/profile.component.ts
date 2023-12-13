@@ -55,6 +55,9 @@ export class ProfileComponent implements OnInit {
 
       }
     );
+
+    //TEMPORAL
+    this.userService.getPlayers().subscribe();
   }
 
   showPasswordMenu: boolean = false;

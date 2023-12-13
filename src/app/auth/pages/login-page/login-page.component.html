@@ -1,28 +1,33 @@
-<div class="flex flex-column">
+<form [formGroup]="loginForm" (ngSubmit)="login()">
+  <div class="flex flex-column">
 
-  <span class="text-lg mb-4">Login</span>
+    <span class="text-lg mb-4">Login</span>
 
-  <mat-form-field>
-    <mat-label>Usuario</mat-label>
-    <input type="text" matInput placeholder="Nombre de Usuario">
-  </mat-form-field>
+    <mat-form-field>
+      <mat-label>Usuario</mat-label>
+      <input type="text" matInput placeholder="Nombre de Usuario" formControlName="username" required>
+    </mat-form-field>
 
-  <mat-form-field>
-    <mat-label>Rol</mat-label>
-    <input type="text" matInput placeholder="Rol">
-  </mat-form-field>
+    <mat-form-field>
+      <mat-label>Rol</mat-label>
+      <mat-select formControlName="role" >
+        <mat-option value="user">Usuario</mat-option>
+        <mat-option value="admin">Administrador</mat-option>
+      </mat-select>
+    </mat-form-field>
 
-  <mat-form-field>
-    <mat-label>Contraseña</mat-label>
-    <input type="text" matInput placeholder="Contraseña">
-  </mat-form-field>
+    <mat-form-field>
+      <mat-label  >Contraseña</mat-label>
+      <input type="text" matInput placeholder="Contraseña"  formControlName="password" required>
+    </mat-form-field>
 
-  <button mat-button mat-flat-button color="primary">
-    <mat-icon>save</mat-icon>
-    Ingresar
-  </button>
+    <button mat-button mat-flat-button color="primary" type="submit">
+      <mat-icon >save</mat-icon>
+      Ingresar
+    </button>
 
-  <div class="flex justify-content-end mt-5">
-    <a routerLink="/auth/signin">"No tienes cuenta?"</a>
+    <div class="flex justify-content-end mt-5">
+      <a routerLink="/auth/signin">"No tienes cuenta?"</a>
+    </div>
   </div>
-</div>
+</form>

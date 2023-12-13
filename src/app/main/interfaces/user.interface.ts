@@ -28,3 +28,17 @@ export interface MyDeck {
   user_id:   number;
 }
 
+//TEMPORAL
+export interface PlayersResponse {
+  data: {
+    players: Player[];
+  };
+}
+
+export interface Player {
+  PlayerName: string;
+  PlayerPassword: string;
+  Roll: string;
+}
+
+

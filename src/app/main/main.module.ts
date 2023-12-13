@@ -25,6 +25,8 @@ import { TournamentInfoComponent } from './pages/tournament-info/tournament-info
 import { SubmissionRequestButtonComponent } from './pages/tournament-info/submission-request-button/submission-request-button.component';
 import { RoundComponent } from './pages/round/round.component';
 import { MatchComponent } from './pages/round/match/match.component';
+import { ApolloModule } from 'apollo-angular';
+import { UsersService } from './services/users.service';
 
 
 
@@ -60,6 +62,10 @@ import { MatchComponent } from './pages/round/match/match.component';
     MatButtonModule,
     MatMenuModule,
     FormsModule,
+    ApolloModule,
+  ],
+  providers: [
+    UsersService,
   ]
 })
 export class ProfileModule { }
