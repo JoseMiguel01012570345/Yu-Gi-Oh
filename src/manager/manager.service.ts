@@ -635,7 +635,6 @@ export class ManagerService {
     const archeTypeMostPopular = await this.getArcheTypeMostPopularInLocation(location);
     const tournaments = await this.tournamentService.getTournamentsByMunicipio(location);
     let PlayersCount = 0;
-    let players=[]
     let provincia=[]
 
     //find how many player have an arquetype in a region
