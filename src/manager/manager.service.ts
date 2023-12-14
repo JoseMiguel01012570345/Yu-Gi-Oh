@@ -654,7 +654,7 @@ export class ManagerService {
 
     }
 
-    let femousProvincia=this.mostPopularProvincia(provincia)
+    let femousProvincia= await this.mostPopularProvincia(provincia)
 
     const result: LocationSearchDataResponse = {
       Location: `${location}/${provincia}`,
@@ -665,7 +665,7 @@ export class ManagerService {
     return result;
   }
 
-  mostPopularProvincia(provincia: string []){
+  async mostPopularProvincia(provincia: string []){
 
     let mostPopular=[]
     let provinciaCopy=[]
@@ -689,7 +689,8 @@ export class ManagerService {
     let resoult=""
     let best=0
     let index=0
-    mostPopular.forEach(element=>{
+
+    await mostPopular.forEach(element=>{
 
       if(element>best) {
         best=element
