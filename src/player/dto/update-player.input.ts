@@ -20,7 +20,4 @@ export class UpdatePlayerInput extends PartialType(CreatePlayerInput) {
 
   @Field(() => Int, { description: 'Telefono'})
   Tel: number;
-
-  @Field(() => String!, { description: 'Direccion'})
-  Dir: string;
 }

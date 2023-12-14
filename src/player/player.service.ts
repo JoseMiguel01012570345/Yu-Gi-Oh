@@ -14,27 +14,39 @@ export class PlayerService {
   ) { }
 
   async create(createPlayerInput: CreatePlayerInput) {
+
     await this.playerRepository.insert(createPlayerInput);
+  
     return createPlayerInput;
+  
   }
 
   async findAll() {
+  
     return await this.playerRepository.find({});
+  
   }
 
   async findOne(id: string) {
+  
     let result = await this.playerRepository.findOneBy({ PlayerName: id })
+  
     return result;  
   }
 
   async update(id: string, updatePlayerInput: UpdatePlayerInput) {
+  
     await this.playerRepository.update({ PlayerName: id }, updatePlayerInput);
+  
     return updatePlayerInput;
   }
 
   async remove(id: string) {
+  
     const player = this.playerRepository.findOneBy({ PlayerName: id });
+  
     await this.playerRepository.delete({ PlayerName: id });
+  
     return player;
   }
 }

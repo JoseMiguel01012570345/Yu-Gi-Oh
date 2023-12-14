@@ -19,7 +19,4 @@ export class CreatePlayerInput {
 
   @Field(() => Int, { description: 'Telefono'})
   Tel: number;
-
-  @Field(() => String!, { description: 'Direccion'})
-  Dir: string;
 }

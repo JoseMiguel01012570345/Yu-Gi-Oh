@@ -1,15 +1,16 @@
 import { InputType, Int, Field } from '@nestjs/graphql';
+import { PrimaryColumn } from 'typeorm';
 
 @InputType()
 export class CreateSuscribeInput {
 
-  @Field(() => String!, { description: 'Player id' })
+  @PrimaryColumn('varchar',{length:50})
   PlayerID: string;
 
-  @Field(() => Int!, { description: "Deck id" })
+  @PrimaryColumn('int')
   DeckID: number;
 
-  @Field(() => Int!, { description: "Tournament date" })
+  @PrimaryColumn('int')
   TournamentDate: number;
 
   @Field(() => String!, { description: "Tournament name" })

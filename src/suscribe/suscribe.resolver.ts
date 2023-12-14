@@ -6,6 +6,7 @@ import { UpdateSuscribeInput } from './dto/update-suscribe.input';
 
 @Resolver(() => Suscribe)
 export class SuscribeResolver {
+  
   constructor(private readonly suscribeService: SuscribeService) { }
 
   @Mutation(() => Suscribe)
