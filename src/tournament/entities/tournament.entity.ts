@@ -15,4 +15,12 @@ export class Tournament {
   @Column('text')
   @Field(() => String!, { description: "Location of tournament"})
   TournamentDir: string;
+
+  @Column('text')
+  @Field(() => String!, { description: 'Municipio'})
+  Municipio: string;
+
+  @Column('text')
+  @Field(() => String!, { description: 'Provincia'})
+  Provincia: string;
 }

@@ -16,4 +16,20 @@ export class Player {
   @Column('text')
   @Field(() => String!, { description: "User's roll"})
   Roll: string;
+
+  @Column('text')
+  @Field(() => String!, { description: 'Municipio'})
+  Municipio: string;
+
+  @Column('text')
+  @Field(() => String!, { description: 'Provincia'})
+  Provincia: string;
+
+  @Column('numeric')
+  @Field(() => Int, { description: 'Telefono'})
+  Tel: number;
+
+  @Column('text')
+  @Field(() => String!, { description: 'Direccion'})
+  Dir: string;
 }

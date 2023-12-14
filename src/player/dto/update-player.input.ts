@@ -11,4 +11,16 @@ export class UpdatePlayerInput extends PartialType(CreatePlayerInput) {
 
   @Field(() => String!, { description:"User's roll"})
   Roll: string;
+
+  @Field(() => String!, { description: 'Municipio'})
+  Municipio: string;
+
+  @Field(() => String!, { description: 'Provincia'})
+  Provincia: string;
+
+  @Field(() => Int, { description: 'Telefono'})
+  Tel: number;
+
+  @Field(() => String!, { description: 'Direccion'})
+  Dir: string;
 }

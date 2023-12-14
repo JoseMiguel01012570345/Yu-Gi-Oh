@@ -205,6 +205,18 @@ export class PlayerInput {
 
   @Field(() => String!, { description: "Usre's roll"})
   Roll: string;
+
+  @Field(() => String!, { description: 'Municipio'})
+  Municipio: string;
+
+  @Field(() => String!, { description: 'Provincia'})
+  Provincia: string;
+
+  @Field(() => Int, { description: 'Telefono'})
+  Tel: number;
+
+  @Field(() => String!, { description: 'Direccion'})
+  Dir: string;
 }
 
 @InputType()
