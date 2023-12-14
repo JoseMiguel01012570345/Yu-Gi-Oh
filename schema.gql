@@ -321,6 +321,9 @@ type Query {
   decksByExtraDeckCount(count: Int!): [Deck!]!
   tournaments: [Tournament!]!
   tournament(tournamentDate: Int!, tournamentName: String!): Tournament!
+  tournamentsByDateAndProvincia(tournamentDate: Int!, provincia: String!): [Tournament!]!
+  tournamentsByDateAndMunicipio(tournamentDate: Int!, municipio: String!): [Tournament!]!
+  tournamentsByDateAndProvinciaAndMunicipio(tournamentDate: Int!, provincia: String!, municipio: String!): [Tournament!]!
   tournamentsByName(name: String!): [Tournament!]!
   tournamentsByDate(date: Int!): [Tournament!]!
   tournamentsByLocation(Location: String!): [Tournament!]!
@@ -335,6 +338,7 @@ type Query {
   belong(deckid: Int!, archetypeid: String!): Belong!
   have: [Has!]!
   has(deckid: Int!, playerid: Int!): Has!
+  decksByPlayer(playerid: Int!): [Has!]!
   suscribes: [Suscribe!]!
   suscribe(playerid: String!, deckid: Int!, tournamentDate: Int!, tournamentName: String!): Suscribe!
   haveweaks: [Haveweak!]!

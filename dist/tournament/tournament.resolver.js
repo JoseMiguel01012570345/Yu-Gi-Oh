@@ -32,6 +32,15 @@ let TournamentResolver = class TournamentResolver {
     findOne(tournamentDate, tournamentName) {
         return this.tournamentService.findOne(tournamentDate, tournamentName);
     }
+    findtournamentsByDateAndProvincia(tournamentDate, provincia) {
+        return this.tournamentService.getTournamentsByDateAndProvincia(tournamentDate, provincia);
+    }
+    findtournamentsByDateAndMunicipio(tournamentDate, municipio) {
+        return this.tournamentService.getTournamentsByDateAndMunicipio(tournamentDate, municipio);
+    }
+    findtournamentsByDateAndProvinciaAndMunicipio(tournamentDate, provincia, municipio) {
+        return this.tournamentService.getTournamentsByDateAndProvinciaAndMunicipio(tournamentDate, provincia, municipio);
+    }
     findTournamentsByName(name) {
         return this.tournamentService.getTournamentsByName(name);
     }
@@ -73,6 +82,31 @@ __decorate([
     __metadata("design:paramtypes", [Number, String]),
     __metadata("design:returntype", void 0)
 ], TournamentResolver.prototype, "findOne", null);
+__decorate([
+    (0, graphql_1.Query)(() => [tournament_entity_1.Tournament], { name: 'tournamentsByDateAndProvincia' }),
+    __param(0, (0, graphql_1.Args)('tournamentDate', { type: () => graphql_1.Int })),
+    __param(1, (0, graphql_1.Args)('provincia', { type: () => String })),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number, String]),
+    __metadata("design:returntype", void 0)
+], TournamentResolver.prototype, "findtournamentsByDateAndProvincia", null);
+__decorate([
+    (0, graphql_1.Query)(() => [tournament_entity_1.Tournament], { name: 'tournamentsByDateAndMunicipio' }),
+    __param(0, (0, graphql_1.Args)('tournamentDate', { type: () => graphql_1.Int })),
+    __param(1, (0, graphql_1.Args)('municipio', { type: () => String })),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number, String]),
+    __metadata("design:returntype", void 0)
+], TournamentResolver.prototype, "findtournamentsByDateAndMunicipio", null);
+__decorate([
+    (0, graphql_1.Query)(() => [tournament_entity_1.Tournament], { name: 'tournamentsByDateAndProvinciaAndMunicipio' }),
+    __param(0, (0, graphql_1.Args)('tournamentDate', { type: () => graphql_1.Int })),
+    __param(1, (0, graphql_1.Args)('provincia', { type: () => String })),
+    __param(2, (0, graphql_1.Args)('municipio', { type: () => String })),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number, String, String]),
+    __metadata("design:returntype", void 0)
+], TournamentResolver.prototype, "findtournamentsByDateAndProvinciaAndMunicipio", null);
 __decorate([
     (0, graphql_1.Query)(() => [tournament_entity_1.Tournament], { name: 'tournamentsByName' }),
     __param(0, (0, graphql_1.Args)('name', { type: () => String })),

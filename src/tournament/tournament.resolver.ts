@@ -27,6 +27,31 @@ export class TournamentResolver {
     return this.tournamentService.findOne(tournamentDate, tournamentName);
   }
 
+  @Query(() => [Tournament], { name: 'tournamentsByDateAndProvincia' })
+  findtournamentsByDateAndProvincia(
+    @Args('tournamentDate', { type: () => Int }) tournamentDate: number,
+    @Args('provincia', { type: () => String }) provincia: string
+  ) {
+    return this.tournamentService.getTournamentsByDateAndProvincia(tournamentDate,provincia);
+  }
+
+  @Query(() => [Tournament], { name: 'tournamentsByDateAndMunicipio' })
+  findtournamentsByDateAndMunicipio(
+    @Args('tournamentDate', { type: () => Int }) tournamentDate: number,
+    @Args('municipio', { type: () => String }) municipio: string
+  ) {
+    return this.tournamentService.getTournamentsByDateAndMunicipio(tournamentDate,municipio);
+  }
+
+  @Query(() => [Tournament], { name: 'tournamentsByDateAndProvinciaAndMunicipio' })
+  findtournamentsByDateAndProvinciaAndMunicipio(
+    @Args('tournamentDate', { type: () => Int }) tournamentDate: number,
+    @Args('provincia', { type: () => String }) provincia: string,
+    @Args('municipio', { type: () => String }) municipio: string
+  ) {
+    return this.tournamentService.getTournamentsByDateAndProvinciaAndMunicipio(tournamentDate,provincia,municipio);
+  }
+
   @Query(() => [Tournament], { name: 'tournamentsByName' })
   findTournamentsByName(@Args('name', { type: () => String }) name: string) {
     return this.tournamentService.getTournamentsByName(name);

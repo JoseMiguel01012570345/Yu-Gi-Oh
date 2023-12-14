@@ -46,6 +46,18 @@ export class TournamentService {
     return updateTournamentInput;
   }
 
+  async getTournamentsByDateAndProvincia(date: number, provincia: string) {
+    return await this.tournamentRepository.findBy({Date: date, Provincia: provincia});
+  }
+  
+  async getTournamentsByDateAndMunicipio(date: number, municipio: string) {
+    return await this.tournamentRepository.findBy({Date: date, Municipio: municipio});
+  }
+
+  async getTournamentsByDateAndProvinciaAndMunicipio(date: number, provincia: string, municipio: string) {
+    return await this.tournamentRepository.findBy({Date: date, Provincia: provincia, Municipio: municipio});
+  }
+
   async remove(date: number, name: string) {
     const tournament = await this.tournamentRepository.findOneBy({ Date: date, TournamentName: name });
     await this.tournamentRepository.delete({ Date: date, TournamentName: name });

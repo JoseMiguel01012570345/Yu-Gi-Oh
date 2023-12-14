@@ -8,6 +8,9 @@ export declare class TournamentResolver {
     createTournament(createTournamentInput: CreateTournamentInput): Promise<CreateTournamentInput>;
     findAll(): Promise<Tournament[]>;
     findOne(tournamentDate: number, tournamentName: string): Promise<Tournament>;
+    findtournamentsByDateAndProvincia(tournamentDate: number, provincia: string): Promise<Tournament[]>;
+    findtournamentsByDateAndMunicipio(tournamentDate: number, municipio: string): Promise<Tournament[]>;
+    findtournamentsByDateAndProvinciaAndMunicipio(tournamentDate: number, provincia: string, municipio: string): Promise<Tournament[]>;
     findTournamentsByName(name: string): Promise<Tournament[]>;
     findTournamentsByDate(date: number): Promise<Tournament[]>;
     findTournamentsByMunicipio(location: string): Promise<Tournament[]>;

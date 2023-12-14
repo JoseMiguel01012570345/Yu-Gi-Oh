@@ -47,6 +47,15 @@ let TournamentService = class TournamentService {
         await this.tournamentRepository.update({ Date: date, TournamentName: name }, updateTournamentInput);
         return updateTournamentInput;
     }
+    async getTournamentsByDateAndProvincia(date, provincia) {
+        return await this.tournamentRepository.findBy({ Date: date, Provincia: provincia });
+    }
+    async getTournamentsByDateAndMunicipio(date, municipio) {
+        return await this.tournamentRepository.findBy({ Date: date, Municipio: municipio });
+    }
+    async getTournamentsByDateAndProvinciaAndMunicipio(date, provincia, municipio) {
+        return await this.tournamentRepository.findBy({ Date: date, Provincia: provincia, Municipio: municipio });
+    }
     async remove(date, name) {
         const tournament = await this.tournamentRepository.findOneBy({ Date: date, TournamentName: name });
         await this.tournamentRepository.delete({ Date: date, TournamentName: name });
