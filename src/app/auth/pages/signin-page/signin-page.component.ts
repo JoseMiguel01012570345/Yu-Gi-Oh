@@ -19,8 +19,11 @@ export class SigninPageComponent {
   {
     this.signinForm = this.formBuilder.group({
       username: ['', Validators.required],
-      role: ['', Validators.required],
-      password: ['', Validators.required]
+      password: ['', Validators.required],
+      roll: ['', Validators.required],
+      mun: ['', Validators.required],
+      prov: ['', Validators.required],
+      phoneNumber: [null],
     });
   }
 
@@ -29,9 +32,9 @@ export class SigninPageComponent {
 
     if (this.signinForm.valid){
 
-      const { username, role, password } = this.signinForm.value;
+      const { username, password, roll, mun, prov, phoneNumber } = this.signinForm.value;
 
-      this.authService.signin(username, password, role).subscribe({
+      this.authService.signin(username, password, roll, mun, prov, phoneNumber).subscribe({
         next: (result) => {
 
           localStorage.setItem("username", username)

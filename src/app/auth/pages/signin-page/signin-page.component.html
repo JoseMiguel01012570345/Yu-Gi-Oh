@@ -16,7 +16,7 @@
 
     <mat-form-field>
       <mat-label>Rol</mat-label>
-      <mat-select formControlName="role" >
+      <mat-select formControlName="roll" >
         <mat-option value="user">Usuario</mat-option>
         <mat-option value="admin">Administrador</mat-option>
       </mat-select>
@@ -25,6 +25,21 @@
     <mat-form-field>
       <mat-label>Contraseña</mat-label>
       <input type="password" matInput placeholder="Contraseña" formControlName="password" required>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Municipio</mat-label>
+      <input type="text" matInput placeholder="Municipio" formControlName="mun" required>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Provincia</mat-label>
+      <input type="text" matInput placeholder="Provincia" formControlName="prov" required>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Télefono (opcional)</mat-label>
+      <input type="number" matInput placeholder="Télefono" formControlName="phoneNumber">
     </mat-form-field>
 
     <button mat-button mat-flat-button color="primary" type="submit">

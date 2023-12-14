@@ -13,24 +13,38 @@ export class AuthService {
   constructor(private apollo: Apollo,
               private usersService: UsersService) {}
 
-  signin(username: string, password: string, role: string) {
+  signin( username: string,
+          password: string,
+          roll: string,
+          mun: string,
+          prov: string,
+          phoneNumber: number)
+  {
+    console.log("username: " + username);
+    console.log("password: " + password);
+    console.log("roll: " + roll);
+    console.log("municipio: " + mun);
+    console.log("provincia: " + prov);
+
     return this.apollo.mutate({
       mutation: CREATE_PLAYER,
-      variables: {
-        playerName: username,
-        playerPassword: password,
-        roll: role,
-      },
+        variables: {
+          PlayerName: username,
+          PlayerPassword: password,
+          Roll: roll,
+          Municipio: mun,
+          Provincia: prov,
+          Tel: phoneNumber,
+        },
     });
   }
 
-  async login(username: string, password: string, role: string): Promise<boolean> {
+  async login(username: string, password: string, roll: string): Promise<boolean> {
     try {
-      const credentialsMatch = await this.usersService.getPlayerCredentials(username, password, role).toPromise();
+      const credentialsMatch = await this.usersService.getPlayerCredentials(username, password, roll).toPromise();
 
       if (credentialsMatch) {
         this.isAuthenticated = true;
-        console.log("AWA AWA");
         localStorage.setItem('username', username);
         return true;
       } else {

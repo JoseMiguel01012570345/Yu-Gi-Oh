@@ -10,18 +10,25 @@ export const GET_PLAYERS = gql
 }`
 
 export const CREATE_PLAYER = gql
-`mutation CreatePlayer($playerName: String!, $playerPassword: String!, $roll: String!) {
+`mutation CreatePlayer($PlayerName: String!, $PlayerPassword: String!, $Roll: String!, $Municipio: String!, $Provincia: String!, $Tel: Int!) {
   createPlayer(createPlayerInput: {
-    PlayerName: $playerName,
-    PlayerPassword: $playerPassword,
-    Roll: $roll
+    PlayerName: $PlayerName,
+    PlayerPassword: $PlayerPassword,
+    Roll: $Roll,
+    Municipio: $Municipio,
+    Provincia: $Provincia,
+    Tel: $Tel
   }) {
     PlayerName
     PlayerPassword
     Roll
+    Municipio
+    Provincia
+    Tel
   }
 }
 `
+
 export const GET_USER_DATA = gql
 `query GetUserData($playerName: String!) {
   userData(name: $playerName) {
