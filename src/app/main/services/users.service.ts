@@ -48,10 +48,6 @@ export class UsersService {
       })
       .pipe(
         map((result) => {
-          console.log('Resultado de la consulta GraphQL:', result);
-          console.log('Resultado de la consulta GraphQL data:', result.data);
-
-
 
           if (result.data  && result.data.players) {
             console.log('Jugadores encontrados:', result.data.players);
@@ -80,12 +76,6 @@ export class UsersService {
     })
     .pipe(
       map((result) => {
-        console.log('Entro');
-        console.log('Resultado de la consulta GraphQL:', result);
-        console.log('Resultado de la consulta GraphQL:', result.data);
-        console.log('Resultado de la consulta GraphQL:', result.data.player);
-
-
 
         // Verificar si hay datos en la respuesta y en la propiedad userData
         if (result.data) {

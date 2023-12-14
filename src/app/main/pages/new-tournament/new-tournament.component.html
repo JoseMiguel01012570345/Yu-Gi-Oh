@@ -1,42 +1,45 @@
-<div class="grid p-3">
-  <div class="col-12 mt-5 md:col-6 md:col-offset-3 md:mt-8">
-    <div class="flex flex-column">
+<form [formGroup]="newTournamentForm" (ngSubmit)="newTournament()">
+ <div class="grid p-3">
+    <div class="col-12 mt-5 md:col-6 md:col-offset-3 md:mt-8">
+      <div class="flex flex-column">
 
-      <span class="text-lg mb-4">Crear Torneo</span>
+        <span class="text-lg mb-4">Crear Torneo</span>
 
-      <mat-form-field>
-        <mat-label>Nombre del Torneo</mat-label>
-        <input type="text" matInput placeholder="Nombre del Torneo">
-      </mat-form-field>
+        <mat-form-field>
+          <mat-label>Nombre del Torneo</mat-label>
+          <input type="text" matInput placeholder="Nombre del Torneo" formControlName="name">
+        </mat-form-field>
 
-      <mat-form-field>
-        <mat-label>Región</mat-label>
-        <input type="text" matInput placeholder="Región">
-      </mat-form-field>
+        <mat-form-field>
+          <mat-label>Municipio</mat-label>
+          <input type="text" matInput placeholder="Región" formControlName="mun">
+        </mat-form-field>
 
-      <mat-form-field>
-        <mat-label>Cantidad de Participantes</mat-label>
-        <input type="number" matInput placeholder="Cantidad de Participantes">
-      </mat-form-field>
+        <mat-form-field>
+          <mat-label>Provincia</mat-label>
+          <input type="text" matInput placeholder="Región" formControlName="prov">
+        </mat-form-field>
 
-      <mat-form-field>
-        <mat-label> Fecha de Inicio </mat-label>
-        <input matInput [matDatepicker]="picker">
-        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-      </mat-form-field>
+        <mat-form-field>
+          <mat-label> Fecha de Inicio </mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="date">
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
 
-      <div class="flex justify-content-end mt-1">
-        <button
-          mat-flat-button
-          color="primary"
-          >
-          <mat-icon> save </mat-icon>
-          Crear
-        </button>
+        <div class="flex justify-content-end mt-1">
+          <button
+            mat-flat-button
+            color="primary"
+            type="submit"
+            >
+            <mat-icon> save </mat-icon>
+            Crear
+          </button>
+        </div>
+
       </div>
-
     </div>
   </div>
-</div>
+</form>
 

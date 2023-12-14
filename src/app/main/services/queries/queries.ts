@@ -55,3 +55,18 @@ export const GET_USER = gql
 }
 `
 
+export const CREATE_TOURNAMENT = gql
+`mutation CreateTournament($Date: Int!, $TournamentName: String!, $Municipio: String!, $Provincia: String!) {
+  createTournament(createTournamentInput: {
+    Date: $Date,
+    TournamentName: $TournamentName,
+    Municipio: $Municipio,
+    Provincia: $Provincia
+  }) {
+    Date
+    TournamentName
+    Municipio
+    Provincia
+  }
+}`
+

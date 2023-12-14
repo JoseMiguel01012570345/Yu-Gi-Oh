@@ -20,12 +20,6 @@ export class AuthService {
           prov: string,
           phoneNumber: number)
   {
-    console.log("username: " + username);
-    console.log("password: " + password);
-    console.log("roll: " + roll);
-    console.log("municipio: " + mun);
-    console.log("provincia: " + prov);
-
     return this.apollo.mutate({
       mutation: CREATE_PLAYER,
         variables: {
