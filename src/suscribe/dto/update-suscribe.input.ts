@@ -1,20 +1,17 @@
 import { CreateSuscribeInput } from './create-suscribe.input';
 import { InputType, Field, Int, PartialType } from '@nestjs/graphql';
-import { PrimaryColumn } from 'typeorm';
 
 @InputType()
 export class UpdateSuscribeInput extends PartialType(CreateSuscribeInput) {
 
-  @PrimaryColumn('varchar',{length:50})
+  @Field(() => String!, { description: 'Player id' })
   PlayerID: string;
 
-  @PrimaryColumn('int')
+  @Field(() => Int!, { description: "Deck id" })
   DeckID: number;
 
-  @PrimaryColumn('int')
+  @Field(() => Int!, { description: "Tournament date" })
   TournamentDate: number;
 
   @Field(() => String!, { description: "Tournament name" })
-  TournamentName: string;
-
-}
+  TournamentName: string;}
