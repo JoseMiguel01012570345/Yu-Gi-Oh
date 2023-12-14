@@ -27,6 +27,14 @@ __decorate([
     (0, graphql_1.Field)(() => String, { description: "Location of tournament" }),
     __metadata("design:type", String)
 ], UpdateTournamentInput.prototype, "TournamentDir", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => String, { description: 'Municipio' }),
+    __metadata("design:type", String)
+], UpdateTournamentInput.prototype, "Municipio", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => String, { description: 'Provincia' }),
+    __metadata("design:type", String)
+], UpdateTournamentInput.prototype, "Provincia", void 0);
 exports.UpdateTournamentInput = UpdateTournamentInput = __decorate([
     (0, graphql_1.InputType)()
 ], UpdateTournamentInput);

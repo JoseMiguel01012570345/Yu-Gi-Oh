@@ -10,6 +10,7 @@ import { BelongService } from '../belong/belong.service';
 import { SuscribeService } from '../suscribe/suscribe.service';
 import { TournamentService } from '../tournament/tournament.service';
 import { MatchService } from '../match/match.service';
+import { elementAt } from 'rxjs';
 
 @Injectable()
 export class ManagerService {
@@ -580,20 +581,31 @@ export class ManagerService {
   }
 
   async getArcheTypeMostPopularInLocation(location: string) {
-    const tournaments = await this.tournamentService.getTournamentsByLocation(location);
+
+    const tournaments = await this.tournamentService.getTournamentsByMunicipio(location);
     let archetypesDict = [];
     let result = null;
     let max_count = 0;
+
     for (let i = 0; i < tournaments.length; i++) {
+    
       const suscribes = await this.suscribeServcice.getSuscribesByTournament(tournaments[i].Date, tournaments[i].TournamentName);
+    
       for (let j = 0; j < suscribes.length; j++) {
+    
         const { ArcheTypeID } = (await this.belongService.getArcheTypesByDeckID(suscribes[j].DeckID))[0];
+    
         let exists = false;
+    
         for (let k = 0; k < archetypesDict.length; k++) {
+    
           if (archetypesDict[k].ArcheTypeID === ArcheTypeID) {
+    
             exists = true;
             archetypesDict[k].count += 1;
-            if (archetypesDict[k].count > max_count) {
+    
+            if (archetypesDict[k].count > max_count) 
+            {
               result = ArcheTypeID;
               max_count = archetypesDict[k].count;
             }
@@ -601,11 +613,15 @@ export class ManagerService {
           }
         }
         if (!exists) {
+
           archetypesDict.push({
             ArcheTypeID: ArcheTypeID,
             count: 1
+          
           });
-          if (max_count === 0) {
+          
+          if (max_count === 0) 
+          {
             max_count = 1;
             result = ArcheTypeID;
           }
@@ -617,13 +633,32 @@ export class ManagerService {
 
   async getLocationData(location: string) {
     const archeTypeMostPopular = await this.getArcheTypeMostPopularInLocation(location);
-    const tournaments = await this.tournamentService.getTournamentsByLocation(location);
+    const tournaments = await this.tournamentService.getTournamentsByMunicipio(location);
     let PlayersCount = 0;
-    for (let i = 0; i < tournaments.length; i++) {
-      PlayersCount += (await this.suscribeServcice.getSuscribesByTournament(tournaments[i].Date, tournaments[i].TournamentName)).length;
+    let players=[]
+    let provincia=[]
+
+    //find how many player have an arquetype in a region
+
+    for (let i = 0; i < tournaments.length; i++) { // pass through tournaments asking for suscribers
+      
+      let suscribers= (await this.suscribeServcice.getSuscribesByTournament(tournaments[i].Date, tournaments[i].TournamentName));
+      
+        for(let suscriber of suscribers){ // pass for suscribers asking for decks of archetype whose name is the most popular
+
+          provincia.push((await this.playerService.findOne(suscriber.PlayerID)).Provincia)
+          let deck = (await this.archetypeService.findOne(archeTypeMostPopular))
+          
+          if(deck ) PlayersCount++ // if there is a suscriber that have such arcketype, then add it to the count
+          
+        }
+
     }
+
+    let femousProvincia=this.mostPopularProvincia(provincia)
+
     const result: LocationSearchDataResponse = {
-      Location: location,
+      Location: `${location}/${provincia}`,
       ArcheTypeMostMopular: archeTypeMostPopular,
       PlayersCount: PlayersCount,
       WinnersCount: tournaments.length
@@ -631,6 +666,41 @@ export class ManagerService {
     return result;
   }
 
+  mostPopularProvincia(provincia: string []){
+
+    let mostPopular=[]
+    let provinciaCopy=[]
+    provincia.forEach(element=> provinciaCopy.push(element))
+
+    for (let index = 0; index < provincia.length; index++) {
+      
+      mostPopular.push(1)
+      for (let index1 = index + 1 ; index1 < provincia.length; index1++) {
+        
+        if(provincia[index1]==provincia[index]) { //count how many provincias is repeated
+          mostPopular[index]++
+        }
+        
+      }
+
+      provincia= provincia.filter((element)=> element!=provincia[index]) // delete all of those provincias repeated
+      index=-1 // start from 0 again
+    }
+
+    let resoult=""
+    let best=0
+    let index=0
+    mostPopular.forEach(element=>{
+
+      if(element>best) {
+        best=element
+        resoult=provinciaCopy[index] // find out what is the provincia that has biggest number in its index
+      }
+      index++
+    })
+
+    return resoult
+  }
   async getAllLocationDataSearch() {
     let locations = [];
     const tournaments = await this.tournamentService.findAll();

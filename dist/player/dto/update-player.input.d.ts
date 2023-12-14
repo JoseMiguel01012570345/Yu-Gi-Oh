@@ -4,5 +4,8 @@ export declare class UpdatePlayerInput extends UpdatePlayerInput_base {
     PlayerName: string;
     PlayerPassword: string;
     Roll: string;
+    Municipio: string;
+    Provincia: string;
+    Tel: number;
 }
 export {};

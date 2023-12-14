@@ -314,6 +314,22 @@ __decorate([
     (0, graphql_1.Field)(() => String, { description: "Usre's roll" }),
     __metadata("design:type", String)
 ], PlayerInput.prototype, "Roll", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => String, { description: 'Municipio' }),
+    __metadata("design:type", String)
+], PlayerInput.prototype, "Municipio", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => String, { description: 'Provincia' }),
+    __metadata("design:type", String)
+], PlayerInput.prototype, "Provincia", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => graphql_1.Int, { description: 'Telefono' }),
+    __metadata("design:type", Number)
+], PlayerInput.prototype, "Tel", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => String, { description: 'Direccion' }),
+    __metadata("design:type", String)
+], PlayerInput.prototype, "Dir", void 0);
 exports.PlayerInput = PlayerInput = __decorate([
     (0, graphql_1.InputType)()
 ], PlayerInput);

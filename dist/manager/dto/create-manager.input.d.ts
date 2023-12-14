@@ -82,6 +82,10 @@ export declare class PlayerInput {
     PlayerName: string;
     PlayerPassword: string;
     Roll: string;
+    Municipio: string;
+    Provincia: string;
+    Tel: number;
+    Dir: string;
 }
 export declare class MatchInput {
     MatchID: number;

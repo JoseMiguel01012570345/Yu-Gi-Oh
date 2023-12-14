@@ -4,5 +4,7 @@ export declare class UpdateTournamentInput extends UpdateTournamentInput_base {
     TournamentDate: number;
     TournamentName: string;
     TournamentDir: string;
+    Municipio: string;
+    Provincia: string;
 }
 export {};

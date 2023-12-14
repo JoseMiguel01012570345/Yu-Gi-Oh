@@ -554,7 +554,7 @@ let ManagerService = class ManagerService {
         return decksdata;
     }
     async getArcheTypeMostPopularInLocation(location) {
-        const tournaments = await this.tournamentService.getTournamentsByLocation(location);
+        const tournaments = await this.tournamentService.getTournamentsByMunicipio(location);
         let archetypesDict = [];
         let result = null;
         let max_count = 0;
@@ -590,10 +590,16 @@ let ManagerService = class ManagerService {
     }
     async getLocationData(location) {
         const archeTypeMostPopular = await this.getArcheTypeMostPopularInLocation(location);
-        const tournaments = await this.tournamentService.getTournamentsByLocation(location);
+        const tournaments = await this.tournamentService.getTournamentsByMunicipio(location);
         let PlayersCount = 0;
+        let players = [];
         for (let i = 0; i < tournaments.length; i++) {
-            PlayersCount += (await this.suscribeServcice.getSuscribesByTournament(tournaments[i].Date, tournaments[i].TournamentName)).length;
+            let suscribers = (await this.suscribeServcice.getSuscribesByTournament(tournaments[i].Date, tournaments[i].TournamentName));
+            for (let suscriber of suscribers) {
+                let deck = await (await this.archetypeService.findOne(archeTypeMostPopular));
+                if (deck)
+                    PlayersCount++;
+            }
         }
         const result = {
             Location: location,

@@ -37,8 +37,11 @@ let TournamentService = class TournamentService {
     async getTournamentsByDate(date) {
         return await this.tournamentRepository.findBy({ Date: date });
     }
-    async getTournamentsByLocation(location) {
-        return await this.tournamentRepository.findBy({ TournamentDir: location });
+    async getTournamentsByMunicipio(location) {
+        return await this.tournamentRepository.findBy({ Municipio: location });
+    }
+    async getTournamentsByProvincia(location) {
+        return await this.tournamentRepository.findBy({ Provincia: location });
     }
     async update(date, name, updateTournamentInput) {
         await this.tournamentRepository.update({ Date: date, TournamentName: name }, updateTournamentInput);

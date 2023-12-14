@@ -27,6 +27,18 @@ __decorate([
     (0, graphql_1.Field)(() => String, { description: "User's roll" }),
     __metadata("design:type", String)
 ], UpdatePlayerInput.prototype, "Roll", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => String, { description: 'Municipio' }),
+    __metadata("design:type", String)
+], UpdatePlayerInput.prototype, "Municipio", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => String, { description: 'Provincia' }),
+    __metadata("design:type", String)
+], UpdatePlayerInput.prototype, "Provincia", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => graphql_1.Int, { description: 'Telefono' }),
+    __metadata("design:type", Number)
+], UpdatePlayerInput.prototype, "Tel", void 0);
 exports.UpdatePlayerInput = UpdatePlayerInput = __decorate([
     (0, graphql_1.InputType)()
 ], UpdatePlayerInput);

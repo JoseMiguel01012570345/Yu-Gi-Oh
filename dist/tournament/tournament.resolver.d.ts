@@ -10,7 +10,8 @@ export declare class TournamentResolver {
     findOne(tournamentDate: number, tournamentName: string): Promise<Tournament>;
     findTournamentsByName(name: string): Promise<Tournament[]>;
     findTournamentsByDate(date: number): Promise<Tournament[]>;
-    findTournamentsByLocation(location: string): Promise<Tournament[]>;
+    findTournamentsByMunicipio(location: string): Promise<Tournament[]>;
+    findTournamentsByProvincia(location: string): Promise<Tournament[]>;
     updateTournament(updateTournamentInput: UpdateTournamentInput): Promise<UpdateTournamentInput>;
     removeTournament(tournamentDate: number, tournamentName: string): Promise<Tournament>;
 }

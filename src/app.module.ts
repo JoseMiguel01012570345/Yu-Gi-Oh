@@ -26,11 +26,11 @@ import { ManagerModule } from './manager/manager.module';
     }),
     TypeOrmModule.forRootAsync({
       useFactory: () => ({
-        type: 'mariadb',
+        type: 'mysql',
         host: '127.0.0.1',
         port: 3306,
         username: 'root',
-        password: 'family',
+        password: 'science',
         database: 'YuGiOhDB',
         entities: [],
         synchronize: true,

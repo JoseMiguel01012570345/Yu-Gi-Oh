@@ -37,8 +37,11 @@ let TournamentResolver = class TournamentResolver {
     findTournamentsByDate(date) {
         return this.tournamentService.getTournamentsByDate(date);
     }
-    findTournamentsByLocation(location) {
-        return this.tournamentService.getTournamentsByLocation(location);
+    findTournamentsByMunicipio(location) {
+        return this.tournamentService.getTournamentsByMunicipio(location);
+    }
+    findTournamentsByProvincia(location) {
+        return this.tournamentService.getTournamentsByProvincia(location);
     }
     updateTournament(updateTournamentInput) {
         return this.tournamentService.update(updateTournamentInput.TournamentDate, updateTournamentInput.TournamentName, updateTournamentInput);
@@ -89,7 +92,14 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
-], TournamentResolver.prototype, "findTournamentsByLocation", null);
+], TournamentResolver.prototype, "findTournamentsByMunicipio", null);
+__decorate([
+    (0, graphql_1.Query)(() => [tournament_entity_1.Tournament], { name: 'tournamentsByLocation' }),
+    __param(0, (0, graphql_1.Args)('Location', { type: () => String })),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], TournamentResolver.prototype, "findTournamentsByProvincia", null);
 __decorate([
     (0, graphql_1.Mutation)(() => tournament_entity_1.Tournament),
     __param(0, (0, graphql_1.Args)('updateTournamentInput')),

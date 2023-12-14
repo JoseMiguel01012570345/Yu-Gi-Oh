@@ -10,7 +10,8 @@ export declare class TournamentService {
     findOne(date: number, name: string): Promise<Tournament>;
     getTournamentsByName(name: string): Promise<Tournament[]>;
     getTournamentsByDate(date: number): Promise<Tournament[]>;
-    getTournamentsByLocation(location: string): Promise<Tournament[]>;
+    getTournamentsByMunicipio(location: string): Promise<Tournament[]>;
+    getTournamentsByProvincia(location: string): Promise<Tournament[]>;
     update(date: number, name: string, updateTournamentInput: UpdateTournamentInput): Promise<UpdateTournamentInput>;
     remove(date: number, name: string): Promise<Tournament>;
 }

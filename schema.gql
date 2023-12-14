@@ -16,6 +16,18 @@ type Player {
 
   """User's roll"""
   Roll: String!
+
+  """Municipio"""
+  Municipio: String!
+
+  """Provincia"""
+  Provincia: String!
+
+  """Telefono"""
+  Tel: Int!
+
+  """Direccion"""
+  Dir: String!
 }
 
 type Deck {
@@ -49,6 +61,12 @@ type Tournament {
 
   """Location of tournament"""
   TournamentDir: String!
+
+  """Municipio"""
+  Municipio: String!
+
+  """Provincia"""
+  Provincia: String!
 }
 
 type Archetype {
@@ -410,6 +428,15 @@ input CreatePlayerInput {
 
   """User's roll"""
   Roll: String!
+
+  """Municipio"""
+  Municipio: String!
+
+  """Provincia"""
+  Provincia: String!
+
+  """Telefono"""
+  Tel: Int!
 }
 
 input UpdatePlayerInput {
@@ -421,6 +448,15 @@ input UpdatePlayerInput {
 
   """User's roll"""
   Roll: String!
+
+  """Municipio"""
+  Municipio: String!
+
+  """Provincia"""
+  Provincia: String!
+
+  """Telefono"""
+  Tel: Int!
 }
 
 input CreateDeckInput {
@@ -463,8 +499,11 @@ input CreateTournamentInput {
   """Tournament's name"""
   TournamentName: String!
 
-  """Location of the tournament"""
-  TournamentDir: String!
+  """Municipio"""
+  Municipio: String!
+
+  """Provincia"""
+  Provincia: String!
 }
 
 input UpdateTournamentInput {
@@ -474,14 +513,20 @@ input UpdateTournamentInput {
   """Tournament's name"""
   TournamentName: String!
 
-  """Location of tournament"""
-  TournamentDir: String!
+  """Municipio"""
+  Municipio: String!
+
+  """Provincia"""
+  Provincia: String!
 
   """
   Tournament Date. Most be a string with format 
   (year)(mounth)(day)
   """
   TournamentDate: Int!
+
+  """Location of tournament"""
+  TournamentDir: String!
 }
 
 input CreateArchetypeInput {
@@ -658,6 +703,18 @@ input PlayerInput {
 
   """Usre's roll"""
   Roll: String!
+
+  """Municipio"""
+  Municipio: String!
+
+  """Provincia"""
+  Provincia: String!
+
+  """Telefono"""
+  Tel: Int!
+
+  """Direccion"""
+  Dir: String!
 }
 
 input TournamentInput {
