@@ -378,24 +378,24 @@ let ManagerService = class ManagerService {
         let tournamentDict = [];
         if (tournaments.length == 0)
             return { Place: 'null' };
-        let placeResult = tournaments[0].TournamentDir;
+        let placeResult = tournaments[0].Municipio;
         let max_count = 0;
         await tournaments.forEach(tournament => {
             let exists = false;
             for (let i = 0; i < tournamentDict.length; i++) {
-                if (tournamentDict[i].Place === tournament.TournamentDir) {
+                if (tournamentDict[i].Place === tournament.Municipio) {
                     tournamentDict[i].count += 1;
                     exists = true;
                     if (tournamentDict[i].count > max_count) {
                         max_count = tournamentDict[i].count;
-                        placeResult = tournament.TournamentDir;
+                        placeResult = tournament.Municipio;
                     }
                     break;
                 }
             }
             if (!exists)
                 tournamentDict.push({
-                    Place: tournament.TournamentDir,
+                    Place: tournament.Municipio,
                     count: 1
                 });
         });
@@ -521,7 +521,7 @@ let ManagerService = class ManagerService {
     async getArcheTypeSearchData(archetype) {
         const result = {
             ArcheTypeName: archetype,
-            MostPopularRegion: (await this.getTournamentWithArcheType(archetype)).TournamentDir,
+            MostPopularRegion: (await this.getTournamentWithArcheType(archetype)).Municipio,
             PlayersCount: await this.getPlayersWithDeckOfArcheType(archetype),
             TournamentsCount: await this.getCountTournamentsWithArcheType(archetype)
         };
@@ -592,29 +592,57 @@ let ManagerService = class ManagerService {
         const archeTypeMostPopular = await this.getArcheTypeMostPopularInLocation(location);
         const tournaments = await this.tournamentService.getTournamentsByMunicipio(location);
         let PlayersCount = 0;
-        let players = [];
+        let provincia = [];
         for (let i = 0; i < tournaments.length; i++) {
             let suscribers = (await this.suscribeServcice.getSuscribesByTournament(tournaments[i].Date, tournaments[i].TournamentName));
             for (let suscriber of suscribers) {
-                let deck = await (await this.archetypeService.findOne(archeTypeMostPopular));
+                provincia.push((await this.playerService.findOne(suscriber.PlayerID)).Provincia);
+                let deck = (await this.archetypeService.findOne(archeTypeMostPopular));
                 if (deck)
                     PlayersCount++;
             }
         }
+        let femousProvincia = await this.mostPopularProvincia(provincia);
         const result = {
-            Location: location,
+            Location: `${location}/${provincia}`,
             ArcheTypeMostMopular: archeTypeMostPopular,
             PlayersCount: PlayersCount,
             WinnersCount: tournaments.length
         };
         return result;
     }
+    async mostPopularProvincia(provincia) {
+        let mostPopular = [];
+        let provinciaCopy = [];
+        provincia.forEach(element => provinciaCopy.push(element));
+        for (let index = 0; index < provincia.length; index++) {
+            mostPopular.push(1);
+            for (let index1 = index + 1; index1 < provincia.length; index1++) {
+                if (provincia[index1] == provincia[index]) {
+                    mostPopular[index]++;
+                }
+            }
+            provincia = provincia.filter((element) => element != provincia[index]);
+            index = -1;
+        }
+        let resoult = "";
+        let best = 0;
+        let index = 0;
+        await mostPopular.forEach(element => {
+            if (element > best) {
+                best = element;
+                resoult = provinciaCopy[index];
+            }
+            index++;
+        });
+        return resoult;
+    }
     async getAllLocationDataSearch() {
         let locations = [];
         const tournaments = await this.tournamentService.findAll();
         for (let i = 0; i < tournaments.length; i++) {
-            if (!locations.includes(tournaments[i].TournamentDir))
-                locations.push(tournaments[i].TournamentDir);
+            if (!locations.includes(`${tournaments[i].Municipio} ${tournaments[i].Provincia}`))
+                locations.push(`${tournaments[i].Municipio} ${tournaments[i].Provincia}`);
         }
         let result = [];
         for (let i = 0; i < locations.length; i++) {
@@ -629,7 +657,7 @@ let ManagerService = class ManagerService {
         const result = {
             TournamentName: tournament.TournamentName,
             TournamentDate: tournament.Date,
-            Location: tournament.TournamentDir,
+            Location: `${tournament.Municipio} ${tournament.Provincia}`,
             Winner: tournamentWinner.PlayerName,
             ArcheTypeMostUsed: mostUsedArcheType.ArcheTypeName
         };

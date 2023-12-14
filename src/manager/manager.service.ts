@@ -392,24 +392,24 @@ export class ManagerService {
     let tournamentDict = [];
     if (tournaments.length == 0)
       return { Place: 'null' };
-    let placeResult = tournaments[0].TournamentDir;
+    let placeResult = tournaments[0].Municipio;
     let max_count = 0;
     await tournaments.forEach(tournament => {
       let exists = false;
       for (let i = 0; i < tournamentDict.length; i++) {
-        if (tournamentDict[i].Place === tournament.TournamentDir) {
+        if (tournamentDict[i].Place === tournament.Municipio) {
           tournamentDict[i].count += 1;
           exists = true;
           if (tournamentDict[i].count > max_count) {
             max_count = tournamentDict[i].count;
-            placeResult = tournament.TournamentDir;
+            placeResult = tournament.Municipio;
           }
           break;
         }
       }
       if (!exists)
         tournamentDict.push({
-          Place: tournament.TournamentDir,
+          Place: tournament.Municipio,
           count: 1
         });
     });
@@ -543,7 +543,7 @@ export class ManagerService {
     const result: ArcheTypeSearchDataResponse = {
 
       ArcheTypeName: archetype,
-      MostPopularRegion: (await this.getTournamentWithArcheType(archetype)).TournamentDir,
+      MostPopularRegion: (await this.getTournamentWithArcheType(archetype)).Municipio,
       PlayersCount: await this.getPlayersWithDeckOfArcheType(archetype),
       TournamentsCount: await this.getCountTournamentsWithArcheType(archetype)
 
@@ -705,8 +705,8 @@ export class ManagerService {
     let locations = [];
     const tournaments = await this.tournamentService.findAll();
     for (let i = 0; i < tournaments.length; i++) {
-      if (!locations.includes(tournaments[i].TournamentDir))
-        locations.push(tournaments[i].TournamentDir);
+      if (!locations.includes(`${tournaments[i].Municipio} ${tournaments[i].Provincia}`))
+        locations.push(`${tournaments[i].Municipio} ${tournaments[i].Provincia}`);
     }
     let result = [];
     for (let i = 0; i < locations.length; i++) {
@@ -722,7 +722,7 @@ export class ManagerService {
     const result: TournamentSearchDataResponse = {
       TournamentName: tournament.TournamentName,
       TournamentDate: tournament.Date,
-      Location: tournament.TournamentDir,
+      Location: `${tournament.Municipio} ${tournament.Provincia}`,
       Winner: tournamentWinner.PlayerName,
       ArcheTypeMostUsed: mostUsedArcheType.ArcheTypeName
     };

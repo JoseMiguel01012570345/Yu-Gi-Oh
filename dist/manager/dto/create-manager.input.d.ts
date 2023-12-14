@@ -44,7 +44,8 @@ export declare class ArcheTypeResponse {
 export declare class TournamentResponse {
     Date: number;
     TournamentName: string;
-    TournamentDir: string;
+    Municipio: string;
+    Provincia: string;
 }
 export declare class ArcheTypeCountResponse {
     ArcheTypeName: string;

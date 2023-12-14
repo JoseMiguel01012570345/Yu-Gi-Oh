@@ -28,8 +28,4 @@ export class Player {
   @Column('numeric')
   @Field(() => Int, { description: 'Telefono'})
   Tel: number;
-
-  @Column('text')
-  @Field(() => String!, { description: 'Direccion'})
-  Dir: string;
 }

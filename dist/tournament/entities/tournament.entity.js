@@ -27,11 +27,6 @@ __decorate([
 ], Tournament.prototype, "TournamentName", void 0);
 __decorate([
     (0, typeorm_1.Column)('text'),
-    (0, graphql_1.Field)(() => String, { description: "Location of tournament" }),
-    __metadata("design:type", String)
-], Tournament.prototype, "TournamentDir", void 0);
-__decorate([
-    (0, typeorm_1.Column)('text'),
     (0, graphql_1.Field)(() => String, { description: 'Municipio' }),
     __metadata("design:type", String)
 ], Tournament.prototype, "Municipio", void 0);

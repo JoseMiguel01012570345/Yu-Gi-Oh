@@ -4,6 +4,7 @@ import { Entity, PrimaryColumn } from 'typeorm';
 @Entity()
 @ObjectType()
 export class Suscribe {
+  
   @PrimaryColumn()
   @Field(() => String!, { description: 'Player id' })
   PlayerID: string;

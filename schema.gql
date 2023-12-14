@@ -25,9 +25,6 @@ type Player {
 
   """Telefono"""
   Tel: Int!
-
-  """Direccion"""
-  Dir: String!
 }
 
 type Deck {
@@ -58,9 +55,6 @@ type Tournament {
 
   """Tournament's name"""
   TournamentName: String!
-
-  """Location of tournament"""
-  TournamentDir: String!
 
   """Municipio"""
   Municipio: String!
@@ -256,8 +250,11 @@ type TournamentResponse {
   """Name of tournament"""
   TournamentName: String!
 
-  """Location of tournament"""
-  TournamentDir: String!
+  """Municipio"""
+  Municipio: String!
+
+  """Provincia"""
+  Provincia: String!
 }
 
 type ArcheTypeCountResponse {

@@ -22,6 +22,11 @@ let SuscribeService = class SuscribeService {
         this.suscribeRepository = suscribeRepository;
     }
     async create(createSuscribeInput) {
+        let suscribers = await this.getSuscribesByTournament(createSuscribeInput.TournamentDate, createSuscribeInput.TournamentName);
+        await suscribers.forEach(suscriber => {
+            if (suscriber.PlayerID === createSuscribeInput.PlayerID)
+                throw new Error("player suscribed");
+        });
         await this.suscribeRepository.insert(createSuscribeInput);
         return createSuscribeInput;
     }

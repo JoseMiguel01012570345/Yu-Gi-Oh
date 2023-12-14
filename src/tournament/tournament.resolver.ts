@@ -10,6 +10,7 @@ export class TournamentResolver {
 
   @Mutation(() => Tournament)
   createTournament(@Args('createTournamentInput') createTournamentInput: CreateTournamentInput) {
+    console.log(createTournamentInput);
     return this.tournamentService.create(createTournamentInput);
   }
 

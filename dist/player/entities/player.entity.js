@@ -45,11 +45,6 @@ __decorate([
     (0, graphql_1.Field)(() => graphql_1.Int, { description: 'Telefono' }),
     __metadata("design:type", Number)
 ], Player.prototype, "Tel", void 0);
-__decorate([
-    (0, typeorm_1.Column)('text'),
-    (0, graphql_1.Field)(() => String, { description: 'Direccion' }),
-    __metadata("design:type", String)
-], Player.prototype, "Dir", void 0);
 exports.Player = Player = __decorate([
     (0, typeorm_1.Entity)(),
     (0, graphql_1.ObjectType)()

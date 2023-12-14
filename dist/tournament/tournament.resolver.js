@@ -23,6 +23,7 @@ let TournamentResolver = class TournamentResolver {
         this.tournamentService = tournamentService;
     }
     createTournament(createTournamentInput) {
+        console.log(createTournamentInput);
         return this.tournamentService.create(createTournamentInput);
     }
     findAll() {

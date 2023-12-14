@@ -5,5 +5,4 @@ export declare class Player {
     Municipio: string;
     Provincia: string;
     Tel: number;
-    Dir: string;
 }

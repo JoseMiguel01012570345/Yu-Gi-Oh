@@ -179,9 +179,13 @@ __decorate([
     __metadata("design:type", String)
 ], TournamentResponse.prototype, "TournamentName", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { description: 'Location of tournament' }),
+    (0, graphql_1.Field)(() => String, { description: 'Municipio' }),
     __metadata("design:type", String)
-], TournamentResponse.prototype, "TournamentDir", void 0);
+], TournamentResponse.prototype, "Municipio", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => String, { description: 'Provincia' }),
+    __metadata("design:type", String)
+], TournamentResponse.prototype, "Provincia", void 0);
 exports.TournamentResponse = TournamentResponse = __decorate([
     (0, graphql_1.ObjectType)()
 ], TournamentResponse);

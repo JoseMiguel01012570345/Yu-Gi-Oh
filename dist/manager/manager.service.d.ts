@@ -48,6 +48,7 @@ export declare class ManagerService {
     getAllDecksData(): Promise<any[]>;
     getArcheTypeMostPopularInLocation(location: string): Promise<any>;
     getLocationData(location: string): Promise<LocationSearchDataResponse>;
+    mostPopularProvincia(provincia: string[]): Promise<string>;
     getAllLocationDataSearch(): Promise<any[]>;
     getTournamentData(date: number, name: string): Promise<TournamentSearchDataResponse>;
     getAllTournamentData(): Promise<any[]>;

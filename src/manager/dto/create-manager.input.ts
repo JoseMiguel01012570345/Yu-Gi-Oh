@@ -116,8 +116,11 @@ export class TournamentResponse {
   @Field(() => String, { description: 'Name of tournament' })
   TournamentName: string;
 
-  @Field(() => String, { description: 'Location of tournament' })
-  TournamentDir: string;
+  @Field(() => String, { description: 'Municipio' })
+  Municipio: string;
+
+  @Field(() => String, { description: 'Provincia' })
+  Provincia: string;
 }
 
 @ObjectType()
