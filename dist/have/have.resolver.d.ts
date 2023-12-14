@@ -8,6 +8,7 @@ export declare class HaveResolver {
     createHas(createHasInput: CreateHasInput): Promise<CreateHasInput>;
     findAll(): Promise<Has[]>;
     findOne(deckid: number, playerid: string): Promise<Has>;
+    findDecksByPlayer(playerid: string): Promise<Has[]>;
     updateHas(updateHasInput: UpdateHasInput): Promise<UpdateHasInput>;
     removeHas(deckid: number, playerid: string): Promise<Has>;
 }

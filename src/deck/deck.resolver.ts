@@ -3,13 +3,17 @@ import { DeckService } from './deck.service';
 import { Deck } from './entities/deck.entity';
 import { CreateDeckInput, CreateDeckResponse } from './dto/create-deck.input';
 import { UpdateDeckInput } from './dto/update-deck.input';
+import { ArchetypeService } from 'src/archetype/archetype.service';
 
 @Resolver(() => Deck)
 export class DeckResolver {
-  constructor(private readonly deckService: DeckService) { }
+  constructor(
+    private readonly deckService: DeckService 
+    ) { }
 
   @Mutation(() => CreateDeckResponse)
   createDeck(@Args('createDeckInput') createDeckInput: CreateDeckInput) {
+      
     return this.deckService.create(createDeckInput);
   }
 

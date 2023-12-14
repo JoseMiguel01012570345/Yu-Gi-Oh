@@ -25,6 +25,12 @@ export class HaveResolver {
     return this.haveService.findOne(deckid, playerid);
   }
 
+  @Query(()=>[Has],{name: 'decksByPlayer'})
+  findDecksByPlayer( @Args('playerid', { type: () => Int }) playerid: string) {
+    
+    return this.haveService.getDecksByPlayer(playerid);
+  }
+
   @Mutation(() => Has)
   updateHas(@Args('updateHasInput') updateHasInput: UpdateHasInput) {
     return this.haveService.update(updateHasInput.DeckID, updateHasInput.PlayerID, updateHasInput);

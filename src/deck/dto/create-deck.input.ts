@@ -16,6 +16,7 @@ export class CreateDeckInput {
 
   @Field(() => Int, { description: "Extra deck cards count" })
   ExtraDeckCount: number;
+
 }
 
 @ObjectType()

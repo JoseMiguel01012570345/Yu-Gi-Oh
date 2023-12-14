@@ -31,6 +31,9 @@ let HaveResolver = class HaveResolver {
     findOne(deckid, playerid) {
         return this.haveService.findOne(deckid, playerid);
     }
+    findDecksByPlayer(playerid) {
+        return this.haveService.getDecksByPlayer(playerid);
+    }
     updateHas(updateHasInput) {
         return this.haveService.update(updateHasInput.DeckID, updateHasInput.PlayerID, updateHasInput);
     }
@@ -60,6 +63,13 @@ __decorate([
     __metadata("design:paramtypes", [Number, String]),
     __metadata("design:returntype", void 0)
 ], HaveResolver.prototype, "findOne", null);
+__decorate([
+    (0, graphql_1.Query)(() => [has_entity_1.Has], { name: 'decksByPlayer' }),
+    __param(0, (0, graphql_1.Args)('playerid', { type: () => graphql_1.Int })),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], HaveResolver.prototype, "findDecksByPlayer", null);
 __decorate([
     (0, graphql_1.Mutation)(() => has_entity_1.Has),
     __param(0, (0, graphql_1.Args)('updateHasInput')),
