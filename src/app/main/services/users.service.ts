@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environments } from 'src/environments/environments';
-import { Observable, catchError, map, of } from 'rxjs';
+import { Observable, catchError, map, of, tap } from 'rxjs';
 import { Apollo } from 'apollo-angular';
 
-import { Player, PlayersResponse, UserData } from '../interfaces/user.interface';
+import { Player, PlayerResponse, PlayersResponse, UserData} from '../interfaces/user.interface';
 
 
-import { GET_PLAYERS } from './queries/queries';
+import { GET_PLAYERS, GET_USER, GET_USER_DATA } from './queries/queries';
 
 @Injectable({providedIn: 'root'})
 export class UsersService {
@@ -18,6 +18,7 @@ export class UsersService {
               private apollo: Apollo) { }
 
   getUserById(id: string):Observable<UserData | undefined> {
+
     console.log(`${this.baseUrl}/usersInfo/${id}`)
     return this.httpClient.get<UserData>(`${this.baseUrl}/usersInfo/${id}`)
     .pipe(
@@ -25,6 +26,19 @@ export class UsersService {
     );
 
 
+  }
+
+  getUserData(playerName: string): Observable<UserData> {
+    console.log("Player Name: " + playerName)
+    return this.apollo.query<UserData>({
+      query: GET_USER_DATA,
+      variables: {
+        playerName: playerName,
+      },
+    }).pipe(
+      tap(response => console.log(response.data)),
+      map(response => response.data)
+    )
   }
 
   getPlayers(): Observable<Player[]> {
@@ -52,5 +66,53 @@ export class UsersService {
           throw error;
         })
       );
+  }
+
+  //Temporal
+  getPlayerCredentials(name : string, password : string, role : string): Observable<boolean>
+  {
+    return this.apollo
+    .query<PlayerResponse>({
+      query: GET_USER,
+      variables: {
+        playerID: name,
+      },
+    })
+    .pipe(
+      map((result) => {
+        console.log('Entro');
+        console.log('Resultado de la consulta GraphQL:', result);
+        console.log('Resultado de la consulta GraphQL:', result.data);
+        console.log('Resultado de la consulta GraphQL:', result.data.player);
+
+
+
+        // Verificar si hay datos en la respuesta y en la propiedad userData
+        if (result.data) {
+          const userData = result.data.player;
+
+          // Comparar las variables de entrada con los datos obtenidos
+          const isMatch =
+            userData.PlayerName == name &&
+            userData.PlayerPassword == password &&
+            userData.Roll == role;
+
+          console.log('Resultado de la consulta GraphQL:', result);
+          console.log(
+            'Valores: ' +
+              userData.PlayerName +
+              ' ' +
+              userData.PlayerPassword +
+              ' ' +
+              userData.Roll
+          );
+
+          return isMatch;
+        }
+
+        // Si no hay datos, no hay coincidencia
+        return false;
+      })
+    );
   }
 }

@@ -31,7 +31,7 @@ export class LoginPageComponent {
 
   }
 
-  login(): void {
+  async login(): Promise<void> {
 
     if (this.loginForm.valid){
       // Lógica de autenticación aquí
@@ -40,7 +40,8 @@ export class LoginPageComponent {
 
       const { username, role, password } = this.loginForm.value;
 
-      this.isAuthenticated = this.authService.login(username, password);
+      this.isAuthenticated = await this.authService.login(username, password, role);
+
 
       if(this.isAuthenticated)
       {

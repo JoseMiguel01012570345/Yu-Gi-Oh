@@ -11,7 +11,7 @@ export interface UserSearchData {
 
 export interface UserData {
   id:            string;
-  mydecks:       MyDeck[];
+  myDecks:       MyDeck[];
   myTournaments: MyTournament[];
 }
 
@@ -33,6 +33,9 @@ export interface PlayersResponse {
   players: Player[];
 }
 
+export interface PlayerResponse {
+  player: Player;
+}
 export interface Player {
   PlayerName: string;
   PlayerPassword: string;

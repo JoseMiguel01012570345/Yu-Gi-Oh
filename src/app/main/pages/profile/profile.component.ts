@@ -39,16 +39,19 @@ export class ProfileComponent implements OnInit {
       this.id = params['id'];
     });
 
+
     this.activatedRoute.params
     .pipe(
-      switchMap ( ({id}) => this.userService.getUserById(id))
+      switchMap ( ({id}) => this.userService.getUserData(id))
     )
     .subscribe(
       user => {
 
+        console.log("User: " + user)
+
         if( !user ) return this.router.navigate(['/auth/login']);
 
-        this.myDecks = user.mydecks;
+        this.myDecks = user.myDecks;
         this.myTournaments = user.myTournaments;
 
         return;
@@ -56,8 +59,8 @@ export class ProfileComponent implements OnInit {
       }
     );
 
-    //TEMPORAL
-    this.userService.getPlayers().subscribe();
+    // //TEMPORAL
+    // this.userService.getPlayers().subscribe();
   }
 
   showPasswordMenu: boolean = false;

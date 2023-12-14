@@ -1,33 +1,41 @@
-<div class="flex flex-column">
+<form [formGroup]="signinForm" (ngSubmit)="SignIn()">
 
-  <span class="text-lg mb-4">Registro</span>
+  <div class="flex flex-column">
 
-  <mat-form-field>
-    <mat-label>Usuario</mat-label>
-    <input type="text" matInput placeholder="Nick de Usuario">
-  </mat-form-field>
+    <span class="text-lg mb-4">Registro</span>
 
-  <mat-form-field>
-    <mat-label>Nombre</mat-label>
-    <input type="text" matInput placeholder="Nombre">
-  </mat-form-field>
+    <mat-form-field>
+      <mat-label>Usuario</mat-label>
+      <input type="text" matInput placeholder="Nick de Usuario" formControlName="username" required>
+    </mat-form-field>
 
-  <mat-form-field>
-    <mat-label>Rol</mat-label>
-    <input type="text" matInput placeholder="Rol">
-  </mat-form-field>
+    <mat-form-field>
+      <mat-label>Nombre</mat-label>
+      <input type="text" matInput placeholder="Nombre Completo" required>
+    </mat-form-field>
 
-  <mat-form-field>
-    <mat-label>Contraseña</mat-label>
-    <input type="password" matInput placeholder="Contraseña">
-  </mat-form-field>
+    <mat-form-field>
+      <mat-label>Rol</mat-label>
+      <mat-select formControlName="role" >
+        <mat-option value="user">Usuario</mat-option>
+        <mat-option value="admin">Administrador</mat-option>
+      </mat-select>
+    </mat-form-field>
 
-  <button mat-button mat-flat-button color="primary">
-    <mat-icon>save</mat-icon>
-    Crear cuenta
-  </button>
+    <mat-form-field>
+      <mat-label>Contraseña</mat-label>
+      <input type="password" matInput placeholder="Contraseña" formControlName="password" required>
+    </mat-form-field>
 
-  <div class="flex justify-content-end mt-5">
-    <a routerLink="/auth/login">"Ya tienes cuenta?"</a>
+    <button mat-button mat-flat-button color="primary" type="submit">
+      <mat-icon>save</mat-icon>
+      Crear cuenta
+    </button>
+
+    <div class="flex justify-content-end mt-5">
+      <a routerLink="/auth/login">"Ya tienes cuenta?"</a>
+    </div>
   </div>
-</div>
+
+</form>
+
