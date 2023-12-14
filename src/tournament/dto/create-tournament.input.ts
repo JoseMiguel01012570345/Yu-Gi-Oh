@@ -8,9 +8,6 @@ export class CreateTournamentInput {
   @Field(() => String!, { description: "Tournament's name"})
   TournamentName: string;
 
-  @Field(() => String!, { description: "Location of the tournament"})
-  TournamentDir: string;
-
   @Field(() => String!, { description: 'Municipio'})
   Municipio: string;
 

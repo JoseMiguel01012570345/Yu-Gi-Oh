@@ -34,8 +34,11 @@ export class TournamentService {
     return await this.tournamentRepository.findBy({ Date: date });
   }
 
-  async getTournamentsByLocation(location: string) {
-    return await this.tournamentRepository.findBy({ TournamentDir: location });
+  async getTournamentsByMunicipio(location: string) {
+    return await this.tournamentRepository.findBy({ Municipio: location });
+  }
+  async getTournamentsByProvincia(location: string) {
+    return await this.tournamentRepository.findBy({ Provincia: location });
   }
 
   async update(date: number, name: string, updateTournamentInput: UpdateTournamentInput) {

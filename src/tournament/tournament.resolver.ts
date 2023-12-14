@@ -37,8 +37,12 @@ export class TournamentResolver {
   }
 
   @Query(() => [Tournament], { name: 'tournamentsByLocation' })
-  findTournamentsByLocation(@Args('Location', { type: () => String }) location: string) {
-    return this.tournamentService.getTournamentsByLocation(location);
+  findTournamentsByMunicipio(@Args('Location', { type: () => String }) location: string) {
+    return this.tournamentService.getTournamentsByMunicipio(location);
+  }
+  @Query(() => [Tournament], { name: 'tournamentsByLocation' })
+  findTournamentsByProvincia(@Args('Location', { type: () => String }) location: string) {
+    return this.tournamentService.getTournamentsByProvincia(location);
   }
 
   @Mutation(() => Tournament)
