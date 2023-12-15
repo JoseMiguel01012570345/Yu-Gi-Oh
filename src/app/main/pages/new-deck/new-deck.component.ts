@@ -45,6 +45,18 @@ export class NewDeckComponent implements OnInit {
   }
 
   CreateDeck(): void {
-    console.log(this.createDeckForm.value);
+    if(this.createDeckForm.valid){
+      const { name, attribute, mainDeckCardsAmount, extraDeckCardsAmount, sideDeckCardsAmount } = this.createDeckForm.value;
+
+      this.decksService.createUnnasignedDeck(name, mainDeckCardsAmount, extraDeckCardsAmount, sideDeckCardsAmount)
+        .subscribe({
+          next: (result) => {
+            console.log('Deck ID:', result.deckID);
+          },
+          error: (error) => {
+            console.error('Error creating deck:', error);
+          },
+        });
+      }
   }
 }

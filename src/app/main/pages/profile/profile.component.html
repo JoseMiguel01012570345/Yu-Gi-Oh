@@ -61,15 +61,18 @@
       <tr mat-row *matRowDef="let row; columns: myTournamentsColumns;"></tr>
     </table>
 
-    <button mat-raised-button
-    color="primary"
-    [routerLink]="['/main/new-tournament']" >
-      Nuevo Torneo
-    </button>
+    <div *ngIf="isAdmin">
+      <button mat-raised-button
+      color="primary"
+      [routerLink]="['/main/new-tournament']" >
+        Nuevo Torneo
+      </button>
+    </div>
 
   </div>
 </div>
 
+<div *ngIf="isAdmin">
 <button mat-flat-button color="primary" [matMenuTriggerFor]="menu"
 style="
   position: fixed;
@@ -84,6 +87,8 @@ style="
   <button mat-menu-item (click)="TogglePasswordMenu()">Modificar Contraseña</button>
 
 </mat-menu>
+</div>
+
 
 <!-- Esto es simplemente maqueteria para el menu de cambiar contraseña -->
 <div

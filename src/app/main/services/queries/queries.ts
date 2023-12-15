@@ -88,3 +88,40 @@ export const GET_ARCH_LIST = gql
   }
 }`
 
+export const CREATE_DECK = gql`
+  mutation CreateDeck($deckName: String!, $mainDeckCount: Int!, $sideDeckCount: Int!, $extraDeckCount: Int!) {
+    createDeck(createDeckInput: {
+      DeckName: $deckName,
+      MainDeckCount: $mainDeckCount,
+      SideDeckCount: $sideDeckCount,
+      ExtraDeckCount: $extraDeckCount
+    }) {
+      Message
+      deckID
+    }
+  }
+`;
+
+export const CREATE_BELONG = gql`
+  mutation CreateBelong($archeTypeID: String!, $deckID: Int!) {
+    createBelong(createBelongInput: {
+      ArcheTypeID: $archeTypeID,
+      DeckID: $deckID
+    }) {
+      ArcheTypeID
+      DeckID
+    }
+  }
+`;
+
+export const CREATE_HAS = gql`
+  mutation CreateHas($playerID: String!, $deckID: Int!) {
+    createHas(createHasInput: {
+      PlayerID: $playerID,
+      DeckID: $deckID
+    }) {
+      PlayerID
+      DeckID
+    }
+  }
+`;

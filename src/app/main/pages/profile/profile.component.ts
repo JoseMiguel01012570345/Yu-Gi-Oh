@@ -21,6 +21,8 @@ import { JsonPipe } from '@angular/common';
 
 export class ProfileComponent implements OnInit {
 
+  isAdmin: boolean = false;
+
   public myDecksColumns: string[] = ['name', 'attribute'];
   public myDecks: Deck[] = [];
 
@@ -31,7 +33,12 @@ export class ProfileComponent implements OnInit {
 
   constructor( private userService: UsersService,
               private activatedRoute: ActivatedRoute,
-              private router: Router){}
+              private router: Router)
+  {
+    const isAdminValue = localStorage.getItem('isAdmin');
+    console.log("isAdmin: " + isAdminValue);
+    this.isAdmin = isAdminValue === 'true';
+  }
 
   ngOnInit(): void {
 

@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class LayoutPageComponent {
 
-  public profileRoute = './profile/John';
+  public profileRoute = './profile/' + localStorage.getItem('username');
   public sidebarItems =
   [
     {name: 'Jugadores', route: './search/by-player'},

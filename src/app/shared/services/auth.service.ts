@@ -55,6 +55,8 @@ export class AuthService {
   logout(): void {
     // Lógica de cierre de sesión
   this.isAuthenticated = false;
+  localStorage.removeItem('username');
+  localStorage.removeItem('isAdmin');
   }
 
   isLoggedIn(): boolean {

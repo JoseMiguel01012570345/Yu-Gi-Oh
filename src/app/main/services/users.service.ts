@@ -80,6 +80,15 @@ export class UsersService {
             userData.PlayerPassword == password &&
             userData.Roll == role;
 
+          if(userData.Roll == "admin")
+          {
+            localStorage.setItem('isAdmin', "true");
+          }
+          else
+          {
+            localStorage.setItem('isAdmin', "false");
+          }
+
           console.log('Resultado de la consulta GraphQL:', result);
           console.log(
             'Valores: ' +
