@@ -2,9 +2,6 @@ import { InputType, Int, Field, ObjectType } from '@nestjs/graphql';
 
 @InputType()
 export class CreateDeckInput {
-  @Field(() => Int, { description: 'Deck ID' })
-  DeckID: number;
-
   @Field(() => String!, { description: "Deck's name" })
   DeckName: string;
 

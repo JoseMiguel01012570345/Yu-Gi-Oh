@@ -4,6 +4,7 @@ import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 @Entity()
 @ObjectType()
 export class Deck {
+  
   @PrimaryGeneratedColumn('increment')
   @Field(() => Int!, { description: 'Deck ID' })
   DeckID: number;

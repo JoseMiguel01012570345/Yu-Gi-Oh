@@ -10,7 +10,6 @@ import { BelongService } from '../belong/belong.service';
 import { SuscribeService } from '../suscribe/suscribe.service';
 import { TournamentService } from '../tournament/tournament.service';
 import { MatchService } from '../match/match.service';
-import { elementAt } from 'rxjs';
 
 @Injectable()
 export class ManagerService {
@@ -53,15 +52,19 @@ export class ManagerService {
   }
 
   async createPlayersMatches(playersInput: PlayerInput[], tournamentInput: TournamentInput, round: number) {
+   
     let matchs = [];
     const status = await this.checkPlayersExists(playersInput);
+   
     if (!status.Valid)
       return {
         Status: 'WRONG',
         Message: status.Message
       };
-    try {
+   
+      try {
       for (let i = 0; i < playersInput.length; i += 2) {
+       
         const input = {
           PlayerOneID: playersInput[i].PlayerName,
           PlayerTwoID: playersInput[i + 1].PlayerName,
@@ -69,6 +72,7 @@ export class ManagerService {
           TournamentName: tournamentInput.TournamentName,
           MatchID: this.participates
         };
+       
         const match = {
           TournamentDate: tournamentInput.TournamentDate,
           TournamentName: tournamentInput.TournamentName,
@@ -77,6 +81,7 @@ export class ManagerService {
           PlayerOneResult: -1,
           PlayerTwoResult: -1
         };
+       
         matchs.push(match);
         this.participateService.create(input);
         this.matchService.create(match);

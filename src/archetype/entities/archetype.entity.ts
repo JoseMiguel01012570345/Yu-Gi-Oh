@@ -7,5 +7,6 @@ export class Archetype {
 
   @PrimaryColumn()
   @Field(() => String!, { description: "ArcheType's name" })
+  
   ArcheTypeName: string;
 }
