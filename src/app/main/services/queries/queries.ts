@@ -36,9 +36,9 @@ export const GET_USER_DATA = gql
     Decks {
       ID
       Attribute
+      Name
     }
     Tournaments {
-      TournamentDir
       Date
       TournamentName
     }
@@ -67,6 +67,24 @@ export const CREATE_TOURNAMENT = gql
     TournamentName
     Municipio
     Provincia
+  }
+}`
+export const GET_TOURNAMENT = gql
+`
+query FindTournament($tournamentDate: Int!, $tournamentName: String!) {
+  tournament(tournamentDate: $tournamentDate, tournamentName: $tournamentName) {
+    Date
+    TournamentName
+    Municipio
+    Provincia
+  }
+}
+`
+
+export const GET_ARCH_LIST = gql
+`query GetAllArchetypes {
+  archetypes {
+    ArcheTypeName
   }
 }`
 

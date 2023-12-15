@@ -48,6 +48,7 @@ export class ProfileComponent implements OnInit {
       user => {
 
         console.log("User: " + user)
+        
 
         if( !user ) return this.router.navigate(['/auth/login']);
 
@@ -55,7 +56,6 @@ export class ProfileComponent implements OnInit {
         this.myTournaments = user.myTournaments;
 
         return;
-
       }
     );
 

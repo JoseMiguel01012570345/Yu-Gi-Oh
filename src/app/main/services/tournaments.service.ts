@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Tournament } from '../interfaces/tournament.interface';
+import { TournamentInfo, TournamentResponse } from '../interfaces/tournament.interface';
 import { environments } from 'src/environments/environments';
-import { Observable } from 'rxjs';
-import { CREATE_TOURNAMENT } from './queries/queries';
+import { Observable, map } from 'rxjs';
+import { CREATE_TOURNAMENT, GET_TOURNAMENT } from './queries/queries';
 import { Apollo } from 'apollo-angular';
 
 
@@ -26,4 +26,9 @@ export class TournamentsService {
       },
     });
   }
+
+  // findTournament(tournamentDate: number, tournamentName: string): Observable<TournamentInfo>{
+
+
+  // }
 }

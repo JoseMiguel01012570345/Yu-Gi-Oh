@@ -4,3 +4,11 @@ export interface ArchetypeSearchData {
   amountsOfPlayerUsingIt: number;
   amountOfTournamentsWhereIsUsed: number;
 }
+
+export interface ArchetypesResponse {
+  archetypes: Archetype[];
+}
+
+export interface Archetype {
+  ArcheTypeName: string;
+}

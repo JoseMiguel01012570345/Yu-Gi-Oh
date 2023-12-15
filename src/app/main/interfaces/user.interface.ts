@@ -15,6 +15,10 @@ export interface UserData {
   myTournaments: MyTournament[];
 }
 
+export interface UserDataResponse {
+  userdata: UserData;
+}
+
 export interface MyTournament {
   name:   string;
   date:   string;

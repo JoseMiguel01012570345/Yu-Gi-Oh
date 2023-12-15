@@ -27,9 +27,9 @@
     <mat-card-content>
 
       <div class="grid bm-8">
-        <button mat-flat-button style="background-color: #7B1FA2; margin: 10px;" *ngFor="let ronda of rondas" [routerLink]="ronda.enlace">
+        <!-- <button mat-flat-button style="background-color: #7B1FA2; margin: 10px;" *ngFor="let ronda of rondas" [routerLink]="ronda.enlace">
           Ronda {{ ronda.numero }}
-        </button>
+        </button> -->
       </div>
 
     </mat-card-content>
@@ -45,12 +45,12 @@
 
     <div class="grid bm-8">
 
-      <app-submission-request-button *ngFor="let submission of submissions"
+      <!-- <app-submission-request-button *ngFor="let submission of submissions"
       [userName]="submission[0]" [deck]="submission[1]"
       (acceptClick) = "onAcceptClick($event)"
       (denyClick)="onDenyClick($event)"
       >
-      </app-submission-request-button>
+      </app-submission-request-button> -->
 
     </div>
 

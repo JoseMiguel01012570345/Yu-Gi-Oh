@@ -14,22 +14,12 @@ export class UsersService {
 
   private baseUrl: string = environments.baseUrl;
 
-  constructor(private httpClient: HttpClient,
-              private apollo: Apollo) { }
+  constructor(private apollo: Apollo) { }
 
-  getUserById(id: string):Observable<UserData | undefined> {
-
-    console.log(`${this.baseUrl}/usersInfo/${id}`)
-    return this.httpClient.get<UserData>(`${this.baseUrl}/usersInfo/${id}`)
-    .pipe(
-      catchError( err => of(undefined))
-    );
-
-
-  }
 
   getUserData(playerName: string): Observable<UserData> {
     console.log("Player Name: " + playerName)
+
     return this.apollo.query<UserData>({
       query: GET_USER_DATA,
       variables: {
@@ -37,7 +27,11 @@ export class UsersService {
       },
     }).pipe(
       tap(response => console.log(response.data)),
-      map(response => response.data)
+      map(response =>
+        {
+          console.log(response.data);
+          return response.data;
+        })
     )
   }
 
