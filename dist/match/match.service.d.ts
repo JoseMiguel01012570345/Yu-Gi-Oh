@@ -9,7 +9,7 @@ export declare class MatchService {
     findAll(): Promise<Match[]>;
     findOne(tournamentDate: number, tournamentName: string, matchid: number): Promise<Match>;
     getMatchsByDate(date: number): Promise<Match[]>;
-    getMatchsByTournamentName(name: string): Promise<Match[]>;
+    getMatchsByTournamentName(name: string, TournamentDate: number): Promise<Match[]>;
     getMatchsByRoundsCount(rounds: number): Promise<Match[]>;
     getMaxRoundsByTournament(tournamentName: string, tournamentDate: number): Promise<any>;
     getMatchsBettwenDates(date1: number, date2: number): Promise<any>;

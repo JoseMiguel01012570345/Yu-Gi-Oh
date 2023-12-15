@@ -332,7 +332,7 @@ type Query {
   matchs: [Match!]!
   match(tournamentDate: Int!, tournamentName: String!, matchid: Int!): Match!
   matchsByDate(date: Int!): [Match!]!
-  matchsByTournamentName(tournamentName: String!): [Match!]!
+  matchsByTournamentName(tournamentName: String!, tournamentDate: Float!): [Match!]!
   matchsByRoundsCount(rounds: Int!): [Match!]!
   belongs: [Belong!]!
   belong(deckid: Int!, archetypeid: String!): Belong!

@@ -9,7 +9,7 @@ export declare class MatchResolver {
     findAll(): Promise<Match[]>;
     findOne(tournamentDate: number, tournamentName: string, matchid: number): Promise<Match>;
     findMatchsByDate(date: number): Promise<Match[]>;
-    findMatchsByTournamentName(tournamentName: string): Promise<Match[]>;
+    findMatchsByTournamentName(tournamentName: string, tournamentDate: number): Promise<Match[]>;
     findMatchsByRoundsCount(rounds: number): Promise<Match[]>;
     updateMatch(updateMatchInput: UpdateMatchInput): Promise<UpdateMatchInput>;
     removeMatch(tournamentDate: number, tournamentName: string, matchid: number): Promise<Match>;

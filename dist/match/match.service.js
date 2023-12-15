@@ -34,8 +34,8 @@ let MatchService = class MatchService {
     async getMatchsByDate(date) {
         return await this.matchRepository.findBy({ TournamentDate: date });
     }
-    async getMatchsByTournamentName(name) {
-        return await this.matchRepository.findBy({ TournamentName: name });
+    async getMatchsByTournamentName(name, TournamentDate) {
+        return await this.matchRepository.findBy({ TournamentName: name, TournamentDate: TournamentDate });
     }
     async getMatchsByRoundsCount(rounds) {
         return await this.matchRepository.findBy({ Rounds: rounds });

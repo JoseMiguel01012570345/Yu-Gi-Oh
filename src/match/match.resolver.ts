@@ -33,8 +33,11 @@ export class MatchResolver {
   }
 
   @Query(() => [Match], { name: 'matchsByTournamentName' })
-  findMatchsByTournamentName(@Args('tournamentName', { type: () => String }) tournamentName: string) {
-    return this.matchService.getMatchsByTournamentName(tournamentName);
+  findMatchsByTournamentName(
+    @Args('tournamentName', { type: () => String }) tournamentName: string ,
+    @Args('tournamentDate', { type: () => Number }) tournamentDate: number ,
+    ) {
+    return this.matchService.getMatchsByTournamentName(tournamentName,tournamentDate);
   }
 
   @Query(() => [Match], { name: 'matchsByRoundsCount'})

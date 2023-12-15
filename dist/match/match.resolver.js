@@ -34,8 +34,8 @@ let MatchResolver = class MatchResolver {
     findMatchsByDate(date) {
         return this.matchService.getMatchsByDate(date);
     }
-    findMatchsByTournamentName(tournamentName) {
-        return this.matchService.getMatchsByTournamentName(tournamentName);
+    findMatchsByTournamentName(tournamentName, tournamentDate) {
+        return this.matchService.getMatchsByTournamentName(tournamentName, tournamentDate);
     }
     findMatchsByRoundsCount(rounds) {
         return this.matchService.getMatchsByRoundsCount(rounds);
@@ -80,8 +80,9 @@ __decorate([
 __decorate([
     (0, graphql_1.Query)(() => [match_entity_1.Match], { name: 'matchsByTournamentName' }),
     __param(0, (0, graphql_1.Args)('tournamentName', { type: () => String })),
+    __param(1, (0, graphql_1.Args)('tournamentDate', { type: () => Number })),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
+    __metadata("design:paramtypes", [String, Number]),
     __metadata("design:returntype", void 0)
 ], MatchResolver.prototype, "findMatchsByTournamentName", null);
 __decorate([

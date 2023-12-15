@@ -4,6 +4,7 @@ import { CreateMatchInput } from './dto/create-match.input';
 import { UpdateMatchInput } from './dto/update-match.input';
 import { Match } from './entities/match.entity';
 import { Repository } from 'typeorm';
+import { Tournament } from '../tournament/entities/tournament.entity';
 
 @Injectable()
 export class MatchService {
@@ -30,8 +31,8 @@ export class MatchService {
     return await this.matchRepository.findBy({ TournamentDate: date });
   }
 
-  async getMatchsByTournamentName(name: string) {
-    return await this.matchRepository.findBy({ TournamentName: name });
+  async getMatchsByTournamentName(name: string, TournamentDate:number) {
+    return await this.matchRepository.findBy({ TournamentName: name, TournamentDate:TournamentDate });
   }
 
   async getMatchsByRoundsCount(rounds: number) {
