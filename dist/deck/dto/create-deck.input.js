@@ -40,6 +40,10 @@ __decorate([
     (0, graphql_1.Field)(() => String, { description: 'Status of the result of the operation' }),
     __metadata("design:type", String)
 ], CreateDeckResponse.prototype, "Message", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => Number, { description: 'deck id' }),
+    __metadata("design:type", Number)
+], CreateDeckResponse.prototype, "deckID", void 0);
 exports.CreateDeckResponse = CreateDeckResponse = __decorate([
     (0, graphql_1.ObjectType)()
 ], CreateDeckResponse);

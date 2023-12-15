@@ -47,6 +47,9 @@ type Deck {
 type CreateDeckResponse {
   """Status of the result of the operation"""
   Message: String!
+
+  """deck id"""
+  deckID: Float!
 }
 
 type Tournament {

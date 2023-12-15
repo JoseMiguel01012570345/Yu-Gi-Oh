@@ -6,4 +6,5 @@ export declare class CreateDeckInput {
 }
 export declare class CreateDeckResponse {
     Message: string;
+    deckID: number;
 }

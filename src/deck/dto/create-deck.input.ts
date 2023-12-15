@@ -20,4 +20,7 @@ export class CreateDeckInput {
 export class CreateDeckResponse {
   @Field(() => String, { description: 'Status of the result of the operation'})
   Message: string;
+  
+  @Field(() => Number, { description: 'deck id'})
+  deckID: number;
 }
