@@ -10,6 +10,7 @@ import { BelongService } from '../belong/belong.service';
 import { SuscribeService } from '../suscribe/suscribe.service';
 import { TournamentService } from '../tournament/tournament.service';
 import { MatchService } from '../match/match.service';
+import { getRandomValues } from 'crypto';
 
 @Injectable()
 export class ManagerService {
@@ -51,7 +52,13 @@ export class ManagerService {
     };
   }
 
-  async createPlayersMatches(playersInput: PlayerInput[], tournamentInput: TournamentInput, round: number) {
+   getRandomInt(min, max) { //get a random number in a interval
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+ }
+
+  async createPlayersMatchesStart(playersInput: PlayerInput[], tournamentInput: TournamentInput) {
    
     let matchs = [];
     const status = await this.checkPlayersExists(playersInput);
@@ -61,49 +68,131 @@ export class ManagerService {
         Status: 'WRONG',
         Message: status.Message
       };
-   
-      try {
-      for (let i = 0; i < playersInput.length; i += 2) {
-       
-        const input = {
-          PlayerOneID: playersInput[i].PlayerName,
-          PlayerTwoID: playersInput[i + 1].PlayerName,
-          TournamentDate: tournamentInput.TournamentDate,
-          TournamentName: tournamentInput.TournamentName,
-          MatchID: this.participates
-        };
-       
-        const match = {
-          TournamentDate: tournamentInput.TournamentDate,
-          TournamentName: tournamentInput.TournamentName,
-          MatchID: input.MatchID,
-          Rounds: round,
-          PlayerOneResult: -1,
-          PlayerTwoResult: -1
-        };
-       
-        matchs.push(match);
-        this.participateService.create(input);
-        this.matchService.create(match);
-        this.haveweakService.create({
-          TournamentDate: tournamentInput.TournamentDate,
-          TournamentName: tournamentInput.TournamentName,
-          MatchID: this.participates
-        });
-        this.participates += 1;
-      }
+
+      for (let i = 0; i < playersInput.length; i += 1) 
+      {       
+        let j=i; 
+        let count=0
+        while(count<playersInput.length) 
+        {          
+         
+          if(j===playersInput.length-1)  j=0
+            
+          const input = {
+            PlayerOneID: playersInput[i].PlayerName,
+            PlayerTwoID: playersInput[j + 1].PlayerName,
+            TournamentDate: tournamentInput.TournamentDate,
+            TournamentName: tournamentInput.TournamentName,
+            MatchID: this.participates
+          };
+         
+          const match = {
+            TournamentDate: tournamentInput.TournamentDate,
+            TournamentName: tournamentInput.TournamentName,
+            MatchID: input.MatchID,
+            Rounds: 1,
+            PlayerOneResult: -1,
+            PlayerTwoResult: -1
+          };
+         
+          matchs.push(match);
+    
+          try
+          {
+          this.participateService.create(input);
+          this.matchService.create(match);
+          this.haveweakService.create({
+            TournamentDate: tournamentInput.TournamentDate,
+            TournamentName: tournamentInput.TournamentName,
+            MatchID: this.participates        
+          });
+  
+        }
+        catch (error) 
+          {
+            const response: Response = {
+            Status: 'Wrong',
+            Message: error
+          }
+          this.participates += 1;
+        }
+    }
       const response: Response = {
         Status: 'OK',
         Message: 'All OK'
       };
-      return response;
-    } catch (error) {
-      const response: Response = {
-        Status: 'Wrong',
-        Message: error
-      }
+      return await this.matchService.getMatchByTournamentAndRound(tournamentInput.TournamentDate,tournamentInput.TournamentName,1);
+  
       return response;
     }
+  }
+
+  async createPlayersMatchesRandom(playersInput: PlayerInput[], tournamentInput: TournamentInput, round: number){
+
+    let matchs = [];
+    const status = await this.checkPlayersExists(playersInput);
+   
+    if (!status.Valid)
+      return {
+        Status: 'WRONG',
+        Message: status.Message
+      };
+
+      let playerInMatchs=[]
+
+        while(playerInMatchs.length==playersInput.length)
+        {
+
+          let playerOne= this.getRandomInt(0,playersInput.length)
+          let playerTwo= this.getRandomInt(0,playersInput.length)
+
+          if(playerInMatchs.find(element=> element==playerOne || element===playerTwo ))
+            continue
+
+            const input = {
+            PlayerOneID: playerOne,
+            PlayerTwoID: playerTwo,
+            TournamentDate: tournamentInput.TournamentDate,
+            TournamentName: tournamentInput.TournamentName,
+            MatchID: this.participates
+          };
+         
+          const match = {
+            TournamentDate: tournamentInput.TournamentDate,
+            TournamentName: tournamentInput.TournamentName,
+            MatchID: input.MatchID,
+            Rounds: round,
+            PlayerOneResult: -1,
+            PlayerTwoResult: -1
+          };
+         
+          matchs.push(match);
+    
+          try
+          {
+          this.participateService.create(input);
+          this.matchService.create(match);
+          this.haveweakService.create({
+            TournamentDate: tournamentInput.TournamentDate,
+            TournamentName: tournamentInput.TournamentName,
+            MatchID: this.participates        
+          });
+  
+        }
+        catch (error) 
+          {
+            const response: Response = {
+            Status: 'Wrong',
+            Message: error
+          }
+          this.participates += 1;
+    }
+  }
+      const response: Response = {
+        Status: 'OK',
+        Message: 'All OK'
+      };
+      return await this.matchService.getMatchByTournamentAndRound(tournamentInput.TournamentDate,tournamentInput.TournamentName,round);   
   }
 
   checkArcheTypeExists(archetypes: ArchetypeInput[], archetype: ArchetypeInput) {

@@ -1,6 +1,9 @@
 import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
 import { ManagerService } from './manager.service';
 import { ArcheTypeSearchDataResponse, Response, SuscribeResponse, PlayerInput, MatchInput, TournamentInput, DeckInput, ArchetypeInput, DeckResponse, PlayerResponse, ArcheTypeResponse, TournamentResponse, ArcheTypeCountResponse, PlaceResponse, DeckDataResponse, LocationSearchDataResponse, TournamentSearchDataResponse, UserSearchData, UserDataResponse } from './dto/create-manager.input';
+import { Match } from 'src/match/entities/match.entity';
+import { CreateMatchInput } from 'src/match/dto/create-match.input';
+import { start } from 'repl';
 
 @Resolver(() => Response)
 export class ManagerResolver {
@@ -8,12 +11,29 @@ export class ManagerResolver {
 
   @Mutation(() => Response)
   createParticipates(
-    @Args('players', { type: () => [PlayerInput] }) playersInput: PlayerInput[],
+    @Args('start', { type: () => Boolean }) start: boolean,
+    @Args('players', { type: () => [] }) matchsInput: CreateMatchInput[],
     @Args('tournament', { type: () => TournamentInput }) tournamentInput: TournamentInput,
     @Args('round', { type: () => Int }) round: number
   ) {
-    return this.managerService.createPlayersMatches(playersInput, tournamentInput, round);
-  }
+
+    let playersInput=[]
+
+     for(let match of matchsInput){
+
+      if(match.PlayerOneResult<match.PlayerTwoResult)
+        playersInput.push(match.PlayerTwoResult)
+      
+        else playersInput.push(match.PlayerOneResult)
+     }
+
+     if(start==true)
+      return this.managerService.createPlayersMatchesStart(playersInput, tournamentInput);
+     
+      else{
+
+      }
+    }
 
   @Mutation(() => Response, { name: 'registPlayer' })
   registPlayer(
