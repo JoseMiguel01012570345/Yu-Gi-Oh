@@ -12,7 +12,7 @@ export class ManagerResolver {
   @Mutation(() => Response)
   createParticipates(
     @Args('start', { type: () => Boolean }) start: boolean,
-    @Args('players', { type: () => [] }) matchsInput: CreateMatchInput[],
+    @Args('matchResoult', { type: () => [CreateMatchInput] }) matchsInput: CreateMatchInput[],
     @Args('tournament', { type: () => TournamentInput }) tournamentInput: TournamentInput,
     @Args('round', { type: () => Int }) round: number
   ) {
@@ -25,13 +25,20 @@ export class ManagerResolver {
         playersInput.push(match.PlayerTwoResult)
       
         else playersInput.push(match.PlayerOneResult)
+
+      if(match.PlayerOneResult==match.PlayerTwoResult){
+        
+        playersInput.push(match.PlayerTwoResult)
+        playersInput.push(match.PlayerOneResult)
+      
+      }
      }
 
      if(start==true)
       return this.managerService.createPlayersMatchesStart(playersInput, tournamentInput);
      
       else{
-
+        return this.managerService.createPlayersMatchesRandom(playersInput, tournamentInput,round);
       }
     }
 

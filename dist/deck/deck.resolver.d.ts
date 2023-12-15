@@ -7,6 +7,10 @@ export declare class DeckResolver {
     constructor(deckService: DeckService);
     createDeck(createDeckInput: CreateDeckInput): Promise<{
         Message: string;
+        deckID: string;
+    } | {
+        Message: string;
+        deckID?: undefined;
     }>;
     findAll(): Promise<Deck[]>;
     findOne(id: number): Promise<Deck>;

@@ -16,12 +16,28 @@ exports.ManagerResolver = void 0;
 const graphql_1 = require("@nestjs/graphql");
 const manager_service_1 = require("./manager.service");
 const create_manager_input_1 = require("./dto/create-manager.input");
+const create_match_input_1 = require("../match/dto/create-match.input");
 let ManagerResolver = class ManagerResolver {
     constructor(managerService) {
         this.managerService = managerService;
     }
-    createParticipates(playersInput, tournamentInput, round) {
-        return this.managerService.createPlayersMatches(playersInput, tournamentInput, round);
+    createParticipates(start, matchsInput, tournamentInput, round) {
+        let playersInput = [];
+        for (let match of matchsInput) {
+            if (match.PlayerOneResult < match.PlayerTwoResult)
+                playersInput.push(match.PlayerTwoResult);
+            else
+                playersInput.push(match.PlayerOneResult);
+            if (match.PlayerOneResult == match.PlayerTwoResult) {
+                playersInput.push(match.PlayerTwoResult);
+                playersInput.push(match.PlayerOneResult);
+            }
+        }
+        if (start == true)
+            return this.managerService.createPlayersMatchesStart(playersInput, tournamentInput);
+        else {
+            return this.managerService.createPlayersMatchesRandom(playersInput, tournamentInput, round);
+        }
     }
     registPlayer(playerInput, deckInput, archetypeInput, tournamentInput) {
         return this.managerService.registOnePlayer(playerInput, deckInput, archetypeInput, tournamentInput);
@@ -102,11 +118,12 @@ let ManagerResolver = class ManagerResolver {
 exports.ManagerResolver = ManagerResolver;
 __decorate([
     (0, graphql_1.Mutation)(() => create_manager_input_1.Response),
-    __param(0, (0, graphql_1.Args)('players', { type: () => [create_manager_input_1.PlayerInput] })),
-    __param(1, (0, graphql_1.Args)('tournament', { type: () => create_manager_input_1.TournamentInput })),
-    __param(2, (0, graphql_1.Args)('round', { type: () => graphql_1.Int })),
+    __param(0, (0, graphql_1.Args)('start', { type: () => Boolean })),
+    __param(1, (0, graphql_1.Args)('matchResoult', { type: () => [create_match_input_1.CreateMatchInput] })),
+    __param(2, (0, graphql_1.Args)('tournament', { type: () => create_manager_input_1.TournamentInput })),
+    __param(3, (0, graphql_1.Args)('round', { type: () => graphql_1.Int })),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Array, create_manager_input_1.TournamentInput, Number]),
+    __metadata("design:paramtypes", [Boolean, Array, create_manager_input_1.TournamentInput, Number]),
     __metadata("design:returntype", void 0)
 ], ManagerResolver.prototype, "createParticipates", null);
 __decorate([

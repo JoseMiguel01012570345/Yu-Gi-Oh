@@ -23,7 +23,12 @@ export declare class ManagerService {
     private participates;
     constructor(participateService: ParticipateService, haveweakService: HaveweakService, archetypeService: ArchetypeService, playerService: PlayerService, deckService: DeckService, haveService: HaveService, belongService: BelongService, suscribeServcice: SuscribeService, tournamentService: TournamentService, matchService: MatchService);
     private checkPlayersExists;
-    createPlayersMatches(playersInput: PlayerInput[], tournamentInput: TournamentInput, round: number): Promise<Response>;
+    getRandomInt(min: any, max: any): any;
+    createPlayersMatchesStart(playersInput: PlayerInput[], tournamentInput: TournamentInput): Promise<import("../match/entities/match.entity").Match[] | Response>;
+    createPlayersMatchesRandom(playersInput: PlayerInput[], tournamentInput: TournamentInput, round: number): Promise<import("../match/entities/match.entity").Match[] | {
+        Status: string;
+        Message: string;
+    }>;
     checkArcheTypeExists(archetypes: ArchetypeInput[], archetype: ArchetypeInput): boolean;
     registOnePlayer(playerInput: PlayerInput, deckInput: DeckInput, archetypeInput: ArchetypeInput, tournamentInput: TournamentInput): Promise<Response>;
     getPlayersSuscribeToTournament(tournamentDate: number, tournamentName: string): Promise<import("../suscribe/entities/suscribe.entity").Suscribe[]>;

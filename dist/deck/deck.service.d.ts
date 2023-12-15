@@ -7,6 +7,10 @@ export declare class DeckService {
     constructor(deckRepository: Repository<Deck>);
     create(createDeckInput: CreateDeckInput): Promise<{
         Message: string;
+        deckID: string;
+    } | {
+        Message: string;
+        deckID?: undefined;
     }>;
     findAll(): Promise<Deck[]>;
     findOne(id: number): Promise<Deck>;

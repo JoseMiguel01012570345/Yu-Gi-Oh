@@ -15,10 +15,6 @@ let CreateDeckInput = class CreateDeckInput {
 };
 exports.CreateDeckInput = CreateDeckInput;
 __decorate([
-    (0, graphql_1.Field)(() => graphql_1.Int, { description: 'Deck ID' }),
-    __metadata("design:type", Number)
-], CreateDeckInput.prototype, "DeckID", void 0);
-__decorate([
     (0, graphql_1.Field)(() => String, { description: "Deck's name" }),
     __metadata("design:type", String)
 ], CreateDeckInput.prototype, "DeckName", void 0);

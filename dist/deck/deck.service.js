@@ -24,7 +24,10 @@ let DeckService = class DeckService {
     async create(createDeckInput) {
         try {
             await this.deckRepository.insert(createDeckInput);
-            return { Message: 'Deck created succesfully' };
+            return {
+                Message: 'Deck created succesfully',
+                deckID: `${(await this.findAll()).length}`
+            };
         }
         catch (error) {
             return { Message: `Error during the operation: ${error}` };

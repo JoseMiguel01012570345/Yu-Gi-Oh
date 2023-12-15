@@ -56,7 +56,12 @@ let ManagerService = class ManagerService {
             Message: 'OK'
         };
     }
-    async createPlayersMatches(playersInput, tournamentInput, round) {
+    getRandomInt(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+    async createPlayersMatchesStart(playersInput, tournamentInput) {
         let matchs = [];
         const status = await this.checkPlayersExists(playersInput);
         if (!status.Valid)
@@ -64,11 +69,15 @@ let ManagerService = class ManagerService {
                 Status: 'WRONG',
                 Message: status.Message
             };
-        try {
-            for (let i = 0; i < playersInput.length; i += 2) {
+        for (let i = 0; i < playersInput.length; i += 1) {
+            let j = i;
+            let count = 0;
+            while (count < playersInput.length) {
+                if (j === playersInput.length - 1)
+                    j = 0;
                 const input = {
                     PlayerOneID: playersInput[i].PlayerName,
-                    PlayerTwoID: playersInput[i + 1].PlayerName,
+                    PlayerTwoID: playersInput[j + 1].PlayerName,
                     TournamentDate: tournamentInput.TournamentDate,
                     TournamentName: tournamentInput.TournamentName,
                     MatchID: this.participates
@@ -77,11 +86,67 @@ let ManagerService = class ManagerService {
                     TournamentDate: tournamentInput.TournamentDate,
                     TournamentName: tournamentInput.TournamentName,
                     MatchID: input.MatchID,
-                    Rounds: round,
+                    Rounds: 1,
                     PlayerOneResult: -1,
                     PlayerTwoResult: -1
                 };
                 matchs.push(match);
+                try {
+                    this.participateService.create(input);
+                    this.matchService.create(match);
+                    this.haveweakService.create({
+                        TournamentDate: tournamentInput.TournamentDate,
+                        TournamentName: tournamentInput.TournamentName,
+                        MatchID: this.participates
+                    });
+                }
+                catch (error) {
+                    const response = {
+                        Status: 'Wrong',
+                        Message: error
+                    };
+                    this.participates += 1;
+                }
+            }
+            const response = {
+                Status: 'OK',
+                Message: 'All OK'
+            };
+            return await this.matchService.getMatchByTournamentAndRound(tournamentInput.TournamentDate, tournamentInput.TournamentName, 1);
+            return response;
+        }
+    }
+    async createPlayersMatchesRandom(playersInput, tournamentInput, round) {
+        let matchs = [];
+        const status = await this.checkPlayersExists(playersInput);
+        if (!status.Valid)
+            return {
+                Status: 'WRONG',
+                Message: status.Message
+            };
+        let playerInMatchs = [];
+        while (playerInMatchs.length == playersInput.length) {
+            let playerOne = this.getRandomInt(0, playersInput.length);
+            let playerTwo = this.getRandomInt(0, playersInput.length);
+            if (playerInMatchs.find(element => element == playerOne || element === playerTwo))
+                continue;
+            const input = {
+                PlayerOneID: playerOne,
+                PlayerTwoID: playerTwo,
+                TournamentDate: tournamentInput.TournamentDate,
+                TournamentName: tournamentInput.TournamentName,
+                MatchID: this.participates
+            };
+            const match = {
+                TournamentDate: tournamentInput.TournamentDate,
+                TournamentName: tournamentInput.TournamentName,
+                MatchID: input.MatchID,
+                Rounds: round,
+                PlayerOneResult: -1,
+                PlayerTwoResult: -1
+            };
+            matchs.push(match);
+            try {
                 this.participateService.create(input);
                 this.matchService.create(match);
                 this.haveweakService.create({
@@ -89,21 +154,20 @@ let ManagerService = class ManagerService {
                     TournamentName: tournamentInput.TournamentName,
                     MatchID: this.participates
                 });
+            }
+            catch (error) {
+                const response = {
+                    Status: 'Wrong',
+                    Message: error
+                };
                 this.participates += 1;
             }
-            const response = {
-                Status: 'OK',
-                Message: 'All OK'
-            };
-            return response;
         }
-        catch (error) {
-            const response = {
-                Status: 'Wrong',
-                Message: error
-            };
-            return response;
-        }
+        const response = {
+            Status: 'OK',
+            Message: 'All OK'
+        };
+        return await this.matchService.getMatchByTournamentAndRound(tournamentInput.TournamentDate, tournamentInput.TournamentName, round);
     }
     checkArcheTypeExists(archetypes, archetype) {
         for (let i = 0; i < archetypes.length; i++) {

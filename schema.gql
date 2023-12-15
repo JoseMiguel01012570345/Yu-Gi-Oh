@@ -405,7 +405,7 @@ type Mutation {
   createParticipate(createParticipateInput: CreateParticipateInput!): Participate!
   updateParticipate(updateParticipateInput: UpdateParticipateInput!): Participate!
   removeParticipate(TournamentDate: Int!, TournamentName: String!, MatchID: Int!): Participate!
-  createParticipates(players: [PlayerInput!]!, tournament: TournamentInput!, round: Int!): Response!
+  createParticipates(start: Boolean!, matchResoult: [CreateMatchInput!]!, tournament: TournamentInput!, round: Int!): Response!
   registPlayer(player: PlayerInput!, deck: DeckInput!, archetype: ArchetypeInput!, tournament: TournamentInput!): Response!
 }
 
@@ -461,9 +461,6 @@ input UpdatePlayerInput {
 }
 
 input CreateDeckInput {
-  """Deck ID"""
-  DeckID: Int!
-
   """Deck's name"""
   DeckName: String!
 
@@ -478,8 +475,6 @@ input CreateDeckInput {
 }
 
 input UpdateDeckInput {
-  DeckID: Int!
-
   """Deck name"""
   DeckName: String!
 
@@ -491,6 +486,7 @@ input UpdateDeckInput {
 
   """Extra deck cards count"""
   ExtraDeckCount: Int!
+  DeckID: Int!
 }
 
 input CreateTournamentInput {
@@ -695,6 +691,14 @@ input UpdateParticipateInput {
   MatchID: Int!
 }
 
+input TournamentInput {
+  """Tournament date"""
+  TournamentDate: Int!
+
+  """Tournament name"""
+  TournamentName: String!
+}
+
 input PlayerInput {
   """Players id"""
   PlayerName: String!
@@ -716,14 +720,6 @@ input PlayerInput {
 
   """Direccion"""
   Dir: String!
-}
-
-input TournamentInput {
-  """Tournament date"""
-  TournamentDate: Int!
-
-  """Tournament name"""
-  TournamentName: String!
 }
 
 input DeckInput {
