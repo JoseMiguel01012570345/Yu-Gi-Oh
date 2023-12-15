@@ -9,6 +9,7 @@ import { BelongService } from '../belong/belong.service';
 import { SuscribeService } from '../suscribe/suscribe.service';
 import { TournamentService } from '../tournament/tournament.service';
 import { MatchService } from '../match/match.service';
+import { CreateMatchInput } from 'src/match/dto/create-match.input';
 export declare class ManagerService {
     private readonly participateService;
     private readonly haveweakService;
@@ -24,13 +25,20 @@ export declare class ManagerService {
     constructor(participateService: ParticipateService, haveweakService: HaveweakService, archetypeService: ArchetypeService, playerService: PlayerService, deckService: DeckService, haveService: HaveService, belongService: BelongService, suscribeServcice: SuscribeService, tournamentService: TournamentService, matchService: MatchService);
     private checkPlayersExists;
     getRandomInt(min: any, max: any): any;
-    createPlayersMatchesStart(playersInput: PlayerInput[], tournamentInput: TournamentInput): Promise<import("../match/entities/match.entity").Match[] | Response>;
-    createPlayersMatchesRandom(playersInput: PlayerInput[], tournamentInput: TournamentInput, round: number): Promise<import("../match/entities/match.entity").Match[] | {
+    getPlayerForRound(matchsInput: CreateMatchInput[], TournamentInput: TournamentInput): Promise<any[]>;
+    createPlayersMatchesStart(matchsInput: CreateMatchInput[], tournamentInput: TournamentInput): Promise<Response | {
+        Status: string;
+        Message: string;
+    }>;
+    createPlayersMatchesRandom(matchsInput: CreateMatchInput[], tournamentInput: TournamentInput, round: any): Promise<Response | {
         Status: string;
         Message: string;
     }>;
     checkArcheTypeExists(archetypes: ArchetypeInput[], archetype: ArchetypeInput): boolean;
-    registOnePlayer(playerInput: PlayerInput, deckInput: DeckInput, archetypeInput: ArchetypeInput, tournamentInput: TournamentInput): Promise<Response>;
+    registOnePlayer(playerInput: PlayerInput, deckInput: DeckInput, archetypeInput: ArchetypeInput, tournamentInput: TournamentInput): Promise<Response | {
+        Status: string;
+        Message: string;
+    }>;
     getPlayersSuscribeToTournament(tournamentDate: number, tournamentName: string): Promise<import("../suscribe/entities/suscribe.entity").Suscribe[]>;
     getPlayersOrderedByDeckCount(): Promise<PlayerResponse[]>;
     getArcheTypesByDecksCount(): Promise<ArcheTypeResponse[]>;

@@ -1,6 +1,8 @@
+import { Match } from 'src/match/entities/match.entity';
 export declare class Response {
     Status: string;
     Message: string;
+    matchs: Match[];
 }
 export declare class DeckDataResponse {
     ID: number;

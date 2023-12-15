@@ -22,21 +22,10 @@ let ManagerResolver = class ManagerResolver {
         this.managerService = managerService;
     }
     createParticipates(start, matchsInput, tournamentInput, round) {
-        let playersInput = [];
-        for (let match of matchsInput) {
-            if (match.PlayerOneResult < match.PlayerTwoResult)
-                playersInput.push(match.PlayerTwoResult);
-            else
-                playersInput.push(match.PlayerOneResult);
-            if (match.PlayerOneResult == match.PlayerTwoResult) {
-                playersInput.push(match.PlayerTwoResult);
-                playersInput.push(match.PlayerOneResult);
-            }
-        }
         if (start == true)
-            return this.managerService.createPlayersMatchesStart(playersInput, tournamentInput);
+            return this.managerService.createPlayersMatchesStart(matchsInput, tournamentInput);
         else {
-            return this.managerService.createPlayersMatchesRandom(playersInput, tournamentInput, round);
+            return this.managerService.createPlayersMatchesRandom(matchsInput, tournamentInput, round);
         }
     }
     registPlayer(playerInput, deckInput, archetypeInput, tournamentInput) {
@@ -117,7 +106,7 @@ let ManagerResolver = class ManagerResolver {
 };
 exports.ManagerResolver = ManagerResolver;
 __decorate([
-    (0, graphql_1.Mutation)(() => create_manager_input_1.Response),
+    (0, graphql_1.Mutation)(() => create_manager_input_1.Response, { name: 'generateMatches' }),
     __param(0, (0, graphql_1.Args)('start', { type: () => Boolean })),
     __param(1, (0, graphql_1.Args)('matchResoult', { type: () => [create_match_input_1.CreateMatchInput] })),
     __param(2, (0, graphql_1.Args)('tournament', { type: () => create_manager_input_1.TournamentInput })),

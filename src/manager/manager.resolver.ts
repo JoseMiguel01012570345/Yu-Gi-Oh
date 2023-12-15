@@ -4,12 +4,13 @@ import { ArcheTypeSearchDataResponse, Response, SuscribeResponse, PlayerInput, M
 import { Match } from 'src/match/entities/match.entity';
 import { CreateMatchInput } from 'src/match/dto/create-match.input';
 import { start } from 'repl';
+import { Participate } from 'src/participate/entities/participate.entity';
 
 @Resolver(() => Response)
 export class ManagerResolver {
   constructor(private readonly managerService: ManagerService) { }
 
-  @Mutation(() => Response)
+  @Mutation(() => Response, { name: 'generateMatches' })
   createParticipates(
     @Args('start', { type: () => Boolean }) start: boolean,
     @Args('matchResoult', { type: () => [CreateMatchInput] }) matchsInput: CreateMatchInput[],
@@ -17,28 +18,11 @@ export class ManagerResolver {
     @Args('round', { type: () => Int }) round: number
   ) {
 
-    let playersInput=[]
-
-     for(let match of matchsInput){
-
-      if(match.PlayerOneResult<match.PlayerTwoResult)
-        playersInput.push(match.PlayerTwoResult)
-      
-        else playersInput.push(match.PlayerOneResult)
-
-      if(match.PlayerOneResult==match.PlayerTwoResult){
-        
-        playersInput.push(match.PlayerTwoResult)
-        playersInput.push(match.PlayerOneResult)
-      
-      }
-     }
-
      if(start==true)
-      return this.managerService.createPlayersMatchesStart(playersInput, tournamentInput);
+      return this.managerService.createPlayersMatchesStart(matchsInput, tournamentInput);
      
       else{
-        return this.managerService.createPlayersMatchesRandom(playersInput, tournamentInput,round);
+        return this.managerService.createPlayersMatchesRandom(matchsInput, tournamentInput,round);
       }
     }
 

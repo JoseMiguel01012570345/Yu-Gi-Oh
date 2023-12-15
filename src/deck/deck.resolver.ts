@@ -13,7 +13,7 @@ export class DeckResolver {
 
   @Mutation(() => CreateDeckResponse)
   createDeck(@Args('createDeckInput') createDeckInput: CreateDeckInput) {
-      
+        
     return this.deckService.create(createDeckInput);
   }
 

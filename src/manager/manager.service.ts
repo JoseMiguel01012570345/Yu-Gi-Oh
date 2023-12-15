@@ -11,6 +11,7 @@ import { SuscribeService } from '../suscribe/suscribe.service';
 import { TournamentService } from '../tournament/tournament.service';
 import { MatchService } from '../match/match.service';
 import { getRandomValues } from 'crypto';
+import { CreateMatchInput } from 'src/match/dto/create-match.input';
 
 @Injectable()
 export class ManagerService {
@@ -58,9 +59,45 @@ export class ManagerService {
     return Math.floor(Math.random() * (max - min + 1)) + min;
  }
 
-  async createPlayersMatchesStart(playersInput: PlayerInput[], tournamentInput: TournamentInput) {
+async getPlayerForRound(matchsInput:CreateMatchInput[],TournamentInput:TournamentInput){
+  
+  let playersInput=[]
+
+  for(let match of matchsInput){
+
+    let participants=null
+    
+    try
+    {
+      participants= await this.participateService.findOne(TournamentInput.TournamentDate,TournamentInput.TournamentName,match.MatchID)
+    }
+    catch(error)
+    {
+        console.log("internal server error: ",error)
+    }
+      
+      if(match.PlayerOneResult<match.PlayerTwoResult)
+      
+          playersInput.push(participants.PlayerOneID)
+
+        else playersInput.push(participants.PlayerTwoID)
+
+      
+        if(match.PlayerOneResult==match.PlayerTwoResult){
+        
+        playersInput.push(participants.PlayerOneID)
+        playersInput.push(participants.PlayerTwoID)
+      
+      }
+     }
+    return playersInput
+}
+
+  async createPlayersMatchesStart(matchsInput:CreateMatchInput[], tournamentInput: TournamentInput) {
    
     let matchs = [];
+    let playersInput=await this.getPlayerForRound(matchsInput,tournamentInput)
+
     const status = await this.checkPlayersExists(playersInput);
    
     if (!status.Valid)
@@ -112,26 +149,28 @@ export class ManagerService {
           {
             const response: Response = {
             Status: 'Wrong',
-            Message: error
+            Message: error,
+            matchs:null
           }
           this.participates += 1;
         }
     }
       const response: Response = {
         Status: 'OK',
-        Message: 'All OK'
+        Message: 'All OK',
+        matchs: await this.matchService.getMatchByTournamentAndRound(tournamentInput.TournamentDate,tournamentInput.TournamentName,1)
       };
-      return await this.matchService.getMatchByTournamentAndRound(tournamentInput.TournamentDate,tournamentInput.TournamentName,1);
+      return  response;
   
-      return response;
     }
   }
 
-  async createPlayersMatchesRandom(playersInput: PlayerInput[], tournamentInput: TournamentInput, round: number){
-
-    let matchs = [];
-    const status = await this.checkPlayersExists(playersInput);
+  async createPlayersMatchesRandom(matchsInput:CreateMatchInput[], tournamentInput: TournamentInput,round) {
    
+    let matchs = [];
+    let playersInput=await this.getPlayerForRound(matchsInput,tournamentInput)
+    const status = await this.checkPlayersExists(playersInput);
+
     if (!status.Valid)
       return {
         Status: 'WRONG',
@@ -183,16 +222,18 @@ export class ManagerService {
           {
             const response: Response = {
             Status: 'Wrong',
-            Message: error
+            Message: error,
+            matchs:null
           }
           this.participates += 1;
     }
   }
       const response: Response = {
         Status: 'OK',
-        Message: 'All OK'
+        Message: 'All OK',
+        matchs: await this.matchService.getMatchByTournamentAndRound(tournamentInput.TournamentDate,tournamentInput.TournamentName,round)
       };
-      return await this.matchService.getMatchByTournamentAndRound(tournamentInput.TournamentDate,tournamentInput.TournamentName,round);   
+      return response ;   
   }
 
   checkArcheTypeExists(archetypes: ArchetypeInput[], archetype: ArchetypeInput) {
@@ -243,13 +284,15 @@ export class ManagerService {
       });
       const response: Response = {
         Status: 'OK',
-        Message: 'All OK'
+        Message: 'All OK',
+        matchs:null
       }
       return response;
     } catch (error) {
       const response: Response = {
         Status: 'WRONG',
-        Message: error
+        Message: error,
+        matchs:null
       }
       return response;
     }

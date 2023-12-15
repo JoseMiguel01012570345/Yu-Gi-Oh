@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ArchetypeInput = exports.DeckInput = exports.TournamentInput = exports.MatchInput = exports.PlayerInput = exports.DeckResponse = exports.BelongResponse = exports.SuscribeResponse = exports.PlayerResponse = exports.HasResponse = exports.PlaceResponse = exports.ArcheTypeCountResponse = exports.TournamentResponse = exports.ArcheTypeResponse = exports.ArcheTypeSearchDataResponse = exports.LocationSearchDataResponse = exports.UserDataResponse = exports.UserSearchData = exports.TournamentSearchDataResponse = exports.DeckDataResponse = exports.Response = void 0;
 const graphql_1 = require("@nestjs/graphql");
+const match_entity_1 = require("../../match/entities/match.entity");
 let Response = class Response {
 };
 exports.Response = Response;
@@ -22,6 +23,10 @@ __decorate([
     (0, graphql_1.Field)(() => String, { description: "message" }),
     __metadata("design:type", String)
 ], Response.prototype, "Message", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => [match_entity_1.Match], { description: "matches" }),
+    __metadata("design:type", Array)
+], Response.prototype, "matchs", void 0);
 exports.Response = Response = __decorate([
     (0, graphql_1.ObjectType)()
 ], Response);

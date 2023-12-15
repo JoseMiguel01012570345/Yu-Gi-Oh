@@ -1,4 +1,5 @@
 import { InputType, Int, Field, ObjectType } from '@nestjs/graphql';
+import { Match } from 'src/match/entities/match.entity';
 
 @ObjectType()
 export class Response {
@@ -8,6 +9,9 @@ export class Response {
 
   @Field(() => String, { description: "message" })
   Message: string;
+
+  @Field(() => [Match], { description: "matches" })
+  matchs: Match[];
 
 }
 

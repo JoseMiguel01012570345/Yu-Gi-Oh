@@ -1,12 +1,17 @@
 import { ManagerService } from './manager.service';
 import { ArcheTypeSearchDataResponse, Response, PlayerInput, TournamentInput, DeckInput, ArchetypeInput, DeckResponse, PlayerResponse, ArcheTypeResponse, ArcheTypeCountResponse, DeckDataResponse, LocationSearchDataResponse, TournamentSearchDataResponse, UserSearchData, UserDataResponse } from './dto/create-manager.input';
-import { Match } from 'src/match/entities/match.entity';
 import { CreateMatchInput } from 'src/match/dto/create-match.input';
 export declare class ManagerResolver {
     private readonly managerService;
     constructor(managerService: ManagerService);
-    createParticipates(start: boolean, matchsInput: CreateMatchInput[], tournamentInput: TournamentInput, round: number): Promise<Match[] | Response>;
-    registPlayer(playerInput: PlayerInput, deckInput: DeckInput, archetypeInput: ArchetypeInput, tournamentInput: TournamentInput): Promise<Response>;
+    createParticipates(start: boolean, matchsInput: CreateMatchInput[], tournamentInput: TournamentInput, round: number): Promise<Response | {
+        Status: string;
+        Message: string;
+    }>;
+    registPlayer(playerInput: PlayerInput, deckInput: DeckInput, archetypeInput: ArchetypeInput, tournamentInput: TournamentInput): Promise<Response | {
+        Status: string;
+        Message: string;
+    }>;
     findPlayersInTournament(tournamentDate: number, tournamentName: string): Promise<import("../suscribe/entities/suscribe.entity").Suscribe[]>;
     findPlayersOrderedByDeckCount(): Promise<PlayerResponse[]>;
     findArcheTypesByDecksCount(): Promise<ArcheTypeResponse[]>;

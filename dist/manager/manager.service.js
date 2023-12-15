@@ -61,8 +61,30 @@ let ManagerService = class ManagerService {
         max = Math.floor(max);
         return Math.floor(Math.random() * (max - min + 1)) + min;
     }
-    async createPlayersMatchesStart(playersInput, tournamentInput) {
+    async getPlayerForRound(matchsInput, TournamentInput) {
+        let playersInput = [];
+        for (let match of matchsInput) {
+            let participants = null;
+            try {
+                participants = await this.participateService.findOne(TournamentInput.TournamentDate, TournamentInput.TournamentName, match.MatchID);
+            }
+            catch (error) {
+                console.log("internal server error: ", error);
+            }
+            if (match.PlayerOneResult < match.PlayerTwoResult)
+                playersInput.push(participants.PlayerOneID);
+            else
+                playersInput.push(participants.PlayerTwoID);
+            if (match.PlayerOneResult == match.PlayerTwoResult) {
+                playersInput.push(participants.PlayerOneID);
+                playersInput.push(participants.PlayerTwoID);
+            }
+        }
+        return playersInput;
+    }
+    async createPlayersMatchesStart(matchsInput, tournamentInput) {
         let matchs = [];
+        let playersInput = await this.getPlayerForRound(matchsInput, tournamentInput);
         const status = await this.checkPlayersExists(playersInput);
         if (!status.Valid)
             return {
@@ -103,21 +125,23 @@ let ManagerService = class ManagerService {
                 catch (error) {
                     const response = {
                         Status: 'Wrong',
-                        Message: error
+                        Message: error,
+                        matchs: null
                     };
                     this.participates += 1;
                 }
             }
             const response = {
                 Status: 'OK',
-                Message: 'All OK'
+                Message: 'All OK',
+                matchs: await this.matchService.getMatchByTournamentAndRound(tournamentInput.TournamentDate, tournamentInput.TournamentName, 1)
             };
-            return await this.matchService.getMatchByTournamentAndRound(tournamentInput.TournamentDate, tournamentInput.TournamentName, 1);
             return response;
         }
     }
-    async createPlayersMatchesRandom(playersInput, tournamentInput, round) {
+    async createPlayersMatchesRandom(matchsInput, tournamentInput, round) {
         let matchs = [];
+        let playersInput = await this.getPlayerForRound(matchsInput, tournamentInput);
         const status = await this.checkPlayersExists(playersInput);
         if (!status.Valid)
             return {
@@ -158,16 +182,18 @@ let ManagerService = class ManagerService {
             catch (error) {
                 const response = {
                     Status: 'Wrong',
-                    Message: error
+                    Message: error,
+                    matchs: null
                 };
                 this.participates += 1;
             }
         }
         const response = {
             Status: 'OK',
-            Message: 'All OK'
+            Message: 'All OK',
+            matchs: await this.matchService.getMatchByTournamentAndRound(tournamentInput.TournamentDate, tournamentInput.TournamentName, round)
         };
-        return await this.matchService.getMatchByTournamentAndRound(tournamentInput.TournamentDate, tournamentInput.TournamentName, round);
+        return response;
     }
     checkArcheTypeExists(archetypes, archetype) {
         for (let i = 0; i < archetypes.length; i++) {
@@ -216,14 +242,16 @@ let ManagerService = class ManagerService {
             });
             const response = {
                 Status: 'OK',
-                Message: 'All OK'
+                Message: 'All OK',
+                matchs: null
             };
             return response;
         }
         catch (error) {
             const response = {
                 Status: 'WRONG',
-                Message: error
+                Message: error,
+                matchs: null
             };
             return response;
         }

@@ -155,6 +155,9 @@ type Response {
 
   """message"""
   Message: String!
+
+  """matches"""
+  matchs: [Match!]!
 }
 
 type DeckDataResponse {
@@ -408,7 +411,7 @@ type Mutation {
   createParticipate(createParticipateInput: CreateParticipateInput!): Participate!
   updateParticipate(updateParticipateInput: UpdateParticipateInput!): Participate!
   removeParticipate(TournamentDate: Int!, TournamentName: String!, MatchID: Int!): Participate!
-  createParticipates(start: Boolean!, matchResoult: [CreateMatchInput!]!, tournament: TournamentInput!, round: Int!): Response!
+  generateMatches(start: Boolean!, matchResoult: [CreateMatchInput!]!, tournament: TournamentInput!, round: Int!): Response!
   registPlayer(player: PlayerInput!, deck: DeckInput!, archetype: ArchetypeInput!, tournament: TournamentInput!): Response!
 }
 
