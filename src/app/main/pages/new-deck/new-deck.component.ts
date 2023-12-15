@@ -47,16 +47,20 @@ export class NewDeckComponent implements OnInit {
   CreateDeck(): void {
     if(this.createDeckForm.valid){
       const { name, attribute, mainDeckCardsAmount, extraDeckCardsAmount, sideDeckCardsAmount } = this.createDeckForm.value;
+      const playerID = localStorage.getItem('username');
 
-      this.decksService.createUnnasignedDeck(name, mainDeckCardsAmount, extraDeckCardsAmount, sideDeckCardsAmount)
-        .subscribe({
+        this.decksService.createDeckWithAssignments(name, mainDeckCardsAmount, sideDeckCardsAmount, extraDeckCardsAmount, playerID!, attribute).subscribe({
           next: (result) => {
             console.log('Deck ID:', result.deckID);
+            if (result.errorMessage) {
+              console.error('Error:', result.errorMessage);
+            }
           },
           error: (error) => {
-            console.error('Error creating deck:', error);
+            console.error('Error creating deck with assignments:', error);
           },
         });
-      }
+    }
   }
+
 }
