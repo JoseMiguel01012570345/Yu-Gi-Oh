@@ -7,11 +7,8 @@
     <mat-form-field>
       <mat-label>Usuario</mat-label>
       <input type="text" matInput placeholder="Nick de Usuario" formControlName="username" required>
-    </mat-form-field>
-
-    <mat-form-field>
-      <mat-label>Nombre</mat-label>
-      <input type="text" matInput placeholder="Nombre Completo" required>
+      <mat-error *ngIf="signinForm.get('username')?.hasError('required')">El nombre de usuario es obligatorio</mat-error>
+      <mat-error *ngIf="signinForm.get('username')?.hasError('minlength')">El nombre de usuario debe tener al menos 4 caracteres</mat-error>
     </mat-form-field>
 
     <mat-form-field>
@@ -25,6 +22,8 @@
     <mat-form-field>
       <mat-label>Contraseña</mat-label>
       <input type="password" matInput placeholder="Contraseña" formControlName="password" required>
+      <mat-error *ngIf="signinForm.get('password')?.hasError('required')">La contraseña es obligatoria</mat-error>
+      <mat-error *ngIf="signinForm.get('password')?.hasError('minlength')">La contraseña debe tener al menos 4 caracteres</mat-error>
     </mat-form-field>
 
     <mat-form-field>
@@ -40,6 +39,7 @@
     <mat-form-field>
       <mat-label>Télefono (opcional)</mat-label>
       <input type="number" matInput placeholder="Télefono" formControlName="phoneNumber">
+      <mat-error *ngIf="signinForm.get('phoneNumber')?.hasError('pattern')">El número de teléfono debe tener 10 dígitos</mat-error>
     </mat-form-field>
 
     <button mat-button mat-flat-button color="primary" type="submit">

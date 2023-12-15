@@ -23,4 +23,6 @@ export class DecksService {
         map((response) => response.data.archetypes.map(archetype => archetype.ArcheTypeName))
       );
   }
+
+  
 }

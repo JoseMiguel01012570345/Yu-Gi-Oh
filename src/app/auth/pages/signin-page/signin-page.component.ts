@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../../shared/services/auth.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-signin-page',
@@ -17,14 +18,16 @@ export class SigninPageComponent {
               private formBuilder: FormBuilder,
               private readonly router: Router)
   {
+
     this.signinForm = this.formBuilder.group({
-      username: ['', Validators.required],
-      password: ['', Validators.required],
+      username: ['', [Validators.required, Validators.minLength(4)]],
+      password: ['', [Validators.required, Validators.minLength(4)]],
       roll: ['', Validators.required],
       mun: ['', Validators.required],
       prov: ['', Validators.required],
-      phoneNumber: [null],
+      phoneNumber: [null, Validators.pattern(/^\d{8}$/)],
     });
+
   }
 
 

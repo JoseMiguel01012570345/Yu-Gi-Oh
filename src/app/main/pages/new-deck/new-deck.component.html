@@ -1,35 +1,61 @@
-<div class="grid p-3">
-  <div class="col-12 mt-5 md:col-6 md:col-offset-3 md:mt-8">
-    <div class="flex flex-column">
+<form [formGroup]="createDeckForm" (ngSubmit)="CreateDeck()">
+  <div class="grid p-3">
+    <div class="col-12 mt-5 md:col-6 md:col-offset-3 md:mt-8">
+      <div class="flex flex-column">
 
-      <span class="text-lg mb-4">Agregar Deck</span>
+        <span class="text-lg mb-4">Agregar Deck</span>
 
-      <mat-form-field>
-        <mat-label>Nombre de Deck</mat-label>
-        <input type="text" matInput placeholder="Nombre de Deck">
-      </mat-form-field>
+        <mat-form-field>
+          <mat-label>Nombre de Deck</mat-label>
+          <input type="text" matInput placeholder="Nombre de Deck" formControlName="name" required>
+        </mat-form-field>
 
-      <mat-form-field>
-        <mat-label> Atributo </mat-label>
-        <mat-select required="">
-          <mat-option *ngFor="let attribute of attributes"
-          [value]="attribute.id">
-            {{attribute.value}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
+        <mat-form-field>
+          <mat-label> Atributo </mat-label>
+          <mat-select required formControlName="attribute">
+            <mat-option *ngFor="let attribute of attributes"
+            [value]="attribute.value">
+              {{attribute.value}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
 
-      <div class="flex justify-content-end mt-1">
-        <button
-          mat-flat-button
-          color="primary"
-          >
-          <mat-icon> save </mat-icon>
-          Crear
-        </button>
+        <mat-form-field>
+          <mat-label>Cantidad de Cartas (Main Deck)</mat-label >
+          <input type="number" matInput placeholder="Cantidad de Cartas (Main Deck)" formControlName="mainDeckCardsAmount">
+          <mat-error *ngIf="createDeckForm.get('mainDeckCardsAmount')?.hasError('min') || createDeckForm.get('mainDeckCardsAmount')?.hasError('max')">
+            La cantidad de cartas en el Main Deck debe estar entre 40 y 60.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Cantidad de Cartas (Extra Deck)</mat-label>
+          <input type="number" matInput placeholder="Cantidad de Cartas (Extra Deck)" formControlName="extraDeckCardsAmount">
+          <mat-error *ngIf="createDeckForm.get('extraDeckCardsAmount')?.hasError('min') || createDeckForm.get('extraDeckCardsAmount')?.hasError('max')">
+            La cantidad de cartas en el Extra Deck debe estar entre 0 y 15.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Cantidad de Cartas (Side Deck)</mat-label>
+          <input type="number" matInput placeholder="Cantidad de Cartas (Side Deck)" formControlName="sideDeckCardsAmount">
+          <mat-error *ngIf="createDeckForm.get('sideDeckCardsAmount')?.hasError('min') || createDeckForm.get('sideDeckCardsAmount')?.hasError('max')">
+            La cantidad de cartas en el Side Deck debe estar entre 0 y 15.
+          </mat-error>
+        </mat-form-field>
+
+        <div class="flex justify-content-end mt-1">
+          <button
+            mat-flat-button
+            color="primary"
+            type="submit"
+            >
+            <mat-icon> save </mat-icon>
+            Crear
+          </button>
+        </div>
+
       </div>
-
     </div>
   </div>
-</div>
-
+</form>

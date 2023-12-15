@@ -11,12 +11,12 @@ export interface UserSearchData {
 
 export interface UserData {
   id:            string;
-  myDecks:       MyDeck[];
-  myTournaments: MyTournament[];
+  Decks:       MyDeck[];
+  Tournaments: MyTournament[];
 }
 
 export interface UserDataResponse {
-  userdata: UserData;
+  userData: UserData;
 }
 
 export interface MyTournament {
@@ -26,10 +26,9 @@ export interface MyTournament {
 }
 
 export interface MyDeck {
-  id:        number;
-  name:      string;
-  attribute: string;
-  user_id:   number;
+  Attribute: string;
+  ID:        number;
+  Name:      string;
 }
 
 //TEMPORAL

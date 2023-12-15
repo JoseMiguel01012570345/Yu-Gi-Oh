@@ -4,7 +4,7 @@ import { environments } from 'src/environments/environments';
 import { Observable, catchError, map, of, tap } from 'rxjs';
 import { Apollo } from 'apollo-angular';
 
-import { Player, PlayerResponse, PlayersResponse, UserData} from '../interfaces/user.interface';
+import { Player, PlayerResponse, PlayersResponse, UserData, UserDataResponse } from '../interfaces/user.interface';
 
 
 import { GET_PLAYERS, GET_USER, GET_USER_DATA } from './queries/queries';
@@ -20,17 +20,16 @@ export class UsersService {
   getUserData(playerName: string): Observable<UserData> {
     console.log("Player Name: " + playerName)
 
-    return this.apollo.query<UserData>({
+    return this.apollo.query<UserDataResponse>({
       query: GET_USER_DATA,
       variables: {
         playerName: playerName,
       },
     }).pipe(
-      tap(response => console.log(response.data)),
       map(response =>
         {
-          console.log(response.data);
-          return response.data;
+          console.log(response.data.userData);
+          return response.data.userData;
         })
     )
   }
